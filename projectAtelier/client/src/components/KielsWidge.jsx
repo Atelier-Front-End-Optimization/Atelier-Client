@@ -1,7 +1,8 @@
+import React from 'react'
+import ReactDOM from 'react-dom/client'
 
-
-function Kiels() {
+function KielsWidge() {
   return <div>Test</div>
 }
 
-export default Kiels
+export default KielsWidge;
