@@ -11,10 +11,6 @@ export default defineConfig({
     coverage: {
       provider: 'v8'
     },
-    //setupFiles: './tests/setup.js',
     environment: 'jsdom',
-    // resolve: {
-    //   alias: [{ find: "@", replacement: path.resolve(__dirname, "./src") }],
-    // },
   },
 })
