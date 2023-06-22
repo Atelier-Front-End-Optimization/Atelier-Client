@@ -1,4 +1,4 @@
-
+import path from 'path'
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
@@ -11,6 +11,10 @@ export default defineConfig({
     coverage: {
       provider: 'v8'
     },
-    setupFiles: './tests/setup.js',
+    //setupFiles: './tests/setup.js',
+    environment: 'jsdom',
+    // resolve: {
+    //   alias: [{ find: "@", replacement: path.resolve(__dirname, "./src") }],
+    // },
   },
 })
