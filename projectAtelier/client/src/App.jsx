@@ -1,8 +1,8 @@
 import {useEffect, useState} from 'react';
-import  axiosGet  from '../../apiRoutes.js';
+import axiosGet from './apiRoutes.js';
 import RelatedProducts from './components/RelatedProducts.jsx';
 import ProductDetails from './components/ProductDetails.jsx';
-import Ratings_Reviews from './components/Ratings_Reviews.jsx';
+import RatingsReviews from './components/Ratings_Review/RatingsReviews.jsx';
 
 function App() {
   const [product, setProduct] = useState({});
@@ -30,7 +30,7 @@ useEffect(() => {
       <RelatedProducts productId={product.id} setProduct={setProduct}/>
       </div>
       <div>
-      <Ratings_Reviews productId={product.id}/>
+      <RatingsReviews product_id={product.id}/>
       </div>
     </div>
   )
