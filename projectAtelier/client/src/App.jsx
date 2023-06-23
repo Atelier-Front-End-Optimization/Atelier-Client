@@ -3,7 +3,7 @@ function App() {
 
   return (
     <div>
-      I LIVE
+      I LIVE and env test
     </div>
   )
 }
