@@ -1,22 +1,18 @@
 import {useEffect, useState} from 'react';
 import  axiosGet  from '../../apiRoutes.js';
-import RelatedProducts from './components/RelatedProducts.jsx';
+import RelatedProducts from './components/RelatedProducts/RelatedProducts.jsx';
 import ProductDetails from './components/ProductDetails.jsx';
 import Ratings_Reviews from './components/Ratings_Reviews.jsx';
+import getConfig from '../../apiRoutes.js';
+import axios from 'axios';
 
 function App() {
   const [product, setProduct] = useState({});
 
 useEffect(() => {
-  const fetchData = async() => {
-    try {
-      const productRes = await axiosGet('/products');
-     setProduct(productRes.data[0]);
-    } catch (err) {
-      console.error(err);
-    }
-  }
-  fetchData();
+  axios.get(getConfig.url + '/products', getConfig).then((response) => {
+    setProduct(response.data[0]);
+  })
 },[])
 
   return (
