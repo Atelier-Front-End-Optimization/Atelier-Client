@@ -8,15 +8,9 @@ function App() {
   const [product, setProduct] = useState({});
 
 useEffect(() => {
-  const fetchData = async() => {
-    try {
-      const productRes = await axiosGet('/products');
-     setProduct(productRes.data[0]);
-    } catch (err) {
-      console.error(err);
-    }
-  }
-  fetchData();
+  axios.get(getConfig.url + '/products', getConfig).then((response) => {
+    setProduct(response.data[0]);
+  })
 },[])
 
   return (
