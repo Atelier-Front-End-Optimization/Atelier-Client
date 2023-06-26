@@ -27,7 +27,7 @@ const ProductDetails = () => {
       setInitialProducts(response.data);
     })
     .catch((error) => {
-      console.log('ERROR IN AXIOS GET PRODUCT DETAILS')
+      // console.log('ERROR IN AXIOS GET PRODUCT DETAILS')
     })
   };
   fetchProducts();

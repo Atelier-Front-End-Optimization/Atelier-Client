@@ -6,7 +6,7 @@ import { describe, expect, it } from 'vitest';
 
 describe('Kiels Component', () => {
   it('should render with the provided title prop', () => {
-    render(<RelatedProducts title='Test'/>);
+    render(<RelatedProducts productId={1}/>);
     screen.debug();
   });
 });
