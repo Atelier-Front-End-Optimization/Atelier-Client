@@ -1,13 +1,13 @@
 import {useEffect, useState} from 'react';
 import axios from 'axios';
-// import getConfig from '../../../../apiRoutes.js';
+import axiosConfig from '../../axiosConfig.js';
 //import Card from './Card.jsx';
 
 function RelatedCard({productId}) {
   const [relatedProducts, setRelatedProducts] = useState([]);
   useEffect(() => {
     if (!productId) return;
-    axios.get(getConfig.url + '/products/' + productId + '/related', getConfig).then((response) => {
+    axios.get(axiosConfig.url + '/products/' + productId + '/related', axiosConfig).then((response) => {
       setRelatedProducts(response.data);
       })
 },[productId])
