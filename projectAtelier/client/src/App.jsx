@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import {useEffect, useState} from 'react';
-import axiosConfig from './axiosConfig.js';
+import axiosConfig from './Middleware/axiosConfig.js';
 import RelatedProducts from './components/RelatedProducts/RelatedProducts.jsx';
 import ProductDetails from './components/Product_Details/ProductDetails.jsx';
 import RatingsReviews from './components/Ratings_Review/RatingsReviews.jsx';
