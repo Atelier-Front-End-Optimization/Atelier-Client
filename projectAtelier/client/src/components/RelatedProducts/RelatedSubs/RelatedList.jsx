@@ -4,11 +4,10 @@ import axiosConfig from '../../../Middleware/axiosConfig.js';
 import RelatedCard from './RelatedCard.jsx';
 import averageRating from '../../../Middleware/averageRating.js';
 function RelatedList({productId, setProduct}) {
+
   const [relatedIDs, setRelatedIDs] = useState([]);
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [reviews, setReviews] = useState([]);
-
-
 
   //get all related id's to current product
   useEffect(() => {
@@ -42,20 +41,16 @@ useEffect(() => {
           console.log('GET RELATED PRODUCTS ERROR ', err);
         })
       })
-
-
-
-
     })
   }, [relatedIDs])
 
   //set the current product when a related card is clicked
-  // function handleClick(id) {
-  //   console.log(id);
-  //   axios.get(axiosConfig.url + '/products/' + id, axiosConfig).then((response) => {
-  //     setProduct(response.data);
-  //   })
-  // }
+  function handleClick(id) {
+    console.log('I WAS CHOSEN PRAISE BE ', id);
+    axios.get(axiosConfig.url + '/products/' + id, axiosConfig).then((response) => {
+      setProduct(response.data);
+    })
+  }
 
 
   return (
@@ -63,7 +58,7 @@ useEffect(() => {
       <div className='font-semibold text-base'>Related List</div>
       <div className='flex flex-row ...'>
         {relatedProducts.map((product) => {
-          return <RelatedCard key={product.id} product={product} />
+          return <RelatedCard key={product.id} product={product} handleClick={handleClick} />
         })}
       </div>
 
