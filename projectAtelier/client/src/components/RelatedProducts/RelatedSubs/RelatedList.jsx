@@ -3,6 +3,8 @@ import axios from 'axios';
 import axiosConfig from '../../../Middleware/axiosConfig.js';
 import RelatedCard from './RelatedCard.jsx';
 import averageRating from '../../../Middleware/averageRating.js';
+import Stack from '@mui/material/Stack';
+
 function RelatedList({productId, setProduct}) {
 
   const [relatedIDs, setRelatedIDs] = useState([]);
@@ -53,11 +55,11 @@ useEffect(() => {
   return (
     <div>
       <div className='font-semibold text-base'>Related List</div>
-      <div className='flex flex-row ...'>
+      <Stack direction='row' spacing={2}>
         {relatedProducts.map((product) => {
           return <RelatedCard key={product.id} product={product} handleClick={handleClick} />
         })}
-      </div>
+      </Stack>
 
     </div>
     );
