@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 import axios from 'axios';
-import getConfig from '../../../../apiRoutes.js';
+// import getConfig from '../../../../apiRoutes.js';
 //import Card from './Card.jsx';
 
 function RelatedCard({productId}) {
