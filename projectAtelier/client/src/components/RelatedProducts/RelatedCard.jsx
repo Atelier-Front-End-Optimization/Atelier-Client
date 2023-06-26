@@ -16,18 +16,18 @@ function RelatedCard({productId}) {
   },[])
 //console.log('ACTUALLY RELATED PRODUCTS ', relatedProducts);
 
-  return (
-    <div>
-      <div>Related Card </div>
-      <div></div>
-      <div>Length: {relatedProducts.length}</div>
-      {relatedProducts.map((product) => {
-        return (
-        <div>Product: {product.name}</div>
-        );
-      })}
-    </div>
-  )
+  // return (
+    // <div>
+    //   <div>Related Card </div>
+    //   <div></div>
+    //   <div>Length: {relatedProducts.length}</div>
+    //   {relatedProducts.map((product) => {
+    //     return (
+    //     <div>Product: {product.name}</div>
+    //     );
+    //   })}
+    // </div>
+  // )
 }
 
 export default RelatedCard;

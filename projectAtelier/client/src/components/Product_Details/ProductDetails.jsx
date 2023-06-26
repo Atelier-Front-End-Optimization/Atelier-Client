@@ -15,11 +15,11 @@ const ProductDetails = () => {
       }
     })
     .then((response)=> {
-      console.log(response.data, 'RESPONSE DATA IN PRODUCT DETAILS')
+      // console.log(response.data, 'RESPONSE DATA IN PRODUCT DETAILS')
       setCurrentProducts(response.data);
     })
     .catch((error) => {
-      console.log('ERROR IN AXIOS GET PRODUCT DETAILS')
+      // console.log('ERROR IN AXIOS GET PRODUCT DETAILS')
     })
   };
 

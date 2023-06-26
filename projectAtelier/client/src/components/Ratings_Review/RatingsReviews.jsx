@@ -5,10 +5,13 @@ import ReviewBreakdown from './Ratings_Review_Subcomponents/ReviewBreakdown.jsx'
 import SortOptions from './Ratings_Review_Subcomponents/SortOptions.jsx';
 import ReviewList from './Ratings_Review_Subcomponents/ReviewList.jsx';
 import {useEffect, useState} from 'react';
+import axiosConfig from '../../axiosConfig.js';
 import axios from 'axios';
 
 
 const RatingsReviews = ({ product_id }) => {
+
+  const [reviews, setReviews] = useState([]);
 
   const getReviews = async (product_id, sort = null, count = null, page = null) => {
     const config ={
@@ -24,12 +27,13 @@ const RatingsReviews = ({ product_id }) => {
     };
     try {
       const reviewRes = await axios.get(
-        import.meta.env.VITE_API_URL + '/reviews',
+        axiosConfig.url + '/reviews',
         config
       );
 
       const {data} = reviewRes;
-      console.log(data) ///<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+      // console.log(data) ///<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+      setReviews(data.results)
     } catch (err) {
       console.error(err);
     }
@@ -37,7 +41,7 @@ const RatingsReviews = ({ product_id }) => {
 
   useEffect(() => {
     if (!product_id) return;
-    getReviews(product_id);
+    getReviews(product_id, null, 2, null);
   }, [product_id]);
 
 
@@ -48,7 +52,7 @@ const RatingsReviews = ({ product_id }) => {
       <ReviewBreakdown/>
       <ProductBreakdown/>
       <SortOptions/>
-      <ReviewList/>
+      <ReviewList reviews={reviews}/>
       <NewReview/>
     </section>
   );
