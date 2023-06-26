@@ -5,7 +5,7 @@ import ReviewBreakdown from './Ratings_Review_Subcomponents/ReviewBreakdown.jsx'
 import SortOptions from './Ratings_Review_Subcomponents/SortOptions.jsx';
 import ReviewList from './Ratings_Review_Subcomponents/ReviewList.jsx';
 import {useEffect, useState} from 'react';
-import axiosConfig from '../../axiosConfig.js';
+import axiosConfig from '../../Middleware/axiosConfig.js';
 import axios from 'axios';
 
 
