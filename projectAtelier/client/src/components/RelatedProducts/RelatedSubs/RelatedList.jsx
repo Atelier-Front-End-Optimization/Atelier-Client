@@ -1,11 +1,14 @@
 import {useEffect, useState} from 'react';
 import axios from 'axios';
-import axiosConfig from '../../../axiosConfig.js';
+import axiosConfig from '../../../Middleware/axiosConfig.js';
 import RelatedCard from './RelatedCard.jsx';
-
+import averageRating from '../../../Middleware/averageRating.js';
 function RelatedList({productId, setProduct}) {
   const [relatedIDs, setRelatedIDs] = useState([]);
   const [relatedProducts, setRelatedProducts] = useState([]);
+  const [reviews, setReviews] = useState([]);
+
+
 
   //get all related id's to current product
   useEffect(() => {
@@ -24,11 +27,25 @@ function RelatedList({productId, setProduct}) {
 //get all relevant info about each related id
 useEffect(() => {
     relatedIDs.forEach((product) => {
-      axios.get(axiosConfig.url + '/products/' + product, axiosConfig).then((res) => {
-        setRelatedProducts(relatedProducts => [...relatedProducts, res.data]);
-      }).catch((err) => {
-        console.log('GET RELATED PRODUCTS ERROR ', err);
+      let options = axiosConfig;
+      options.params ={};
+      options.params.product_id = product;
+      axios.get(options.url + '/reviews/meta', options).then((response) => {
+        let average = averageRating(response.data.ratings);
+        return average;
+      }).then((average) => {
+        axios.get(axiosConfig.url + '/products/' + product, axiosConfig).then((res) => {
+          res.data.average = average;
+          console.log('AVERAGE ', res.data);
+          setRelatedProducts(relatedProducts => [...relatedProducts, res.data]);
+        }).catch((err) => {
+          console.log('GET RELATED PRODUCTS ERROR ', err);
+        })
       })
+
+
+
+
     })
   }, [relatedIDs])
 
@@ -44,9 +61,11 @@ useEffect(() => {
   return (
     <div>
       <div className='font-semibold text-base'>Related List</div>
-      {relatedProducts.map((product) => {
-        return <RelatedCard key={product.id}product={product}/>
-      })}
+      <div className='flex flex-row ...'>
+        {relatedProducts.map((product) => {
+          return <RelatedCard key={product.id} product={product} />
+        })}
+      </div>
 
     </div>
     );
