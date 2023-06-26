@@ -5,7 +5,7 @@
 
 
 
-  const getConfig = {
+  const axiosConfig = {
     headers: {
       Authorization: import.meta.env.VITE_API_TOKEN,
     },
@@ -13,4 +13,4 @@
   }
 
 //await line 17
-export default getConfig;
+export default axiosConfig;
