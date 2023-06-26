@@ -27,7 +27,7 @@ const ProductDetails = () => {
       setInitialProducts(response.data);
     })
     .catch((error) => {
-      // console.log('ERROR IN AXIOS GET PRODUCT DETAILS')
+      console.log('ERROR IN AXIOS GET PRODUCT DETAILS')
     })
   };
   fetchProducts();
@@ -80,7 +80,7 @@ useEffect(() => {
   <ItemDescription slogan={initialProducts[0].slogan} description = {initialProducts[0].description} />
 
   {productStyles.map((product) => {
-   return <p id={product.id}>{product.name}</p>
+   return <p key={product.style_id}>{product.name}</p>
   })}
 
 
