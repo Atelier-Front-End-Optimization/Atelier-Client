@@ -11,7 +11,6 @@ function RelatedList({productId, setProduct}) {
 
   //get all related id's to current product
   useEffect(() => {
-    console.log('PRODUCT ID  ', productId);
     if (!!productId) {
       axios.get(axiosConfig.url + '/products/' + productId + '/related', axiosConfig).then((response) => {
         setRelatedIDs(response.data);
@@ -35,7 +34,6 @@ useEffect(() => {
       }).then((average) => {
         axios.get(axiosConfig.url + '/products/' + product, axiosConfig).then((res) => {
           res.data.average = average;
-          console.log('AVERAGE ', res.data);
           setRelatedProducts(relatedProducts => [...relatedProducts, res.data]);
         }).catch((err) => {
           console.log('GET RELATED PRODUCTS ERROR ', err);
@@ -46,7 +44,6 @@ useEffect(() => {
 
   //set the current product when a related card is clicked
   function handleClick(id) {
-    console.log('I WAS CHOSEN PRAISE BE ', id);
     axios.get(axiosConfig.url + '/products/' + id, axiosConfig).then((response) => {
       setProduct(response.data);
     })
