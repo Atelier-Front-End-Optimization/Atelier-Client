@@ -1,5 +1,6 @@
 //import Card from './Card.jsx';
 
+
 function RelatedCard({product, handleClick}) {
   function relatedClick() {
     handleClick(product.id);
