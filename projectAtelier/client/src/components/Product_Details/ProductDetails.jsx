@@ -52,9 +52,9 @@ useEffect(() => {
 }, [productId])
 
   if (productStyles && productStyles.length > 0) {
-    console.log(productStyles, 'STYLES')
-    console.log(productFeatures, 'FEATURES')
-    console.log(productStylePhotos, 'PHOTOS')
+    // console.log(productStyles, 'STYLES')
+    // console.log(productFeatures, 'FEATURES')
+    // console.log(productStylePhotos, 'PHOTOS')
 
 
   return (
