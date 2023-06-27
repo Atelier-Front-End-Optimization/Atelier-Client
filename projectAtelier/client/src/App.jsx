@@ -17,8 +17,6 @@ useEffect(() => {
 
   return (
     <div>
-      <p>I LIVE and env test</p><b></b>
-      <p>{product.name}</p>
       <div>
       <br></br><ProductDetails description={product.description} slogan={product.slogan} productId={product.id} setProduct={setProduct}/>
       </div>
