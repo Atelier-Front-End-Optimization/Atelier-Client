@@ -7,10 +7,10 @@ import Rating from '@mui/material/Rating';
 import {useEffect, useState} from 'react';
 import axiosConfig from '../../../Middleware/axiosConfig.js';
 import axios from 'axios';
-import StarBorderIcon from '@mui/icons-material/StarBorder';
+import ActionButton from './ActionButton.jsx';
 
 function RelatedCard({product, handleClick}) {
-  const [photo, setPhoto] = useState('')
+  const [photo, setPhoto] = useState('');
 
   useEffect(() => {
     axios.get(axiosConfig.url + '/products/' + product.id + '/styles', axiosConfig).then((response) => {
@@ -20,6 +20,8 @@ function RelatedCard({product, handleClick}) {
           setPhoto(style.photos[0].thumbnail_url);
         }
       }
+    }).catch((err) => {
+      console.log('AXIOS GET ERROR GETTING PHOTOS ', err);
     })
   }, [])
 
@@ -32,11 +34,9 @@ function RelatedCard({product, handleClick}) {
   let USDollar = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD'});
   let price = USDollar.format(product.default_price);
   return (
-      <Card onClick={relatedClick} sx={{width:250, height:"100%", m:2, flexBasis:'auto', flexShrink: 0}}>
+      <Card onClick={relatedClick} sx={{cursor:'pointer', width:250, height:"100%", m:2, flexBasis:'auto', flexShrink: 0}}>
           <Box height='300px' width='100%' position='relative'>
-            <Box position='absolute' bottom='87%' left='85%' >
-              <StarBorderIcon>Action</StarBorderIcon>
-            </Box>
+            <ActionButton />
             <img height='100%' width='100%' src={photo}></img>
           </Box>
           <Box p={1}>

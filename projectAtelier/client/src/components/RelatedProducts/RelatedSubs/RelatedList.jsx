@@ -64,14 +64,10 @@ useEffect(() => {
   //find maxScroll
   let maxScroll = Math.ceil((relatedProducts.length - 4) / 2);
   function scrollRight() {
-    console.log(relatedProducts.length)
     if (scrolled < maxScroll * 500) {
       scrolled = scrolled + 500;
       ref.current.scroll({left: scrolled, behavior: 'smooth'})
     }
-    console.log(scrolled);
-
-
   }
   function scrollLeft() {
     if (scrolled > 0) {
