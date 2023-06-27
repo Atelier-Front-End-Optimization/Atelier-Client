@@ -5,6 +5,7 @@ import RelatedCard from './RelatedCard.jsx';
 import averageRating from '../../../Middleware/averageRating.js';
 import Stack from '@mui/material/Stack';
 
+
 function RelatedList({productId, setProduct}) {
 
   const [relatedIDs, setRelatedIDs] = useState([]);
@@ -54,13 +55,12 @@ useEffect(() => {
 
   return (
     <div>
-      <div className='font-semibold text-base'>Related List</div>
-      <Stack direction='row' spacing={2}>
-        {relatedProducts.map((product) => {
-          return <RelatedCard key={product.id} product={product} handleClick={handleClick} />
-        })}
-      </Stack>
-
+      <div>Related List</div>
+        <Stack direction='row' spacing={2} alignItems="center" sx={[{maxWidth: '100%', overflowX: 'auto', bgcolor:'ghostwhite', display: 'flex'}]}>
+            {relatedProducts.map((product) => {
+              return <RelatedCard key={product.id} product={product} handleClick={handleClick} />
+            })}
+        </Stack>
     </div>
     );
   }
