@@ -1,14 +1,16 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from 'react';
-import { Box, Rating, Typography, Grid, Button} from '@mui/material';
+import { Box, Rating, Modal, Button} from '@mui/material';
 import CheckIcon from '@mui/icons-material/Check';
 
 const ReviewTile = ({ review, review: { body, date, helpfulness, photos, rating, recommend, response, reviewer_name, summary} }) => {
   // console.log('SINGLE REVIEW IN REVIEWTILE', review)
-  // console.log(body);
-  // console.log(summary);
-  const [wasClicked, setWasClicked] = useState(false)
-  const [helpful, setHelpful] = useState(helpfulness)
+  // console.log(photos);
+  // console.log(body.length);
+  const [wasClicked, setWasClicked] = useState(false);
+  const [helpful, setHelpful] = useState(helpfulness);
+  const [showMore, setshowMore] = useState(false);
+  const [open, setOpen] = useState(false);
 
   let formattedDate;
   if (date) {
@@ -23,6 +25,14 @@ const ReviewTile = ({ review, review: { body, date, helpfulness, photos, rating,
 
   const handleNotHelpful = () => {
     setWasClicked(true);
+  };
+
+  const handleShow = () => {
+    setshowMore(!showMore);
+  };
+
+  const handleOpenClose = () => {
+    setOpen(!open)
   };
 
 ////////////////////////////////////////////////////////
@@ -45,24 +55,63 @@ const ReviewTile = ({ review, review: { body, date, helpfulness, photos, rating,
       </div>
       <div>
         <h2 style={{
-          fontWeight: 'bold',
-          whiteSpace: 'nowrap',
-          overflow: 'hidden',
-          textOverflow: 'ellipsis'
-        }}
+            fontWeight: 'bold',
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis'
+          }}
         >
           {summary}
         </h2>
       </div>
       <div>
-        {body}
+        { body.length > 250 ?
+          <div>
+            <p>
+              {showMore ? body : `${body.substring(0, 250)}...`}
+            </p>
+            <Button
+              variant='contained'
+              size='small'
+              onClick={handleShow}
+            >
+              {showMore ? 'Show Less' : 'Show More'}
+            </Button>
+          </div>
+        : body}
+        {/* {photos.map((photo) => {
+          return (
+            <Modal
+              key={photo.id}
+              open={open}
+              onClose={handleOpenClose}
+            >
+
+            </Modal>
+          )
+        })} */}
       </div>
+      <Box
+        sx={{
+          '& > legend': { mt: 2 },
+          margin: 3,
+          padding: 1,
+          background: 'rgba(52, 52, 52, 0.35)',
+          display: [response ? 'block' : 'none']
+        }}
+      >
+        <p style={{fontWeight: 'bold'}}
+        >
+          {'Response from seller:'}
+        </p>
+        <p>
+          {response}
+        </p>
+      </Box>
       <div>
-        {
-          recommend ?
-            <Grid><CheckIcon/> {'I recommend this product'} </Grid>
-          : ''
-        }
+        {recommend ?
+            <Box><CheckIcon/> {'I recommend this product'} </Box>
+        : ''}
       </div>
       <div>
         <span>Helpful?</span>
