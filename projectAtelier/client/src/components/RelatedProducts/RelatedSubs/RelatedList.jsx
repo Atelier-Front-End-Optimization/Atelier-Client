@@ -54,15 +54,18 @@ useEffect(() => {
   }
   //scroll function
   const ref = useRef(null);
-  function scroll(scroll) {
-    ref.current.scrollLeft += scroll;
+  function scrollRight() {
+    ref.current?.lastElementChild?.scrollIntoView({behavior: 'smooth', block:'nearest'});
+  }
+  function scrollLeft() {
+    ref.current?.firstElementChild?.scrollIntoView({behavior: 'smooth', block:'nearest'});
   }
 
   return (
     <div>
       <div>Related List</div>
-        <Button onClick = {() => scroll(50)}>Scroll Right</Button>
-        <Button onClick = {() => scroll(-50)}>Scroll Left</Button>
+        <Button onClick = {scrollLeft}>Scroll Left</Button>
+        <Button onClick = {scrollRight}>Scroll Right</Button>
         <Stack ref={ref} scrollBehavior='smooth' direction='row' spacing={2} alignItems="center" sx={[{maxWidth: '100%', overflowX: 'hidden', '&::-webkit-scrollbar':{ width:0}, bgcolor:'ghostwhite', display: 'flex'}]}>
             {relatedProducts.map((product) => {
               return <RelatedCard key={product.id} product={product} handleClick={handleClick} />
