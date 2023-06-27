@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from 'react';
-import { Box, Rating, Typography } from '@mui/material';
-import StarIcon from '@mui/icons-material/Star';
+import { Box, Rating, Typography, Grid } from '@mui/material';
+import CheckIcon from '@mui/icons-material/Check';;
 
 const ReviewTile = ({ review, review: { body, date, helpfulness, photos, rating, recommend, response, reviewer_name, summary} }) => {
   // console.log('SINGLE REVIEW IN REVIEWTILE', review)
@@ -48,7 +48,9 @@ const ReviewTile = ({ review, review: { body, date, helpfulness, photos, rating,
       </div>
       <div>
         {
-          recommend ? 'I recommend this product' : ''
+          recommend ?
+            <Grid><CheckIcon/> {'I recommend this product'} </Grid>
+          : ''
         }
       </div>
     </Box>
