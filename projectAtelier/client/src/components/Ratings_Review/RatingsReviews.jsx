@@ -41,7 +41,7 @@ const RatingsReviews = ({ product_id }) => {
 
   useEffect(() => {
     if (!product_id) return;
-    getReviews(product_id, null, 6, 8);
+    getReviews(product_id, null, 2, null);
   }, [product_id]);
 
 
