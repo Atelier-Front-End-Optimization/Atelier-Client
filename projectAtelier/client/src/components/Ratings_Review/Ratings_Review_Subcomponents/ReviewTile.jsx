@@ -33,11 +33,12 @@ const ReviewTile = ({ review, review: { body, date, helpfulness, photos, rating,
         </p>
       </div>
       <div>
-        <h2 style={{fontWeight: 'bold'},
-          {width: 250},
-          {whiteSpace: 'nowrap'},
-          {overflow: 'hidden'},
-          {textOverflow: 'ellipsis'}}
+        <h2 style={{
+          fontWeight: 'bold',
+          whiteSpace: 'nowrap',
+          overflow: 'hidden',
+          textOverflow: 'ellipsis'
+        }}
         >
           {summary}
         </h2>
