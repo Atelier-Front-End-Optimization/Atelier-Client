@@ -6,36 +6,36 @@ import AddBag from './Product_Subcomps/AddBag.jsx';
 import FavoriteProduct from './Product_Subcomps/FavoriteProduct.jsx';
 import ProductStyles from './Product_Subcomps/ProductStyles';
 
-const ProductDetails = () => {
+const ProductDetails = ({productId, description, slogan}) => {
 
-  const [initialProducts, setInitialProducts] = useState([]);
+  // const [initialProducts, setInitialProducts] = useState([]);
   const [productFeatures, setProductFeatures] = useState({});
   const [productStyles, setProductStyles] = useState([]);
   const [productStylePhotos, setProductStylePhotos] = useState([]);
 
 
 
-  useEffect(() => {
+  // useEffect(() => {
 
-  const fetchProducts = () => {
-    axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products', {
-      headers: {
-        Authorization: import.meta.env.VITE_API_TOKEN
-      }
-    })
-    .then((response)=> {
-      setInitialProducts(response.data);
-    })
-    .catch((error) => {
-      console.log('ERROR IN AXIOS GET PRODUCT DETAILS')
-    })
-  };
-  fetchProducts();
-}, [])
+//   const fetchProducts = () => {
+//     axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products', {
+//       headers: {
+//         Authorization: import.meta.env.VITE_API_TOKEN
+//       }
+//     })
+//     .then((response)=> {
+//       setInitialProducts(response.data);
+//     })
+//     .catch((error) => {
+//       console.log('ERROR IN AXIOS GET PRODUCT DETAILS')
+//     })
+//   };
+//   fetchProducts();
+// }, [])
 
 useEffect(() => {
-  const fetchProductFeatures =  (id) => {
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${id}`, {
+  const fetchProductFeatures =  (productId) => {
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${productId}`, {
       headers: {
         Authorization: import.meta.env.VITE_API_TOKEN
       }
@@ -48,8 +48,8 @@ useEffect(() => {
     })
   };
 
-  const fetchProductStyles = (id) => {
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${id}/styles`, {
+  const fetchProductStyles = (productId) => {
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${productId}/styles`, {
       headers: {
         Authorization: import.meta.env.VITE_API_TOKEN
       }
@@ -63,21 +63,20 @@ useEffect(() => {
     })
   }
 
-  if (initialProducts.length > 0) {
-    const id = initialProducts[0].id;
-    fetchProductFeatures(id);
-    fetchProductStyles(id);
+  if (productId) {
+    fetchProductFeatures(productId);
+    fetchProductStyles(productId);
   }
-}, [initialProducts])
+}, [productId])
 
-  if (initialProducts.length > 0) {
-    // console.log(productStyles, 'STYLES')
-    // console.log(productFeatures, 'FEATURES')
-    // console.log(productStylePhotos, 'PHOTOS')
+  if (productId) {
+    console.log(productStyles, 'STYLES')
+    console.log(productFeatures, 'FEATURES')
+    console.log(productStylePhotos, 'PHOTOS')
   return (
 <div>
 
-  <ItemDescription slogan={initialProducts[0].slogan} description = {initialProducts[0].description} />
+  <ItemDescription slogan={slogan} description = {description} />
 
   {productStyles.map((product) => {
    return <p key={product.style_id}>{product.name}</p>
