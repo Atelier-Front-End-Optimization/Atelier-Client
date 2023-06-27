@@ -5,10 +5,11 @@ import CheckIcon from '@mui/icons-material/Check';
 
 const ReviewTile = ({ review, review: { body, date, helpfulness, photos, rating, recommend, response, reviewer_name, summary} }) => {
   // console.log('SINGLE REVIEW IN REVIEWTILE', review)
-  console.log(response);
-  // console.log(summary);
-  const [wasClicked, setWasClicked] = useState(false)
-  const [helpful, setHelpful] = useState(helpfulness)
+  console.log(photos);
+  console.log(body.length);
+  const [wasClicked, setWasClicked] = useState(false);
+  const [helpful, setHelpful] = useState(helpfulness);
+  const [showMore, setshowMore] = useState(false);
 
   let formattedDate;
   if (date) {
@@ -23,6 +24,10 @@ const ReviewTile = ({ review, review: { body, date, helpfulness, photos, rating,
 
   const handleNotHelpful = () => {
     setWasClicked(true);
+  };
+
+  const handleShow = () => {
+    setshowMore(!showMore);
   };
 
 ////////////////////////////////////////////////////////
@@ -45,17 +50,31 @@ const ReviewTile = ({ review, review: { body, date, helpfulness, photos, rating,
       </div>
       <div>
         <h2 style={{
-          fontWeight: 'bold',
-          whiteSpace: 'nowrap',
-          overflow: 'hidden',
-          textOverflow: 'ellipsis'
-        }}
+            fontWeight: 'bold',
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis'
+          }}
         >
           {summary}
         </h2>
       </div>
       <div>
-        {body}
+        { body.length > 250 ?
+          <div>
+            <p>
+              {showMore ? body : `${body.substring(0, 250)}...`}
+            </p>
+            <Button
+              variant='contained'
+              size='small'
+              onClick={handleShow}
+            >
+              {showMore ? 'Show Less' : 'Show More'}
+            </Button>
+          </div>
+        : body}
+        {/* img */}
       </div>
       <Box
         sx={{
@@ -70,14 +89,14 @@ const ReviewTile = ({ review, review: { body, date, helpfulness, photos, rating,
         >
           {'Response from seller:'}
         </p>
-        {response}
+        <p>
+          {response}
+        </p>
       </Box>
       <div>
-        {
-          recommend ?
+        {recommend ?
             <Box><CheckIcon/> {'I recommend this product'} </Box>
-          : ''
-        }
+        : ''}
       </div>
       <div>
         <span>Helpful?</span>
