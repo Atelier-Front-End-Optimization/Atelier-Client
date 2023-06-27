@@ -20,7 +20,7 @@ useEffect(() => {
       <p>I LIVE and env test</p><b></b>
       <p>{product.name}</p>
       <div>
-      <br></br><ProductDetails productId={product.id} setProduct={setProduct}/>
+      <br></br><ProductDetails description={product.description} slogan={product.slogan} productId={product.id} setProduct={setProduct}/>
       </div>
       <div>
       <br></br><RelatedProducts productId={product.id} setProduct={setProduct}/>
