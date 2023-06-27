@@ -6,7 +6,9 @@ import AddBag from './Product_Subcomps/AddBag.jsx';
 import FavoriteProduct from './Product_Subcomps/FavoriteProduct.jsx';
 import ProductStyles from './Product_Subcomps/ProductStyles.jsx';
 import ProductModal from './Product_Subcomps/ProductModal.jsx'
-import Grid from '@mui/material/Grid'
+import Grid from '@mui/material/Grid';
+import Stack from '@mui/material/Stack';
+import Container from '@mui/material/Container';
 
 const ProductDetails = ({productId, description, slogan}) => {
 
@@ -58,37 +60,33 @@ useEffect(() => {
 
 
   return (
-<Grid
+<div>
+
+<div>
+<h1>{productStyles[0].name}</h1>
+</div>
+
+<Stack
 container
 direction="row"
 justifyContent="flex-start"
 paddingLeft='150px'
-alignItems="flex-start"
->
-
-  <Grid
-  container
-  direction="column"
-  justifyContent="flex-start"
-  paddingRight='150px'
-  alignItems="flex-end"
-  >
-  <h1>{productStyles[0].name}</h1>
-  <ProductStyles styles={productStyles} photos={productStylePhotos}/>
-  </Grid>
-
-<Grid
-container
-direction="column"
-justifyContent="flex-start"
 paddingRight='150px'
 alignItems="flex-start"
 >
-  <ProductModal photos={productStylePhotos} />
-  <ItemDescription slogan={slogan} description = {description} />
-  </Grid>
 
-  </Grid>
+
+<div>
+  <ProductModal photos={productStylePhotos} />
+  </div>
+
+  <ProductStyles styles={productStyles} photos={productStylePhotos}/>
+
+</Stack>
+<div>
+  <ItemDescription slogan={slogan} description = {description} />
+  </div>
+</div>
   )}
 };
 
