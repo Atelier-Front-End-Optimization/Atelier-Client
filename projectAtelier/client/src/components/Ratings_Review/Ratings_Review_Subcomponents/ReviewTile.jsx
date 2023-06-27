@@ -1,18 +1,29 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from 'react';
-import { Box, Rating, Typography, Grid } from '@mui/material';
+import { Box, Rating, Typography, Grid, Button} from '@mui/material';
 import CheckIcon from '@mui/icons-material/Check';
 
 const ReviewTile = ({ review, review: { body, date, helpfulness, photos, rating, recommend, response, reviewer_name, summary} }) => {
   // console.log('SINGLE REVIEW IN REVIEWTILE', review)
   // console.log(body);
   // console.log(summary);
+  const [wasClicked, setWasClicked] = useState(false)
+  const [helpful, setHelpful] = useState(helpfulness)
 
   let formattedDate;
   if (date) {
     formattedDate = new Date(date)
     .toLocaleDateString('en-us', {year: 'numeric', month: 'long', day: 'numeric'})
   }
+
+  const handleHelpful = () => {
+    setHelpful(helpful+1);
+    setWasClicked(true);
+  };
+
+  const handleNotHelpful = () => {
+    setWasClicked(true);
+  };
 
 ////////////////////////////////////////////////////////
   return (
@@ -52,6 +63,28 @@ const ReviewTile = ({ review, review: { body, date, helpfulness, photos, rating,
             <Grid><CheckIcon/> {'I recommend this product'} </Grid>
           : ''
         }
+      </div>
+      <div>
+        <span>Helpful?</span>
+        <Button
+          variant='text'
+          size='small'
+          // color='black'
+          onClick={handleHelpful}
+          disabled={wasClicked}
+        >
+          Yes ({helpful})
+        </Button>
+        <span>|</span>
+        <Button
+          variant='text'
+          size='small'
+          // color='black'
+          onClick={handleNotHelpful}
+          disabled={wasClicked}
+        >
+          No
+        </Button>
       </div>
     </Box>
   );
