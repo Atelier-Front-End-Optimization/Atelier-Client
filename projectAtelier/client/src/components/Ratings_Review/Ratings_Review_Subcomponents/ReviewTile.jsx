@@ -1,15 +1,16 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from 'react';
-import { Box, Rating, Typography, Grid, Button} from '@mui/material';
+import { Box, Rating, Modal, Button} from '@mui/material';
 import CheckIcon from '@mui/icons-material/Check';
 
 const ReviewTile = ({ review, review: { body, date, helpfulness, photos, rating, recommend, response, reviewer_name, summary} }) => {
   // console.log('SINGLE REVIEW IN REVIEWTILE', review)
-  console.log(photos);
-  console.log(body.length);
+  // console.log(photos);
+  // console.log(body.length);
   const [wasClicked, setWasClicked] = useState(false);
   const [helpful, setHelpful] = useState(helpfulness);
   const [showMore, setshowMore] = useState(false);
+  const [open, setOpen] = useState(false);
 
   let formattedDate;
   if (date) {
@@ -28,6 +29,10 @@ const ReviewTile = ({ review, review: { body, date, helpfulness, photos, rating,
 
   const handleShow = () => {
     setshowMore(!showMore);
+  };
+
+  const handleOpenClose = () => {
+    setOpen(!open)
   };
 
 ////////////////////////////////////////////////////////
@@ -74,7 +79,17 @@ const ReviewTile = ({ review, review: { body, date, helpfulness, photos, rating,
             </Button>
           </div>
         : body}
-        {/* img */}
+        {/* {photos.map((photo) => {
+          return (
+            <Modal
+              key={photo.id}
+              open={open}
+              onClose={handleOpenClose}
+            >
+
+            </Modal>
+          )
+        })} */}
       </div>
       <Box
         sx={{
