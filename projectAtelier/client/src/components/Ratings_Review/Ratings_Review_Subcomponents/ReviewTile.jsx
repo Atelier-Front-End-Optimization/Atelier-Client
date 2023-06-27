@@ -16,9 +16,16 @@ const ReviewTile = ({ review, review: { body, date, helpfulness, photos, rating,
 
 ////////////////////////////////////////////////////////
   return (
-    <div>
+    <Box
+      sx={{
+        '& > legend': { mt: 2 },
+        borderBottomStyle: 'solid',
+        margin: 3,
+        padding: 1
+      }}
+    >
       <div>
-        <Rating name="Item Review" value={rating} precision={0.25} readOnly />
+        <Rating name="Item Review" value={rating} precision={0.25} size='small' readOnly />
       </div>
       <div>
         <p>
@@ -43,7 +50,7 @@ const ReviewTile = ({ review, review: { body, date, helpfulness, photos, rating,
           recommend ? 'I recommend this product' : ''
         }
       </div>
-    </div>
+    </Box>
   );
 };
 
