@@ -54,11 +54,26 @@ useEffect(() => {
   }
   //scroll function
   const ref = useRef(null);
+  let scrolled = 0;
+  //find maxScroll
+  let maxScroll = Math.ceil(relatedProducts.length / 4);
+  console.log('LENGTH ', relatedProducts.length);
+  console.log('MAX SCROLL ', maxScroll);
   function scrollRight() {
-    ref.current?.lastElementChild?.scrollIntoView({behavior: 'smooth', block:'nearest'});
+    console.log(relatedProducts.length)
+    if (scrolled < maxScroll * 500) {
+      scrolled = scrolled + 500;
+      ref.current.scroll({left: scrolled, behavior: 'smooth'})
+    }
+    console.log(scrolled);
+
+
   }
   function scrollLeft() {
-    ref.current?.firstElementChild?.scrollIntoView({behavior: 'smooth', block:'nearest'});
+    if (scrolled > 0) {
+      scrolled = scrolled - 500;
+      ref.current.scroll({left: scrolled, behavior: 'smooth'})
+    }
   }
 
   return (
@@ -66,7 +81,7 @@ useEffect(() => {
       <div>Related List</div>
         <Button onClick = {scrollLeft}>Scroll Left</Button>
         <Button onClick = {scrollRight}>Scroll Right</Button>
-        <Stack ref={ref} scrollBehavior='smooth' direction='row' spacing={2} alignItems="center" sx={[{maxWidth: '100%', overflowX: 'hidden', '&::-webkit-scrollbar':{ width:0}, bgcolor:'ghostwhite', display: 'flex'}]}>
+        <Stack ref={ref} scrollbehavior='smooth' direction='row' spacing={2} alignItems="center" sx={[{maxWidth: '100%', overflowX: 'hidden', '&::-webkit-scrollbar':{ width:0}, bgcolor:'ghostwhite', display: 'flex'}]}>
             {relatedProducts.map((product) => {
               return <RelatedCard key={product.id} product={product} handleClick={handleClick} />
             })}
