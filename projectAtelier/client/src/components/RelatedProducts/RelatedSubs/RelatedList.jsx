@@ -54,9 +54,15 @@ useEffect(() => {
   }
   //scroll function
   const ref = useRef(null);
+  /*
+5 6 -> 1
+7 8 -> 2
+9 10 -> 3
+5 6 -> 2
+  */
   let scrolled = 0;
   //find maxScroll
-  let maxScroll = Math.ceil(relatedProducts.length / 4);
+  let maxScroll = Math.ceil((relatedProducts.length - 4) / 2);
   console.log('LENGTH ', relatedProducts.length);
   console.log('MAX SCROLL ', maxScroll);
   function scrollRight() {
