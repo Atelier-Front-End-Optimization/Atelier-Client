@@ -52,9 +52,9 @@ useEffect(() => {
 }, [productId])
 
   if (productStyles && productStyles.length > 0) {
-    console.log(productStyles, 'STYLES')
-    console.log(productFeatures, 'FEATURES')
-    console.log(productStylePhotos, 'PHOTOS')
+    // console.log(productStyles, 'STYLES')
+    // console.log(productFeatures, 'FEATURES')
+    // console.log(productStylePhotos, 'PHOTOS')
 
 
   return (
@@ -74,6 +74,7 @@ alignItems="flex-start"
   alignItems="flex-end"
   >
   <h1>{productStyles[0].name}</h1>
+  <ProductStyles styles={productStyles} photos={productStylePhotos}/>
   </Grid>
 
 <Grid
