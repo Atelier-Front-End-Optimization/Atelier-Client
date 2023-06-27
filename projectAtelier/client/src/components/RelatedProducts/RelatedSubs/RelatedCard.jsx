@@ -14,7 +14,6 @@ function RelatedCard({product, handleClick}) {
 
   useEffect(() => {
     axios.get(axiosConfig.url + '/products/' + product.id + '/styles', axiosConfig).then((response) => {
-      console.log(response.data.results);
       setPhoto(response.data.results[0].photos[0].thumbnail_url)
       for (let style of response.data.results) {
         if (style['default?']) {
