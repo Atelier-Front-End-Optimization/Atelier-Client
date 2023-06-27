@@ -5,7 +5,7 @@ import CheckIcon from '@mui/icons-material/Check';
 
 const ReviewTile = ({ review, review: { body, date, helpfulness, photos, rating, recommend, response, reviewer_name, summary} }) => {
   // console.log('SINGLE REVIEW IN REVIEWTILE', review)
-  // console.log(body);
+  console.log(response);
   // console.log(summary);
   const [wasClicked, setWasClicked] = useState(false)
   const [helpful, setHelpful] = useState(helpfulness)
@@ -57,10 +57,25 @@ const ReviewTile = ({ review, review: { body, date, helpfulness, photos, rating,
       <div>
         {body}
       </div>
+      <Box
+        sx={{
+          '& > legend': { mt: 2 },
+          margin: 3,
+          padding: 1,
+          background: 'rgba(52, 52, 52, 0.35)',
+          display: [response ? 'block' : 'none']
+        }}
+      >
+        <p style={{fontWeight: 'bold'}}
+        >
+          {'Response from seller:'}
+        </p>
+        {response}
+      </Box>
       <div>
         {
           recommend ?
-            <Grid><CheckIcon/> {'I recommend this product'} </Grid>
+            <Box><CheckIcon/> {'I recommend this product'} </Box>
           : ''
         }
       </div>
