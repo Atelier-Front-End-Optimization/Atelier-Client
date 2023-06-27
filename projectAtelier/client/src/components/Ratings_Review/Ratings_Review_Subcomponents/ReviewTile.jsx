@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from 'react';
 import { Box, Rating, Typography, Grid } from '@mui/material';
-import CheckIcon from '@mui/icons-material/Check';;
+import CheckIcon from '@mui/icons-material/Check';
 
 const ReviewTile = ({ review, review: { body, date, helpfulness, photos, rating, recommend, response, reviewer_name, summary} }) => {
   // console.log('SINGLE REVIEW IN REVIEWTILE', review)
