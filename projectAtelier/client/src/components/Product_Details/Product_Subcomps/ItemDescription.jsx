@@ -6,11 +6,11 @@ const ItemDescription = ({description, slogan}) => {
   return (
 
 
-    <div>
-      <h2>{slogan} SLOGAN HERE</h2>
+<>
+      <h2>{slogan}</h2>
       <p>{description} ITEM DESC HERE</p>
+      </>
 
-      </div>
   )
 }
 
