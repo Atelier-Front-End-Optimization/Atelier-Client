@@ -51,11 +51,9 @@ useEffect(() => {
       setProduct(response.data);
     })
   }
-  //scroll function
+//find maxScroll and scroll functions
   const ref = useRef(null);
-
   let scrolled = 0;
-  //find maxScroll
   let maxScroll = Math.ceil((relatedProducts.length - 4) / 2);
   function scrollRight() {
     if (scrolled < maxScroll * 500) {
@@ -69,6 +67,8 @@ useEffect(() => {
       ref.current.scroll({left: scrolled, behavior: 'smooth'})
     }
   }
+//used id's array
+let usedIds = [];
 
   return (
     <div>
@@ -77,7 +77,10 @@ useEffect(() => {
         <Button onClick = {scrollRight}>Scroll Right</Button>
         <Stack ref={ref} scrollbehavior='smooth' direction='row' spacing={2} alignItems="center" sx={[{maxWidth: '100%', overflowX: 'hidden', '&::-webkit-scrollbar':{ width:0}, bgcolor:'ghostwhite', display: 'flex'}]}>
             {relatedProducts.map((relatedProduct) => {
-              return <RelatedCard key={relatedProduct.id} product={relatedProduct} currentProduct={currentProduct} handleClick={handleClick} />
+              if (!usedIds.includes(relatedProduct.id) && (relatedProduct.id !== currentProduct.id)) {
+                usedIds.push(relatedProduct.id);
+                return <RelatedCard key={relatedProduct.id} product={relatedProduct} currentProduct={currentProduct} handleClick={handleClick} />
+              }
             })}
         </Stack>
 
