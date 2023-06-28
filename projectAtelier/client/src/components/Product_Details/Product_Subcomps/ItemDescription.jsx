@@ -8,7 +8,7 @@ const ItemDescription = ({description, slogan}) => {
 
 <>
       <h2>{slogan}</h2>
-      <p>{description} ITEM DESC HERE</p>
+      <p>{description}</p>
       </>
 
   )
