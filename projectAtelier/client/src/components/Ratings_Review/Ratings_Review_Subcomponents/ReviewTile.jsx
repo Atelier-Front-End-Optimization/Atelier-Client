@@ -1,16 +1,17 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from 'react';
-import { Box, Rating, Modal, Button} from '@mui/material';
+import { Box, Rating, Modal, Button, Stack, Avatar} from '@mui/material';
 import CheckIcon from '@mui/icons-material/Check';
+import ImageNotSupportedIcon from '@mui/icons-material/ImageNotSupported';
 
 const ReviewTile = ({ review, review: { body, date, helpfulness, photos, rating, recommend, response, reviewer_name, summary} }) => {
   // console.log('SINGLE REVIEW IN REVIEWTILE', review)
-  // console.log(photos);
+  console.log(photos, photos.length);
   // console.log(body.length);
   const [wasClicked, setWasClicked] = useState(false);
   const [helpful, setHelpful] = useState(helpfulness);
   const [showMore, setshowMore] = useState(false);
-  const [open, setOpen] = useState(false);
+
 
   let formattedDate;
   if (date) {
@@ -31,11 +32,22 @@ const ReviewTile = ({ review, review: { body, date, helpfulness, photos, rating,
     setshowMore(!showMore);
   };
 
-  const handleOpenClose = () => {
-    setOpen(!open)
+
+
+  const modalStyle = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    bgcolor: 'background.paper',
+    border: '1px solid #000',
+    boxShadow: 24,
+    p: 4,
   };
 
-////////////////////////////////////////////////////////
+
+
+ ////////////////////////////////////////////////////////
   return (
     <Box
       sx={{
@@ -79,18 +91,36 @@ const ReviewTile = ({ review, review: { body, date, helpfulness, photos, rating,
             </Button>
           </div>
         : body}
-        {/* {photos.map((photo) => {
-          return (
-            <Modal
-              key={photo.id}
-              open={open}
-              onClose={handleOpenClose}
-            >
-
-            </Modal>
-          )
-        })} */}
       </div>
+      {photos.length > 0 ?
+          <Stack direction='row' spacing={1}>
+            {photos.map((photo) => {
+              const [open, setOpen] = useState(false);
+              const handleOpenClose = () => {
+                setOpen(!open)
+              };
+
+              return (
+                <div key={photo.id}>
+                  <Avatar
+                    alt='i'
+                    src={photo.url}
+                    variant='square'
+                    onClick={handleOpenClose}
+                  />
+                  <Modal
+                    open={open}
+                    onClose={handleOpenClose}
+                  >
+                    <Box sx={modalStyle}>
+                      <img src={photo.url} alt='User Review Photo'/>
+                    </Box>
+                  </Modal>
+                </div>
+              )
+            })}
+          </Stack>
+        : ''}
       <Box
         sx={{
           '& > legend': { mt: 2 },
