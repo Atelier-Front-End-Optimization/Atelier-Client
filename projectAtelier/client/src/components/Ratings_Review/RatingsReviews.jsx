@@ -12,6 +12,7 @@ import axios from 'axios';
 const RatingsReviews = ({ product_id }) => {
 
   const [reviews, setReviews] = useState([]);
+  console.log(reviews)
 
   const getReviews = async (product_id, sort = null, count = null, page = null) => {
     const config ={

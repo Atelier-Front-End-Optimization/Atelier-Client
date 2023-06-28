@@ -1,7 +1,7 @@
 
 import { render, screen } from '@testing-library/react';
 import React from 'react';
-import RelatedProducts from './RelatedProducts.jsx';
+import RelatedProducts from './client/src/components/RelatedProducts/RelatedProducts.jsx';
 import { describe, expect, it } from 'vitest';
 
 describe('Kiels Component', () => {
