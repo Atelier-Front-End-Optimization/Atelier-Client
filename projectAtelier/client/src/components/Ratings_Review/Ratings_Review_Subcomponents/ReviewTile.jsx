@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import { Box, Rating, Modal, Button, Stack, Avatar} from '@mui/material';
 import CheckIcon from '@mui/icons-material/Check';
+import ImageNotSupportedIcon from '@mui/icons-material/ImageNotSupported';
 
 const ReviewTile = ({ review, review: { body, date, helpfulness, photos, rating, recommend, response, reviewer_name, summary} }) => {
   // console.log('SINGLE REVIEW IN REVIEWTILE', review)
@@ -31,14 +32,13 @@ const ReviewTile = ({ review, review: { body, date, helpfulness, photos, rating,
     setshowMore(!showMore);
   };
 
-  const testModalStyle = {
+  const modalStyle = {
     position: 'absolute',
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
     bgcolor: 'background.paper',
-    border: '2px solid #000',
+    border: '1px solid #000',
     boxShadow: 24,
     p: 4,
   };
@@ -98,7 +98,7 @@ const ReviewTile = ({ review, review: { body, date, helpfulness, photos, rating,
               return (
                 <div key={photo.id}>
                   <Avatar
-                    alt='Customer Review Photo'
+                    alt='i'
                     src={photo.url}
                     variant='square'
                     onClick={handleOpenClose}
@@ -107,8 +107,8 @@ const ReviewTile = ({ review, review: { body, date, helpfulness, photos, rating,
                     open={open}
                     onClose={handleOpenClose}
                   >
-                    <Box sx={testModalStyle}>
-                      <img src={photo.url} alt='User Review Image with id'/>
+                    <Box sx={modalStyle}>
+                      <img src={photo.url} alt='User Review Photo'/>
                     </Box>
                   </Modal>
                 </div>
