@@ -12,7 +12,6 @@ import '../../../index.css';
 
 
 function Icon ({feature}) {
-  console.log(feature);
   if (feature) {
   return <CheckIcon sx={{color:'green'}}/>
  } else {
