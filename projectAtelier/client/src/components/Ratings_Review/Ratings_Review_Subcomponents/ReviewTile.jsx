@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from 'react';
-import { Box, Rating, Modal, Button} from '@mui/material';
+import { Box, Rating, Modal, Button, Stack, Avatar} from '@mui/material';
 import CheckIcon from '@mui/icons-material/Check';
 
 const ReviewTile = ({ review, review: { body, date, helpfulness, photos, rating, recommend, response, reviewer_name, summary} }) => {
   // console.log('SINGLE REVIEW IN REVIEWTILE', review)
-  // console.log(photos);
+  console.log(photos, photos.length);
   // console.log(body.length);
   const [wasClicked, setWasClicked] = useState(false);
   const [helpful, setHelpful] = useState(helpfulness);
@@ -29,6 +29,18 @@ const ReviewTile = ({ review, review: { body, date, helpfulness, photos, rating,
 
   const handleShow = () => {
     setshowMore(!showMore);
+  };
+
+  const testModalStyle = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
   };
 
   const handleOpenClose = () => {
@@ -79,17 +91,21 @@ const ReviewTile = ({ review, review: { body, date, helpfulness, photos, rating,
             </Button>
           </div>
         : body}
-        {/* {photos.map((photo) => {
+        {photos.length > 0 ? photos.map((photo) => {
           return (
-            <Modal
-              key={photo.id}
-              open={open}
-              onClose={handleOpenClose}
-            >
-
-            </Modal>
+            <div key={photo.id}>
+              <p onClick={handleOpenClose}>Open Modal</p>
+              <Modal
+                open={open}
+                onClose={handleOpenClose}
+              >
+                <Box sx={testModalStyle}>
+                  <img src={photo.url} alt='User Review Image with id'/>
+                </Box>
+              </Modal>
+            </div>
           )
-        })} */}
+        }): ''}
       </div>
       <Box
         sx={{
