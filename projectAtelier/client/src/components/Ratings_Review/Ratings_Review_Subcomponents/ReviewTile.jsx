@@ -11,7 +11,7 @@ const ReviewTile = ({ review, review: { body, date, helpfulness, photos, rating,
   const [wasClicked, setWasClicked] = useState(false);
   const [helpful, setHelpful] = useState(helpfulness);
   const [showMore, setshowMore] = useState(false);
-  const [open, setOpen] = useState(false);
+
 
   let formattedDate;
   if (date) {
@@ -32,6 +32,8 @@ const ReviewTile = ({ review, review: { body, date, helpfulness, photos, rating,
     setshowMore(!showMore);
   };
 
+
+
   const modalStyle = {
     position: 'absolute',
     top: '50%',
@@ -43,9 +45,7 @@ const ReviewTile = ({ review, review: { body, date, helpfulness, photos, rating,
     p: 4,
   };
 
-  const handleOpenClose = () => {
-    setOpen(!open)
-  };
+
 
  ////////////////////////////////////////////////////////
   return (
@@ -95,6 +95,11 @@ const ReviewTile = ({ review, review: { body, date, helpfulness, photos, rating,
       {photos.length > 0 ?
           <Stack direction='row' spacing={1}>
             {photos.map((photo) => {
+              const [open, setOpen] = useState(false);
+              const handleOpenClose = () => {
+                setOpen(!open)
+              };
+
               return (
                 <div key={photo.id}>
                   <Avatar
