@@ -69,7 +69,7 @@ useEffect(() => {
     }}>
 
     <Stack
-      container
+
       direction="column"
       justifyContent="flex-start"
       paddingLeft='50px'
@@ -82,7 +82,7 @@ useEffect(() => {
     </Stack>
 
     <Stack
-      container
+
       direction="column"
       justifyContent="flex-start"
       alignItems="flex-start">
