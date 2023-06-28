@@ -47,7 +47,7 @@ const ReviewTile = ({ review, review: { body, date, helpfulness, photos, rating,
     setOpen(!open)
   };
 
-////////////////////////////////////////////////////////
+ ////////////////////////////////////////////////////////
   return (
     <Box
       sx={{
@@ -91,22 +91,31 @@ const ReviewTile = ({ review, review: { body, date, helpfulness, photos, rating,
             </Button>
           </div>
         : body}
-        {photos.length > 0 ? photos.map((photo) => {
-          return (
-            <div key={photo.id}>
-              <p onClick={handleOpenClose}>Open Modal</p>
-              <Modal
-                open={open}
-                onClose={handleOpenClose}
-              >
-                <Box sx={testModalStyle}>
-                  <img src={photo.url} alt='User Review Image with id'/>
-                </Box>
-              </Modal>
-            </div>
-          )
-        }): ''}
       </div>
+      {photos.length > 0 ?
+          <Stack direction='row' spacing={1}>
+            {photos.map((photo) => {
+              return (
+                <div key={photo.id}>
+                  <Avatar
+                    alt='Customer Review Photo'
+                    src={photo.url}
+                    variant='square'
+                    onClick={handleOpenClose}
+                  />
+                  <Modal
+                    open={open}
+                    onClose={handleOpenClose}
+                  >
+                    <Box sx={testModalStyle}>
+                      <img src={photo.url} alt='User Review Image with id'/>
+                    </Box>
+                  </Modal>
+                </div>
+              )
+            })}
+          </Stack>
+        : ''}
       <Box
         sx={{
           '& > legend': { mt: 2 },
