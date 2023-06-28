@@ -12,6 +12,11 @@ import axios from 'axios';
 const RatingsReviews = ({ product_id }) => {
 
   const [reviews, setReviews] = useState([]);
+  const [reviewRenders, setReviewRenders] = useState(2);
+
+  //////////////////////////////////////////////////////////////////////
+  console.log(`THERE ARE ${reviews.length}, AND THEY ARE: `, reviews)///
+  //////////////////////////////////////////////////////////////////////
 
   const getReviews = async (product_id, sort = null, count = null, page = null) => {
     const config ={
@@ -41,10 +46,18 @@ const RatingsReviews = ({ product_id }) => {
 
   useEffect(() => {
     if (!product_id) return;
-    getReviews(product_id, null, 8, 3);
+    getReviews(product_id, null, 2, null);
+    setReviewRenders(2);
   }, [product_id]);
 
 
+
+
+  const getMoreReviews = async () => {
+    getReviews(product_id, null, reviewRenders + 1, null);
+    setReviewRenders(reviewRenders + 2);
+    console.log('Invoked', reviewRenders)
+  }
 
 ////////////////////////////////////////////////////////
   return (
@@ -52,7 +65,7 @@ const RatingsReviews = ({ product_id }) => {
       <ReviewBreakdown/>
       <ProductBreakdown/>
       <SortOptions/>
-      <ReviewList reviews={reviews}/>
+      <ReviewList reviews={reviews} getMoreReviews={getMoreReviews}/>
       <NewReview/>
     </section>
   );
