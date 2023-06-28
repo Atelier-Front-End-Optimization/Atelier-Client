@@ -5,7 +5,8 @@ import ItemDescription from './Product_Subcomps/ItemDescription.jsx';
 import AddBag from './Product_Subcomps/AddBag.jsx';
 import FavoriteProduct from './Product_Subcomps/FavoriteProduct.jsx';
 import ProductStyles from './Product_Subcomps/ProductStyles.jsx';
-import ProductModal from './Product_Subcomps/ProductModal.jsx'
+import ProductModal from './Product_Subcomps/ProductModal.jsx';
+import QuantitySelect from './Product_Subcomps/QuantitySelect'
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
@@ -89,8 +90,17 @@ useEffect(() => {
           <h1>{productStyles[0].name}</h1>
           <p>{`$${productStyles[0].original_price}`}</p>
           <ProductStyles styles={productStyles} photos={productStylePhotos}/>
-          <SizeSelect />
           </div>
+
+          <Stack
+          container
+          direction="row"
+          justifyContent='flex-end'
+          alignItems='flex-start'
+          paddingLeft='25px'>
+          <SizeSelect />
+          <QuantitySelect />
+          </Stack>
 
     </Stack>
 
