@@ -7,7 +7,7 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 
 
-function RelatedList({productId, setProduct}) {
+function RelatedList({currentProduct, setProduct}) {
 
   const [relatedIDs, setRelatedIDs] = useState([]);
   const [relatedProducts, setRelatedProducts] = useState([]);
@@ -15,8 +15,8 @@ function RelatedList({productId, setProduct}) {
 
   //get all related id's to current product
   useEffect(() => {
-    if (!!productId) {
-      axios.get(axiosConfig.url + '/products/' + productId + '/related', axiosConfig).then((response) => {
+    if (!!currentProduct) {
+      axios.get(axiosConfig.url + '/products/' + currentProduct.id + '/related', axiosConfig).then((response) => {
         setRelatedIDs(response.data);
         setRelatedProducts([]);
         }).catch((err) => {
@@ -24,7 +24,7 @@ function RelatedList({productId, setProduct}) {
         })
 
     }
-},[productId])
+},[currentProduct])
 
 //get all relevant info about each related id
 useEffect(() => {
@@ -54,12 +54,7 @@ useEffect(() => {
   }
   //scroll function
   const ref = useRef(null);
-  /*
-5 6 -> 1
-7 8 -> 2
-9 10 -> 3
-5 6 -> 2
-  */
+
   let scrolled = 0;
   //find maxScroll
   let maxScroll = Math.ceil((relatedProducts.length - 4) / 2);
@@ -82,8 +77,8 @@ useEffect(() => {
         <Button onClick = {scrollLeft}>Scroll Left</Button>
         <Button onClick = {scrollRight}>Scroll Right</Button>
         <Stack ref={ref} scrollbehavior='smooth' direction='row' spacing={2} alignItems="center" sx={[{maxWidth: '100%', overflowX: 'hidden', '&::-webkit-scrollbar':{ width:0}, bgcolor:'ghostwhite', display: 'flex'}]}>
-            {relatedProducts.map((product) => {
-              return <RelatedCard key={product.id} product={product} handleClick={handleClick} />
+            {relatedProducts.map((relatedProduct) => {
+              return <RelatedCard key={relatedProduct.id} product={relatedProduct} currentProduct={currentProduct} handleClick={handleClick} />
             })}
         </Stack>
 

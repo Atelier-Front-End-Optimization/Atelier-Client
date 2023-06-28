@@ -1,17 +1,16 @@
 //import Card from './Card.jsx';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
-import Paper from '@mui/material/Paper';
 import Rating from '@mui/material/Rating';
 import {useEffect, useState} from 'react';
 import axiosConfig from '../../../Middleware/axiosConfig.js';
 import axios from 'axios';
-import ActionButton from './ActionButton.jsx';
+import StarBorderIcon from '@mui/icons-material/StarBorder';
+import ComparisonModal from './ComparisonModal'
 
-function RelatedCard({product, handleClick}) {
+function RelatedCard({currentProduct, product, handleClick}) {
   const [photo, setPhoto] = useState('');
-
+  //gets and sets default photo for each card
   useEffect(() => {
     axios.get(axiosConfig.url + '/products/' + product.id + '/styles', axiosConfig).then((response) => {
       setPhoto(response.data.results[0].photos[0].thumbnail_url)
@@ -26,17 +25,34 @@ function RelatedCard({product, handleClick}) {
   }, [])
 
   //change current product on click
-  function relatedClick() {
+  function relatedClick(event) {
+    if (event.target.ariaHidden) {
+      event.stopPropagation();
+      return null;
+    }
     handleClick(product.id);
   }
+  //open comparison modal
+  const [open, setOpen] = useState(false)
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   //format as currency
   let USDollar = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD'});
   let price = USDollar.format(product.default_price);
+
+
   return (
       <Card onClick={relatedClick} sx={{cursor:'pointer', width:250, height:"100%", m:2, flexBasis:'auto', flexShrink: 0}}>
           <Box height='300px' width='100%' position='relative'>
-            <ActionButton />
+          <Box onMouseDown={(e) => {
+              e.stopPropagation();
+              e.preventDefault();
+              handleOpen();
+            }} position='absolute' bottom='87%' left='85%' >
+            <StarBorderIcon sx={{'&:hover': {color: 'red'}}}>Action</StarBorderIcon>
+            <ComparisonModal open={open} close={handleClose} product={product} currentProduct={currentProduct}/>
+      </Box>
             <img height='100%' width='100%' src={photo}></img>
           </Box>
           <Box p={1}>
