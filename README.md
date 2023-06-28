@@ -18,3 +18,9 @@ Update add, and commit as you normally would with git. To allow other collaborat
 ```
 git push -u origin "new-feature"
 ```
+
+Forgot to create a new branch? Use:
+git checkout main
+git branch "new_branch"
+git switch "new_branch"
+```
