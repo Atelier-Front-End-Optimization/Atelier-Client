@@ -45,14 +45,15 @@ function RelatedCard({currentProduct, product, handleClick}) {
   return (
       <Card onClick={relatedClick} sx={{cursor:'pointer', width:250, height:"100%", m:2, flexBasis:'auto', flexShrink: 0}}>
           <Box height='300px' width='100%' position='relative'>
-          <Box onMouseDown={(e) => {
-              e.stopPropagation();
-              e.preventDefault();
-              handleOpen();
-            }} position='absolute' bottom='87%' left='85%' >
+            <Box onMouseDown={(e) => {
+                e.stopPropagation();
+                e.preventDefault();
+                {console.log('SELECTED PRODUCT ', product)}
+                handleOpen();
+              }} position='absolute' bottom='87%' left='85%' >
             <StarBorderIcon sx={{'&:hover': {color: 'red'}}}>Action</StarBorderIcon>
             <ComparisonModal open={open} close={handleClose} product={product} currentProduct={currentProduct}/>
-      </Box>
+            </Box>
             <img height='100%' width='100%' src={photo}></img>
           </Box>
           <Box p={1}>

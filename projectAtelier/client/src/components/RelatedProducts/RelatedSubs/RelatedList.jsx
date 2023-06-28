@@ -8,14 +8,13 @@ import Button from '@mui/material/Button';
 
 
 function RelatedList({currentProduct, setProduct}) {
-
   const [relatedIDs, setRelatedIDs] = useState([]);
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [reviews, setReviews] = useState([]);
 
   //get all related id's to current product
   useEffect(() => {
-    if (!!currentProduct) {
+    if (!!currentProduct.id) {
       axios.get(axiosConfig.url + '/products/' + currentProduct.id + '/related', axiosConfig).then((response) => {
         setRelatedIDs(response.data);
         setRelatedProducts([]);
