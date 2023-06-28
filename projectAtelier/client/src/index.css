@@ -8,5 +8,28 @@
 
 
   transform: translate(-50%, -50%);
-  background-color: gray;
+  background-color: ghostwhite;
+  border: 1px solid;
+  border-radius: 3px;
+  height: auto;
+  max-height: 350px;
+  overflow: auto;
+}
+.comparison-modal::-webkit-scrollbar {
+  display: none;
+}
+
+.table-cell {
+  border-right-width: 1px;
+  border-right-style: solid;
+  width: 33%;
+}
+.table-head {
+  background-color: gainsboro;
+  border-bottom-width: 2px;
+  border-bottom-style: solid ;
+}
+
+#name {
+  font-weight: bold;
 }
