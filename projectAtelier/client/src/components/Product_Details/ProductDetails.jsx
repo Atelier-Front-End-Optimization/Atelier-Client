@@ -9,6 +9,8 @@ import ProductModal from './Product_Subcomps/ProductModal.jsx'
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
+import Box from '@mui/material/Box';
+import SizeSelect from './Product_Subcomps/SizeSelect.jsx';
 
 const ProductDetails = ({productId, description, slogan}) => {
 
@@ -57,37 +59,43 @@ useEffect(() => {
     // console.log(productStyles, 'STYLES')
     // console.log(productFeatures, 'FEATURES')
     // console.log(productStylePhotos, 'PHOTOS')
-
-
   return (
-<div>
+  <Box sx={{
+    width: '100%',
+    paddingLeft: '150px',
+    paddingRight: '150px',
+    display: 'flex',
+    }}>
 
-<div>
-<h1>{productStyles[0].name}</h1>
-</div>
+    <Stack
+      container
+      direction="column"
+      justifyContent="flex-start"
+      paddingLeft='50px'
+      paddingRight='50px'
+      alignItems="flex-start">
+        <ProductModal photos={productStylePhotos}/>
+        <div>
+          <ItemDescription slogan={slogan} description = {description} />
+        </div>
+    </Stack>
 
-<Stack
-container
-direction="row"
-justifyContent="flex-start"
-paddingLeft='150px'
-paddingRight='150px'
-alignItems="flex-start"
->
+    <Stack
+      container
+      direction="column"
+      justifyContent="flex-start"
+      alignItems="flex-start">
+        <div>
+          <h1>{productStyles[0].name}</h1>
+          <p>{`$${productStyles[0].original_price}`}</p>
+          <ProductStyles styles={productStyles} photos={productStylePhotos}/>
+          <SizeSelect />
+          </div>
 
+    </Stack>
 
-<div>
-  <ProductModal photos={productStylePhotos} />
-  </div>
-
-  <ProductStyles styles={productStyles} photos={productStylePhotos}/>
-
-</Stack>
-<div>
-  <ItemDescription slogan={slogan} description = {description} />
-  </div>
-</div>
-  )}
+  </Box>
+    )}
 };
 
 export default ProductDetails;
