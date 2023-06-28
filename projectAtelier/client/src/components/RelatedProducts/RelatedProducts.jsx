@@ -5,13 +5,13 @@ import RelatedList from './RelatedSubs/RelatedList.jsx';
 import OutfitList from './RelatedSubs/OutfitList.jsx';
 
 
-function RelatedProducts({productId, setProduct}) {
+function RelatedProducts({currentProduct, setProduct}) {
   return (
     <div>
       <div className='font-bold text-xl'>Related Products bb</div>
-      <div>Current Product ID: {productId}</div>
+      <div>Current Product ID: {currentProduct.id}</div>
       <div className='font-semibold text-lg'>Related Products</div>
-      <RelatedList productId={productId} setProduct={setProduct}/><br></br>
+      <RelatedList currentProduct={currentProduct} setProduct={setProduct}/><br></br>
       <OutfitList/>
 
     </div>

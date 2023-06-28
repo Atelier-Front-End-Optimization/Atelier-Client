@@ -21,7 +21,7 @@ useEffect(() => {
       <br></br><ProductDetails description={product.description} slogan={product.slogan} productId={product.id} setProduct={setProduct}/>
       </div>
       <div>
-      <br></br><RelatedProducts productId={product.id} setProduct={setProduct}/>
+      <br></br><RelatedProducts currentProduct={product} setProduct={setProduct}/>
       </div>
       <div>
       <br></br><RatingsReviews product_id={product.id}/>
