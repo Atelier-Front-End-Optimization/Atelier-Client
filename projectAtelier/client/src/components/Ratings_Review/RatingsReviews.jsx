@@ -12,13 +12,11 @@ import axios from 'axios';
 const RatingsReviews = ({ product_id }) => {
 
   const [reviews, setReviews] = useState([]);
-  const [reviewRenders, setReviewRenders] = useState(2);
+  const [reviewRenders, setReviewRenders] = useState(4);
+  const [canRenderMoreRevues, setCanRenderMoreRevues] = useState(true);
+  ///////////////////////////////////////////////////////////////////////////////////////
 
-  //////////////////////////////////////////////////////////////////////
-  console.log(`THERE ARE ${reviews.length}, AND THEY ARE: `, reviews)///
-  //////////////////////////////////////////////////////////////////////
-
-  const getReviews = async (product_id, sort = null, count = null, page = null) => {
+  const getReviews = async (product_id, sort = null, count = null, page = null, reRender = false) => {
     const config ={
       headers: {
         Authorization: import.meta.env.VITE_API_TOKEN
@@ -35,10 +33,11 @@ const RatingsReviews = ({ product_id }) => {
         axiosConfig.url + '/reviews',
         config
       );
-
       const {data} = reviewRes;
-      // console.log(data) ///<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-      setReviews(data.results)
+
+      return (reRender ? data.results : setReviews(data.results))
+
+
     } catch (err) {
       console.error(err);
     }
@@ -47,17 +46,28 @@ const RatingsReviews = ({ product_id }) => {
   useEffect(() => {
     if (!product_id) return;
     getReviews(product_id, null, 2, null);
-    setReviewRenders(2);
+    setReviewRenders(4);
   }, [product_id]);
 
 
 
 
   const getMoreReviews = async () => {
-    getReviews(product_id, null, reviewRenders + 1, null);
-    setReviewRenders(reviewRenders + 2);
-    console.log('Invoked', reviewRenders)
-  }
+    try {
+      const moreReviews = await getReviews(product_id, null, reviewRenders + 1, null, true);
+      if (moreReviews.length <= reviewRenders) {
+        setCanRenderMoreRevues(false);
+        setReviews(moreReviews);
+      } else {
+        moreReviews.pop();
+        setReviews(moreReviews);
+        setReviewRenders(reviewRenders + 2);
+      }
+
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
 ////////////////////////////////////////////////////////
   return (
@@ -65,7 +75,7 @@ const RatingsReviews = ({ product_id }) => {
       <ReviewBreakdown/>
       <ProductBreakdown/>
       <SortOptions/>
-      <ReviewList reviews={reviews} getMoreReviews={getMoreReviews}/>
+      <ReviewList reviews={reviews} getMoreReviews={getMoreReviews} canRenderMoreRevues={canRenderMoreRevues}/>
       <NewReview/>
     </section>
   );

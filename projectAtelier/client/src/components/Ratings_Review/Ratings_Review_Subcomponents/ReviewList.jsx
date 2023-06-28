@@ -3,9 +3,8 @@ import ReviewTile from './ReviewTile.jsx'
 import { Button } from '@mui/material';
 import {useEffect, useState} from 'react';
 
-const ReviewList = ({ reviews, getMoreReviews }) => {
+const ReviewList = ({ reviews, getMoreReviews, canRenderMoreRevues}) => {
 
-// console.log('REVIEWS IN LIST BEFORE MAPPING', reviews)
 ////////////////////////////////////////////////////////
   return (
     <div>
@@ -14,13 +13,17 @@ const ReviewList = ({ reviews, getMoreReviews }) => {
           return <ReviewTile key={review.review_id} review={review}/>
         })}
       </div>
-      <Button
-        variant='contained'
-        size='small'
-        onClick={getMoreReviews}
-      >
-        More Reviews
-      </Button>
+      { canRenderMoreRevues ?
+        <div>
+          <Button
+            variant='contained'
+            size='small'
+            onClick={getMoreReviews}
+          >
+            More Reviews
+          </Button>
+        </div>
+      : ''}
     </div>
   );
 };

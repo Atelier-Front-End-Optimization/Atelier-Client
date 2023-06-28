@@ -18,10 +18,6 @@ const ReviewTile = ({ review: { body, date, helpfulness, photos, rating, recomme
   const handleHelpful = () => {
     setHelpful(helpful+1);
     setWasClicked(true);
-    ///////////////////////////
-    ///testing: REMOVE LATER///
-    getMoreReviews()///////////
-    ///////////////////////////
   };
 
   const handleNotHelpful = () => {
