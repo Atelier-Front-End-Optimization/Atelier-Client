@@ -7,9 +7,12 @@ import axiosConfig from '../../../Middleware/axiosConfig.js';
 import axios from 'axios';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import ComparisonModal from './ComparisonModal'
+import convertPrice from '../../../Middleware/convertPrice.js';
 
-function RelatedCard({currentProduct, product, handleClick}) {
+function RelatedCard({product, currentProduct, handleClick}) {
+
   const [photo, setPhoto] = useState('');
+
   //gets and sets default photo for each card
   useEffect(() => {
     axios.get(axiosConfig.url + '/products/' + product.id + '/styles', axiosConfig).then((response) => {
@@ -38,17 +41,14 @@ function RelatedCard({currentProduct, product, handleClick}) {
   const handleClose = () => setOpen(false);
 
   //format as currency
-  let USDollar = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD'});
-  let price = USDollar.format(product.default_price);
-
+  let price = convertPrice(product.default_price);
 
   return (
-      <Card onClick={relatedClick} sx={{cursor:'pointer', width:250, height:"100%", m:2, flexBasis:'auto', flexShrink: 0}}>
+      <Card onClick={relatedClick} sx={{cursor:'pointer', width:250, m:2, flexBasis:'auto', flexShrink: 0}}>
           <Box height='300px' width='100%' position='relative'>
             <Box onMouseDown={(e) => {
                 e.stopPropagation();
                 e.preventDefault();
-                {console.log('SELECTED PRODUCT ', product)}
                 handleOpen();
               }} position='absolute' bottom='87%' left='85%' >
             <StarBorderIcon sx={{'&:hover': {color: 'red'}}}>Action</StarBorderIcon>

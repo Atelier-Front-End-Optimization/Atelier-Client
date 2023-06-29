@@ -4,14 +4,10 @@ import { Box, Rating, Modal, Button, Stack, Avatar} from '@mui/material';
 import CheckIcon from '@mui/icons-material/Check';
 import ImageNotSupportedIcon from '@mui/icons-material/ImageNotSupported';
 
-const ReviewTile = ({ review, review: { body, date, helpfulness, photos, rating, recommend, response, reviewer_name, summary} }) => {
-  // console.log('SINGLE REVIEW IN REVIEWTILE', review)
-  console.log(photos, photos.length);
-  // console.log(body.length);
+const ReviewTile = ({ review: { body, date, helpfulness, photos, rating, recommend, response, reviewer_name, summary}}) => {
   const [wasClicked, setWasClicked] = useState(false);
   const [helpful, setHelpful] = useState(helpfulness);
   const [showMore, setshowMore] = useState(false);
-
 
   let formattedDate;
   if (date) {
@@ -32,8 +28,6 @@ const ReviewTile = ({ review, review: { body, date, helpfulness, photos, rating,
     setshowMore(!showMore);
   };
 
-
-
   const modalStyle = {
     position: 'absolute',
     top: '50%',
@@ -44,8 +38,6 @@ const ReviewTile = ({ review, review: { body, date, helpfulness, photos, rating,
     boxShadow: 24,
     p: 4,
   };
-
-
 
  ////////////////////////////////////////////////////////
   return (

@@ -9,11 +9,12 @@ import axios from 'axios';
 function App() {
   const [product, setProduct] = useState({});
 
-  useEffect(() => {
-    axios.get(axiosConfig.url + '/products', axiosConfig).then((response) => {
-      setProduct(response.data[0]);
-    });
-  }, []);
+
+useEffect(() => {
+  axios.get(axiosConfig.url + '/products/37311', axiosConfig).then((response) => {
+    setProduct(response.data);
+  })
+},[])
 
   return (
     <div>
