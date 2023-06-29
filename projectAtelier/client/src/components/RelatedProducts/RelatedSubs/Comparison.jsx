@@ -6,7 +6,6 @@ import TableBody from '@mui/material/TableBody';
 import convertPrice from '../../../Middleware/convertPrice.js';
 import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
-import Box from '@mui/material/Box';
 
 import '../../../index.css';
 
@@ -42,9 +41,11 @@ function Comparison ({product, currentProduct}) {
         </TableRow>
       </TableHead>
       <TableBody>
-        <TableCell className='table-cell' align='center'>{convertPrice(currentProduct.default_price)}</TableCell>
+        <TableRow>
+          <TableCell className='table-cell' align='center'>{convertPrice(currentProduct.default_price)}</TableCell>
           <TableCell className='table-cell' align='center'>Price</TableCell>
           <TableCell align='center'>{convertPrice(product.default_price)}</TableCell>
+        </TableRow>
         {product.features.map((feature) => {
           let currentProductFeature = matchFeature(currentProduct.features, feature.feature);
           return <TableRow key={feature.feature}>

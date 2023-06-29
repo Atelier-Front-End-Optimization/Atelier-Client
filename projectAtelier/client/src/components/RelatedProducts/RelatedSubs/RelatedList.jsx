@@ -1,11 +1,33 @@
-import {useEffect, useState, useRef} from 'react';
+import {useEffect, useState} from 'react';
 import axios from 'axios';
 import axiosConfig from '../../../Middleware/axiosConfig.js';
 import averageRating from '../../../Middleware/averageRating.js';
-import Button from '@mui/material/Button';
-import Carousel from 'react-material-ui-carousel';
 import Box from '@mui/material/Box';
-import CardBundle from './CardBundle.jsx';
+import RelatedCard from './RelatedCard.jsx';
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+import '../../../index.css';
+
+const responsive = {
+  superLargeDesktop: {
+    // the naming can be any, depends on you.
+    breakpoint: { max: 4000, min: 3000 },
+    items: 5
+  },
+  desktop: {
+    breakpoint: { max: 3000, min: 1024 },
+    items: 3
+  },
+  tablet: {
+    breakpoint: { max: 1024, min: 464 },
+    items: 2
+  },
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
+    items: 1
+  }
+};
+
 
 
 
@@ -65,30 +87,17 @@ function RelatedList({currentProduct, setProduct}) {
     return a.id - b.id;
   })
 
-  //function to have carousel display 4 cards at a time
-  function group(array) {
-    let grouped= [];
-    let temp = [];
-    for (let i = 0; i < array.length; i++) {
-      temp.push(array[i]);
-      if ((temp.length === 4) || (i === array.length - 1)) {
-        grouped.push(temp);
-        temp = [];
-      }
-    }
-    return grouped;
-  }
-  uniqueProds = group(uniqueProds);
+
 
 
 
   return (
     <div>
       <div>Related List</div>
-        <Box>
-          <Carousel fullHeightHover={false} navButtonsAlwaysVisible={true} swipe={false} animation='slide' autoPlay={false} cycleNavigation={false}>
-              {uniqueProds.map((bundle, index) => {
-                  return <CardBundle key={index} bundle={bundle} currentProduct={currentProduct} handleClick={handleClick} />
+        <Box className='carousel-box'>
+          <Carousel itemClass='carousel-item' responsive={responsive}>
+              {uniqueProds.map((relatedProduct) => {
+                  return <RelatedCard key={relatedProduct.id} product={relatedProduct} currentProduct={currentProduct} handleClick={handleClick} />
               })}
           </Carousel>
         </Box>
