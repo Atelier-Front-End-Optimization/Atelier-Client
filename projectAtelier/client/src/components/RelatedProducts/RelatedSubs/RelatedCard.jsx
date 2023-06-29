@@ -9,7 +9,7 @@ import StarBorderIcon from '@mui/icons-material/StarBorder';
 import ComparisonModal from './ComparisonModal'
 import convertPrice from '../../../Middleware/convertPrice.js';
 
-function RelatedCard({product, currentProduct, handleClick}) {
+function RelatedCard({product, currentProduct, handleClick, list}) {
 
   const [photo, setPhoto] = useState('');
 

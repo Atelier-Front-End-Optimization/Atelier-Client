@@ -1,7 +1,10 @@
-
+import Card from '@mui/material/Card';
 
 function AddOutfit() {
-return <div>Test</div>
+return (
+  <Card>
+    <div>some card</div>
+  </Card>
+);
 }
-
 export default AddOutfit;

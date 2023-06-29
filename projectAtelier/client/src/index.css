@@ -40,3 +40,7 @@
   min-width: 50%;
   max-width: auto;
 }
+
+.related-outfit-header {
+  font-weight: bold;
+}
