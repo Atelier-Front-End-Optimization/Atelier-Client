@@ -46,17 +46,14 @@ function RelatedList({currentProduct, setProduct, products, list}) {
 
   function addOutfit(product) {
     let ids = [];
-    console.log(products);
       for (let obj of  products) {
         if (obj) {
           ids.push(Object.values(obj)[0])
         }
       }
-      console.log('values ', ids);
     if (ids.length === 0 || !ids.includes(product.id)) {
       setProduct(products => [...products, product])
     }
-    console.log('I was clicked ', product);
   }
 
   function deleteOutfit(id) {
