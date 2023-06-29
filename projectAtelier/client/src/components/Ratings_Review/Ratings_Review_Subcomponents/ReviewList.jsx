@@ -11,7 +11,6 @@ const ReviewList = ({ reviews, getMoreReviews, canRenderMoreRevues, upvoteHelpfu
         <Box
           sx={{
             borderBottom: 'solid',
-            borderTop: 'solid',
             marginTop: 2,
             marginBottom: 2,
             width: 'auto',
