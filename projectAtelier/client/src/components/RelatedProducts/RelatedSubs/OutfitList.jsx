@@ -29,7 +29,7 @@ const responsive = {
 
 function OutfitList({currentProduct}) {
   const [outfit, setOutfit] = useState([null]);
-  console.log(outfit)
+  // console.log(outfit)
   return (
     <div>
       <div>Outfit List</div>
