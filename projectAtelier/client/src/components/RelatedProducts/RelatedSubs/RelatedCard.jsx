@@ -10,6 +10,7 @@ import ComparisonModal from './ComparisonModal'
 import convertPrice from '../../../Middleware/convertPrice.js';
 
 function RelatedCard({currentProduct, product, handleClick}) {
+
   const [photo, setPhoto] = useState('');
   //gets and sets default photo for each card
   useEffect(() => {
