@@ -1,10 +1,10 @@
-import {useEffect, useState} from 'react';
 import axios from 'axios';
 import axiosConfig from '../../../Middleware/axiosConfig.js';
 import averageRating from '../../../Middleware/averageRating.js';
 import Box from '@mui/material/Box';
-import RelatedCard from './RelatedCard.jsx';
+import {useEffect, useState} from 'react';
 import Carousel from "react-multi-carousel";
+import RelatedCard from './RelatedCard.jsx';
 import "react-multi-carousel/lib/styles.css";
 import '../../../index.css';
 
@@ -86,10 +86,6 @@ function RelatedList({currentProduct, setProduct}) {
   uniqueProds = uniqueProds.sort((a, b) => {
     return a.id - b.id;
   })
-
-
-
-
 
   return (
     <div>
