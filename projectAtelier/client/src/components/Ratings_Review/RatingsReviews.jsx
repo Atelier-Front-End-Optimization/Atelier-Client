@@ -34,10 +34,7 @@ const RatingsReviews = ({ product_id }) => {
         config
       );
       const {data} = reviewRes;
-
       return (reRender ? data.results : setReviews(data.results))
-
-
     } catch (err) {
       console.error(err);
     }
@@ -48,9 +45,6 @@ const RatingsReviews = ({ product_id }) => {
     getReviews(product_id, null, 2, null);
     setReviewRenders(4);
   }, [product_id]);
-
-
-
 
   const getMoreReviews = async () => {
     try {
@@ -69,13 +63,37 @@ const RatingsReviews = ({ product_id }) => {
     }
   };
 
+  const upvoteHelpful = async (review_id) => {
+    const config ={
+      headers: {
+        Authorization: import.meta.env.VITE_API_TOKEN
+      },
+      params: {
+        review_id:review_id
+      }
+    };
+    try {
+      const helpfulRes = await axios.put(
+        axiosConfig.url + `/reviews/:${review_id}/helpful`,
+        null,
+        config
+      );
+      ///////////////////////////////////////
+      console.log('RESP FROM API: ', helpfulRes)
+      ///////////////////////////////////////
+    } catch (err) {
+      console.error(err);
+      return err;
+    }
+  };
+
 ////////////////////////////////////////////////////////
   return (
     <section>
       <ReviewBreakdown/>
       <ProductBreakdown/>
       <SortOptions/>
-      <ReviewList reviews={reviews} getMoreReviews={getMoreReviews} canRenderMoreRevues={canRenderMoreRevues}/>
+      <ReviewList reviews={reviews} getMoreReviews={getMoreReviews} canRenderMoreRevues={canRenderMoreRevues} upvoteHelpful={upvoteHelpful}/>
       <NewReview/>
     </section>
   );

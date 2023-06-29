@@ -4,7 +4,7 @@ import { Box, Rating, Modal, Button, Stack, Avatar} from '@mui/material';
 import CheckIcon from '@mui/icons-material/Check';
 import ImageNotSupportedIcon from '@mui/icons-material/ImageNotSupported';
 
-const ReviewTile = ({ review: { body, date, helpfulness, photos, rating, recommend, response, reviewer_name, summary}}) => {
+const ReviewTile = ( {review: { review_id, body, date, helpfulness, photos, rating, recommend, response, reviewer_name, summary}, upvoteHelpful}) => {
   const [wasClicked, setWasClicked] = useState(false);
   const [helpful, setHelpful] = useState(helpfulness);
   const [showMore, setshowMore] = useState(false);
@@ -15,9 +15,15 @@ const ReviewTile = ({ review: { body, date, helpfulness, photos, rating, recomme
     .toLocaleDateString('en-us', {year: 'numeric', month: 'long', day: 'numeric'})
   }
 
-  const handleHelpful = () => {
+  const handleHelpful = async () => {
+    //invoke put request
+    try {
+    await upvoteHelpful(review_id)
     setHelpful(helpful+1);
     setWasClicked(true);
+    } catch (err) {
+      alert('Oops! We ran into a problem submitting your vote. Please try again in a few moments!')
+    }
   };
 
   const handleNotHelpful = () => {
@@ -137,6 +143,7 @@ const ReviewTile = ({ review: { body, date, helpfulness, photos, rating, recomme
       </div>
       <div>
         <span>Helpful?</span>
+
         <Button
           variant='text'
           size='small'
@@ -146,7 +153,9 @@ const ReviewTile = ({ review: { body, date, helpfulness, photos, rating, recomme
         >
           Yes ({helpful})
         </Button>
+
         <span>|</span>
+
         <Button
           variant='text'
           size='small'
@@ -154,7 +163,7 @@ const ReviewTile = ({ review: { body, date, helpfulness, photos, rating, recomme
           onClick={handleNotHelpful}
           disabled={wasClicked}
         >
-          No
+          Report
         </Button>
       </div>
     </Box>
