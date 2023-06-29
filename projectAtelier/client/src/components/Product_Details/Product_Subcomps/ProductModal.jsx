@@ -1,9 +1,7 @@
 import { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 
-const ProductModal = ({ photos }) => {
-  let initPic = photos[0];
-
+const ProductModal = ({ stylePhoto }) => {
   return (
     <Box
       component="img"
@@ -12,7 +10,7 @@ const ProductModal = ({ photos }) => {
         width: '85%',
       }}
       alt="Product Image"
-      src={photos[0].url}
+      src={stylePhoto}
     />
   );
 };

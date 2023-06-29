@@ -8,13 +8,17 @@ import axios from 'axios';
 
 function App() {
   const [product, setProduct] = useState({});
+  const [stylePhoto, setStylePhoto] = useState(
+    'https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80'
+  );
 
-
-useEffect(() => {
-  axios.get(axiosConfig.url + '/products/37311', axiosConfig).then((response) => {
-    setProduct(response.data);
-  })
-},[])
+  useEffect(() => {
+    axios
+      .get(axiosConfig.url + '/products/37311', axiosConfig)
+      .then((response) => {
+        setProduct(response.data);
+      });
+  }, []);
 
   return (
     <div>
@@ -26,6 +30,8 @@ useEffect(() => {
           productId={product.id}
           name={product.name}
           setProduct={setProduct}
+          stylePhoto={stylePhoto}
+          setStylePhoto={setStylePhoto}
         />
       </div>
       <div>
