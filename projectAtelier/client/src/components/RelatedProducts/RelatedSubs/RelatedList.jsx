@@ -1,16 +1,17 @@
 import {useEffect, useState, useRef} from 'react';
 import axios from 'axios';
 import axiosConfig from '../../../Middleware/axiosConfig.js';
-import RelatedCard from './RelatedCard.jsx';
 import averageRating from '../../../Middleware/averageRating.js';
-import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
+import Carousel from 'react-material-ui-carousel';
+import Box from '@mui/material/Box';
+import CardBundle from './CardBundle.jsx';
+
 
 
 function RelatedList({currentProduct, setProduct}) {
   const [relatedIDs, setRelatedIDs] = useState([]);
   const [relatedProducts, setRelatedProducts] = useState([]);
-  const [reviews, setReviews] = useState([]);
 
   //get all related id's to current product
   useEffect(() => {
@@ -23,10 +24,10 @@ function RelatedList({currentProduct, setProduct}) {
         })
 
     }
-},[currentProduct])
+  },[currentProduct])
 
 //get all relevant info about each related id
-useEffect(() => {
+  useEffect(() => {
     relatedIDs.forEach((product) => {
       let options = axiosConfig;
       options.params ={};
@@ -51,38 +52,46 @@ useEffect(() => {
       setProduct(response.data);
     })
   }
-//find maxScroll and scroll functions
-  const ref = useRef(null);
-  let scrolled = 0;
-  let maxScroll = Math.ceil((relatedProducts.length - 4) / 2);
-  function scrollRight() {
-    if (scrolled < maxScroll * 500) {
-      scrolled = scrolled + 500;
-      ref.current.scroll({left: scrolled, behavior: 'smooth'})
-    }
+
+//unique-ify and group related products
+  function removeDupes(array) {
+    let uniques = [...new Map(array.map((product) => [product.id, product])).values()];
+    return uniques;
   }
-  function scrollLeft() {
-    if (scrolled > 0) {
-      scrolled = scrolled - 500;
-      ref.current.scroll({left: scrolled, behavior: 'smooth'})
+  let uniqueProds = removeDupes(relatedProducts);
+
+  //sort related products
+  uniqueProds = uniqueProds.sort((a, b) => {
+    return a.id - b.id;
+  })
+
+  //function to have carousel display 4 cards at a time
+  function group(array) {
+    let grouped= [];
+    let temp = [];
+    for (let i = 0; i < array.length; i++) {
+      temp.push(array[i]);
+      if ((temp.length === 4) || (i === array.length - 1)) {
+        grouped.push(temp);
+        temp = [];
+      }
     }
+    return grouped;
   }
-//used id's array
-let usedIds = [];
+  uniqueProds = group(uniqueProds);
+
+
 
   return (
     <div>
       <div>Related List</div>
-        <Button onClick = {scrollLeft}>Scroll Left</Button>
-        <Button onClick = {scrollRight}>Scroll Right</Button>
-        <Stack ref={ref} scrollbehavior='smooth' direction='row' spacing={2} alignItems="center" sx={[{maxWidth: '100%', overflowX: 'hidden', '&::-webkit-scrollbar':{ width:0}, bgcolor:'ghostwhite', display: 'flex'}]}>
-            {relatedProducts.map((relatedProduct) => {
-              if (!usedIds.includes(relatedProduct.id) && (relatedProduct.id !== currentProduct.id)) {
-                usedIds.push(relatedProduct.id);
-                return <RelatedCard key={relatedProduct.id} product={relatedProduct} currentProduct={currentProduct} handleClick={handleClick} />
-              }
-            })}
-        </Stack>
+        <Box>
+          <Carousel fullHeightHover={false} navButtonsAlwaysVisible={true} swipe={false} animation='slide' autoPlay={false} cycleNavigation={false}>
+              {uniqueProds.map((bundle, index) => {
+                  return <CardBundle key={index} bundle={bundle} currentProduct={currentProduct} handleClick={handleClick} />
+              })}
+          </Carousel>
+        </Box>
 
     </div>
     );
