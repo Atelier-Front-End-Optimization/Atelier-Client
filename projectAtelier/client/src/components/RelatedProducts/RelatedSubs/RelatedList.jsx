@@ -44,8 +44,23 @@ function RelatedList({currentProduct, setProduct, products, list}) {
     })
   }
 
-  function outfitClick(id) {
-    console.log('I was clicked ', id);
+  function addOutfit(product) {
+    let ids = [];
+    console.log(products);
+      for (let obj of  products) {
+        if (obj) {
+          ids.push(Object.values(obj)[0])
+        }
+      }
+      console.log('values ', ids);
+    if (ids.length === 0 || !ids.includes(product.id)) {
+      setProduct(products => [...products, product])
+    }
+    console.log('I was clicked ', product);
+  }
+
+  function deleteOutfit(id) {
+    console.log('I was clicked ', id)
   }
 
 
@@ -55,7 +70,7 @@ function RelatedList({currentProduct, setProduct, products, list}) {
     <div>
       <div className='related-outfit-header'>Related Products</div>
         <Box className='carousel-box'>
-          <Carousel itemClass='carousel-item' responsive={responsive}>
+          <Carousel itemClass='carousel-item' responsive={responsive}  draggable={false}>
               {products.map((product) => {
                   return <RelatedCard key={product.id} product={product} currentProduct={currentProduct} handleClick={relatedClick} list={list} />
               })}
@@ -69,12 +84,12 @@ function RelatedList({currentProduct, setProduct, products, list}) {
       <div>
       <div className='related-outfit-header'>Outfit</div>
         <Box className='carousel-box'>
-          <Carousel itemClass='carousel-item' responsive={responsive}>
+          <Carousel itemClass='carousel-item' responsive={responsive} draggable={false}>
               {products.map((product, index) => {
                   if (!product) {
-                    return <AddOutfit key={index}/>
+                    return <AddOutfit key={index} handleClick={addOutfit} currentProduct={currentProduct}/>
                   } else {
-                    return <RelatedCard key={product.id} product={product} currentProduct={currentProduct} handleClick={outfitClick} list={list}/>
+                    return <RelatedCard key={product.id} product={product} currentProduct={currentProduct} handleClick={deleteOutfit} list={list}/>
                   }
 
               })}

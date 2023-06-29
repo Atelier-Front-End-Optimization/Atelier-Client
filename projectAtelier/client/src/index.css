@@ -36,11 +36,36 @@
 }
 
 .carousel-box {
-  background-color: ghostwhite;
+  background-color: gainsboro;
   min-width: 50%;
   max-width: auto;
 }
 
 .related-outfit-header {
   font-weight: bold;
+}
+
+.add-outfit {
+
+  background-color: ghostwhite;
+}
+.add-icon {
+  transform: scale(9.0);
+  position: relative;
+  top: 40%;
+  left: 45%;
+  color: gray;
+}
+.add-icon:hover {
+  color: dimgray;
+}
+.add-text {
+  position: relative;
+  top: 70%;
+  left: 34%;
+}
+
+.outfit-card {
+  position: relative;
+  top: 10%;
 }

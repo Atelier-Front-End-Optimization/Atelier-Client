@@ -1,13 +1,14 @@
 //import Card from './Card.jsx';
 import Box from '@mui/material/Box';
+import StarBorderIcon from '@mui/icons-material/StarBorder';
+import ComparisonModal from './ComparisonModal'
 import Card from '@mui/material/Card';
 import Rating from '@mui/material/Rating';
 import {useEffect, useState} from 'react';
 import axiosConfig from '../../../Middleware/axiosConfig.js';
 import axios from 'axios';
-import StarBorderIcon from '@mui/icons-material/StarBorder';
-import ComparisonModal from './ComparisonModal'
 import convertPrice from '../../../Middleware/convertPrice.js';
+import ActionButton from './ActionButton.jsx';
 
 function RelatedCard({product, currentProduct, handleClick, list}) {
 
@@ -36,9 +37,7 @@ function RelatedCard({product, currentProduct, handleClick, list}) {
     handleClick(product.id);
   }
   //open comparison modal
-  const [open, setOpen] = useState(false)
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+
 
   //format as currency
   let price = convertPrice(product.default_price);
@@ -46,14 +45,7 @@ function RelatedCard({product, currentProduct, handleClick, list}) {
   return (
       <Card onClick={relatedClick} sx={{cursor:'pointer', width:250, m:2, flexBasis:'auto', flexShrink: 0}}>
           <Box height='300px' width='100%' position='relative'>
-            <Box onMouseDown={(e) => {
-                e.stopPropagation();
-                e.preventDefault();
-                handleOpen();
-              }} position='absolute' bottom='87%' left='85%' >
-            <StarBorderIcon sx={{'&:hover': {color: 'red'}}}>Action</StarBorderIcon>
-            <ComparisonModal open={open} close={handleClose} product={product} currentProduct={currentProduct}/>
-            </Box>
+            <ActionButton product={product} currentProduct={currentProduct} list={list}/>
             <img height='100%' width='100%' src={photo}></img>
           </Box>
           <Box p={1}>
