@@ -20,7 +20,8 @@ git push -u origin "new-feature"
 ```
 
 Forgot to create a new branch? Use:
-git checkout "current_branch",
+```
+git checkout "current_branch"
 git branch "new-branch"
 git switch "new-branch"
 ```
