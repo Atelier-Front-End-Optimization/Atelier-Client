@@ -9,9 +9,10 @@ import StarBorderIcon from '@mui/icons-material/StarBorder';
 import ComparisonModal from './ComparisonModal'
 import convertPrice from '../../../Middleware/convertPrice.js';
 
-function RelatedCard({currentProduct, product, handleClick}) {
+function RelatedCard({product, currentProduct, handleClick}) {
 
   const [photo, setPhoto] = useState('');
+
   //gets and sets default photo for each card
   useEffect(() => {
     axios.get(axiosConfig.url + '/products/' + product.id + '/styles', axiosConfig).then((response) => {
@@ -42,12 +43,8 @@ function RelatedCard({currentProduct, product, handleClick}) {
   //format as currency
   let price = convertPrice(product.default_price);
 
-
-
-
-
   return (
-      <Card onClick={relatedClick} sx={{cursor:'pointer', width:250, height:"100%", m:2, flexBasis:'auto', flexShrink: 0}}>
+      <Card onClick={relatedClick} sx={{cursor:'pointer', width:250, m:2, flexBasis:'auto', flexShrink: 0}}>
           <Box height='300px' width='100%' position='relative'>
             <Box onMouseDown={(e) => {
                 e.stopPropagation();

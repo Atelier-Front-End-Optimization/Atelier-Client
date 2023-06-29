@@ -34,3 +34,9 @@
 #name {
   font-weight: bold;
 }
+
+.carousel-box {
+  background-color: ghostwhite;
+  min-width: 50%;
+  max-width: auto;
+}
