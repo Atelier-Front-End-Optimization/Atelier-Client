@@ -14,7 +14,14 @@ import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 
-const ProductDetails = ({ productId, description, slogan, name }) => {
+const ProductDetails = ({
+  productId,
+  description,
+  slogan,
+  name,
+  stylePhoto,
+  setStylePhoto,
+}) => {
   const [productFeatures, setProductFeatures] = useState({});
   const [productStyles, setProductStyles] = useState([]);
   const [productStylePhotos, setProductStylePhotos] = useState([]);
@@ -32,6 +39,7 @@ const ProductDetails = ({ productId, description, slogan, name }) => {
         )
         .then((response) => {
           setProductFeatures(response.data.features);
+          console.log(productId);
         })
         .catch((error) => {
           console.log('ERROR IN GET PRODUCT FEATURES');
@@ -66,7 +74,7 @@ const ProductDetails = ({ productId, description, slogan, name }) => {
   if (productStyles && productStyles.length > 0) {
     // console.log(productStyles, 'STYLES');
     // console.log(productFeatures, 'FEATURES');
-    // console.log(productStylePhotos, 'PHOTOS');
+    console.log(productStylePhotos, 'PHOTOS');
     return (
       <Box
         sx={{
@@ -82,7 +90,7 @@ const ProductDetails = ({ productId, description, slogan, name }) => {
           justifyContent="flex-start"
           alignItems="flex-start"
         >
-          <ProductModal photos={productStylePhotos.results[0].photos} />
+          <ProductModal stylePhoto={stylePhoto} />
           <div>
             <ItemDescription slogan={slogan} description={description} />
           </div>
@@ -97,7 +105,11 @@ const ProductDetails = ({ productId, description, slogan, name }) => {
             <h1>{name}</h1>
             <p>{`$${productStyles[0].original_price}`}</p>
             <span>{`STYLE > ${productStyles[0].name}`}</span>
-            <ProductStyles styles={productStyles} photos={productStylePhotos} />
+            <ProductStyles
+              styles={productStyles}
+              photos={productStylePhotos}
+              setStylePhoto={setStylePhoto}
+            />
           </div>
 
           <Stack
