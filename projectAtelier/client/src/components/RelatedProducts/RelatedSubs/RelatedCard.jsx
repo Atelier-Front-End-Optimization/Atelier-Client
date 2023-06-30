@@ -10,7 +10,14 @@ import axios from 'axios';
 import convertPrice from '../../../Middleware/convertPrice.js';
 import ActionButton from './ActionButton.jsx';
 
-function RelatedCard({ product, currentProduct, handleClick, list }) {
+function RelatedCard({
+  product,
+  currentProduct,
+  handleClick,
+  list,
+  setProduct,
+  products,
+}) {
   const [photo, setPhoto] = useState('');
 
   //gets and sets default photo for each card
@@ -32,7 +39,7 @@ function RelatedCard({ product, currentProduct, handleClick, list }) {
 
   //change current product on click
   function relatedClick(event) {
-    if (event.target.ariaHidden) {
+    if (event.target.ariaHidden || event.target.tagName === 'path') {
       event.stopPropagation();
       return null;
     }
@@ -59,6 +66,8 @@ function RelatedCard({ product, currentProduct, handleClick, list }) {
           product={product}
           currentProduct={currentProduct}
           list={list}
+          products={products}
+          setProduct={setProduct}
         />
         <img height="100%" width="100%" src={photo}></img>
       </Box>

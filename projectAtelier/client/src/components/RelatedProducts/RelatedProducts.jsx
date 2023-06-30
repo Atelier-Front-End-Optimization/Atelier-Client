@@ -14,7 +14,7 @@ function RelatedProducts({
 }) {
   const [relatedIDs, setRelatedIDs] = useState([]);
   const [relatedProducts, setRelatedProducts] = useState([]);
-  const [outfit, setOutfit] = useState([null]);
+  const [outfit, setOutfit] = useState([]);
 
   //get all related id's to current product
   useEffect(() => {
@@ -64,6 +64,14 @@ function RelatedProducts({
     });
   }, [relatedIDs]);
 
+  function relatedClick(id) {
+    axios
+      .get(axiosConfig.url + '/products/' + id, axiosConfig)
+      .then((response) => {
+        setProduct(response.data);
+      });
+  }
+
   //unique-ify and group related products
   function removeDupes(array) {
     let uniques = [
@@ -86,6 +94,7 @@ function RelatedProducts({
         setProduct={setProduct}
         products={uniqueProds}
         list={'related'}
+        relatedClick={relatedClick}
         setStylePhoto={setStylePhoto}
       />
       <br></br>
@@ -94,6 +103,7 @@ function RelatedProducts({
         setProduct={setOutfit}
         products={outfit}
         list={'outfit'}
+        relatedClick={relatedClick}
       />
       <br></br>
     </div>

@@ -4,24 +4,26 @@ import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import ComparisonModal from './ComparisonModal';
 import { useState } from 'react';
 
-function ActionButton({ product, currentProduct, list }) {
+function ActionButton({ product, currentProduct, list, products, setProduct }) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  function deleteOutfit(product) {
+    setProduct(products.filter((p) => p.id !== product.id));
+  }
+
   if (list === 'related') {
     return (
-      <Box
-        onMouseDown={(e) => {
-          e.stopPropagation();
-          e.preventDefault();
-          handleOpen();
-        }}
-        position="absolute"
-        bottom="87%"
-        left="85%"
-      >
-        <StarBorderIcon sx={{ '&:hover': { color: 'red' } }}></StarBorderIcon>
+      <Box position="absolute" bottom="87%" left="85%">
+        <StarBorderIcon
+          onMouseDown={(e) => {
+            e.stopPropagation();
+            e.preventDefault();
+            handleOpen();
+          }}
+          sx={{ '&:hover': { color: 'red' } }}
+        ></StarBorderIcon>
         <ComparisonModal
           open={open}
           close={handleClose}
