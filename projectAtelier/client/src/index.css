@@ -42,7 +42,7 @@
   min-width: 50%;
   max-width: auto;
   height: 430px;
-  min-width: 1086x;
+  width:100%;
 
 }
 
@@ -82,4 +82,8 @@
 }
 .carousel {
   height: 430px;
+}
+
+.carousel-item-outfit {
+  padding: 40px;
 }
