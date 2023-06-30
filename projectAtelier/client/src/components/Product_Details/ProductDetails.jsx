@@ -100,8 +100,10 @@ const ProductDetails = ({
           direction="column"
           justifyContent="flex-start"
           alignItems="flex-start"
+          paddingLeft="75px"
         >
           <div>
+            <h1>CATEGORY</h1>
             <h1>{name}</h1>
             <p>{`$${productStyles[0].original_price}`}</p>
             <span>{`STYLE > ${productStyles[0].name}`}</span>
@@ -110,27 +112,23 @@ const ProductDetails = ({
               photos={productStylePhotos}
               setStylePhoto={setStylePhoto}
             />
+            <div>
+              <Stack
+                direction="row"
+                justifyContent="flex-end"
+                alignItems="flex-start"
+              >
+                <div>
+                  <SizeSelect />
+                  <QuantitySelect />
+                </div>
+                <div>
+                  <AddBag />
+                  <Favorite />
+                </div>
+              </Stack>
+            </div>
           </div>
-
-          <Stack
-            direction="row"
-            justifyContent="flex-end"
-            alignItems="flex-start"
-          >
-            <SizeSelect />
-            <QuantitySelect />
-          </Stack>
-
-          <Stack
-            direction="row"
-            justifyContent="flex-end"
-            alignItems="flex-start"
-            paddingLeft="25px"
-            spacing={2}
-          >
-            <AddBag />
-            <Favorite />
-          </Stack>
         </Stack>
       </Box>
     );
