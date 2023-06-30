@@ -13,6 +13,7 @@ import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
+import Rating from '@mui/material/Rating';
 
 const ProductDetails = ({
   productId,
@@ -21,6 +22,7 @@ const ProductDetails = ({
   name,
   stylePhoto,
   setStylePhoto,
+  rating,
 }) => {
   const [productFeatures, setProductFeatures] = useState({});
   const [productStyles, setProductStyles] = useState([]);
@@ -102,6 +104,8 @@ const ProductDetails = ({
           paddingLeft="75px"
         >
           <div>
+            <Rating name="read-only" value={rating} precision={0.25} readOnly />
+            <span> Read all reviews</span>
             <h3>CATEGORY</h3>
             <h1>{name}</h1>
             <p>{`$${productStyles[0].original_price}`}</p>
