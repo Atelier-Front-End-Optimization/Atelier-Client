@@ -39,7 +39,6 @@ const ProductDetails = ({
         )
         .then((response) => {
           setProductFeatures(response.data.features);
-          console.log(productId);
         })
         .catch((error) => {
           console.log('ERROR IN GET PRODUCT FEATURES');
@@ -74,7 +73,7 @@ const ProductDetails = ({
   if (productStyles && productStyles.length > 0) {
     // console.log(productStyles, 'STYLES');
     // console.log(productFeatures, 'FEATURES');
-    console.log(productStylePhotos, 'PHOTOS');
+    // console.log(productStylePhotos, 'PHOTOS');
     return (
       <Box
         sx={{
@@ -82,7 +81,7 @@ const ProductDetails = ({
           paddingLeft: '50px',
           paddingRight: '50px',
           display: 'flex',
-          justifyContent: 'flex-start',
+          justifyContent: 'center',
         }}
       >
         <Stack
@@ -103,7 +102,7 @@ const ProductDetails = ({
           paddingLeft="75px"
         >
           <div>
-            <h1>CATEGORY</h1>
+            <h3>CATEGORY</h3>
             <h1>{name}</h1>
             <p>{`$${productStyles[0].original_price}`}</p>
             <span>{`STYLE > ${productStyles[0].name}`}</span>
@@ -121,10 +120,6 @@ const ProductDetails = ({
                 <div>
                   <SizeSelect />
                   <QuantitySelect />
-                </div>
-                <div>
-                  <AddBag />
-                  <Favorite />
                 </div>
               </Stack>
             </div>
