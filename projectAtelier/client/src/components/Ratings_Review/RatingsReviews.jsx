@@ -101,6 +101,7 @@ const RatingsReviews = ({ product_id }) => {
         product_id={product_id}
         getReviews={getReviews}
         setReviewRenders={setReviewRenders}
+        sorting={sorting}
         setSorting={setSorting}
       />
       <ReviewList
