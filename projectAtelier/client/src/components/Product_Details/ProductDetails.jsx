@@ -12,7 +12,7 @@ import Favorite from './Product_Subcomps/Favorite';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
-import Box from '@mui/material/Box';
+import { Box } from '@mui/material/';
 
 const ProductDetails = ({
   productId,

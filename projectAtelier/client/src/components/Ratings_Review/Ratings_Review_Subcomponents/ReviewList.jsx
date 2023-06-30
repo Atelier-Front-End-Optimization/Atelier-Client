@@ -1,38 +1,46 @@
 /* eslint-disable react/prop-types */
-import ReviewTile from './ReviewTile.jsx'
+import ReviewTile from './ReviewTile.jsx';
 import { Button, Box } from '@mui/material';
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 
-const ReviewList = ({ reviews, getMoreReviews, canRenderMoreRevues, upvoteHelpful}) => {
-
-////////////////////////////////////////////////////////
+const ReviewList = ({
+  reviews,
+  getMoreReviews,
+  canRenderMoreRevues,
+  upvoteHelpful,
+}) => {
+  ////////////////////////////////////////////////////////
   return (
     <div>
-        <Box
-          sx={{
-            borderBottom: 'solid',
-            marginTop: 2,
-            marginBottom: 2,
-            width: 'auto',
-            height: 'auto',
-            maxHeight: 600,
-            overflow: 'auto'
-          }}
-        >
-          {reviews.map((review) => {
-            return <ReviewTile key={review.review_id} review={review} upvoteHelpful={upvoteHelpful}/>
-          })}
-      { canRenderMoreRevues ?
-        <div>
-          <Button
-            variant='contained'
-            size='small'
-            onClick={getMoreReviews}
-          >
-            More Reviews
-          </Button>
-        </div>
-      : ''}
+      <Box
+        sx={{
+          borderBottom: 'solid',
+          marginTop: 2,
+          marginBottom: 2,
+          width: 'auto',
+          height: 'auto',
+          maxHeight: 600,
+          overflow: 'auto',
+        }}
+      >
+        {reviews.map((review) => {
+          return (
+            <ReviewTile
+              key={review.review_id}
+              review={review}
+              upvoteHelpful={upvoteHelpful}
+            />
+          );
+        })}
+        {canRenderMoreRevues ? (
+          <div>
+            <Button variant="contained" size="small" onClick={getMoreReviews}>
+              More Reviews
+            </Button>
+          </div>
+        ) : (
+          ''
+        )}
       </Box>
     </div>
   );
