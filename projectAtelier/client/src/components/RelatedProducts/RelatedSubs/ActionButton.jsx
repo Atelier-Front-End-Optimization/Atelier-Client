@@ -1,8 +1,8 @@
-import Box from '@mui/material/Box';
+import { Box } from '@mui/material/';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import ComparisonModal from './ComparisonModal';
-import {useState} from 'react';
+import { useState } from 'react';
 
 function ActionButton({product, currentProduct, list, products, setProduct}) {
 
@@ -34,7 +34,7 @@ function ActionButton({product, currentProduct, list, products, setProduct}) {
         deleteOutfit(product);
       }} sx={{'&:hover': {color: 'red'}}}></HighlightOffIcon>
       </Box>
-    )
+    );
   }
 }
 

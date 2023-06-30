@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import Box from '@mui/material/Box';
+import { Box } from '@mui/material/';
 
 const ProductModal = ({ stylePhoto }) => {
   return (

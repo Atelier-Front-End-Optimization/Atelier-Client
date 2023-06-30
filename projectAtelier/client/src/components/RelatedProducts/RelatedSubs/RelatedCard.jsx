@@ -1,10 +1,10 @@
 //import Card from './Card.jsx';
-import Box from '@mui/material/Box';
+import { Box } from '@mui/material/';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
-import ComparisonModal from './ComparisonModal'
+import ComparisonModal from './ComparisonModal';
 import Card from '@mui/material/Card';
 import Rating from '@mui/material/Rating';
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 import axiosConfig from '../../../Middleware/axiosConfig.js';
 import axios from 'axios';
 import convertPrice from '../../../Middleware/convertPrice.js';
@@ -15,17 +15,20 @@ function RelatedCard({product, currentProduct, handleClick, list, setProduct, pr
 
   //gets and sets default photo for each card
   useEffect(() => {
-    axios.get(axiosConfig.url + '/products/' + product.id + '/styles', axiosConfig).then((response) => {
-      setPhoto(response.data.results[0].photos[0].thumbnail_url)
-      for (let style of response.data.results) {
-        if (style['default?']) {
-          setPhoto(style.photos[0].thumbnail_url);
+    axios
+      .get(axiosConfig.url + '/products/' + product.id + '/styles', axiosConfig)
+      .then((response) => {
+        setPhoto(response.data.results[0].photos[0].thumbnail_url);
+        for (let style of response.data.results) {
+          if (style['default?']) {
+            setPhoto(style.photos[0].thumbnail_url);
+          }
         }
-      }
-    }).catch((err) => {
-      console.log('AXIOS GET ERROR GETTING PHOTOS ', err);
-    })
-  }, [])
+      })
+      .catch((err) => {
+        console.log('AXIOS GET ERROR GETTING PHOTOS ', err);
+      });
+  }, []);
 
   //change current product on click
   function relatedClick(event) {
@@ -35,7 +38,7 @@ function RelatedCard({product, currentProduct, handleClick, list, setProduct, pr
     }
     handleClick(product.id);
   }
-  //delete from outfit
+  //open comparison modal
 
 
   //format as currency
