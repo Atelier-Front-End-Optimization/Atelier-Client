@@ -42,7 +42,7 @@ const RatingsReviews = ({ product_id }) => {
 
   useEffect(() => {
     if (!product_id) return;
-    getReviews(product_id, '', 2, null);
+    getReviews(product_id, 'relevant', 2);
     setReviewRenders(4);
   }, [product_id]);
 
@@ -74,7 +74,7 @@ const RatingsReviews = ({ product_id }) => {
     };
     try {
       const helpfulRes = await axios.put(
-        axiosConfig.url + `/reviews/:${review_id}/helpful`,
+        axiosConfig.url + `/reviews/${review_id}/helpful`,
         null,
         config
       );
