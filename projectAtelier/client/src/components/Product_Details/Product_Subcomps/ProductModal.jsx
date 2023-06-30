@@ -6,8 +6,8 @@ const ProductModal = ({ stylePhoto }) => {
     <Box
       component="img"
       sx={{
-        height: '50%',
-        width: '85%',
+        height: '500px',
+        width: '850px',
       }}
       alt="Product Image"
       src={stylePhoto}
