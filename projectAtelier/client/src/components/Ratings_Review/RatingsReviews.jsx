@@ -14,9 +14,10 @@ const RatingsReviews = ({ product_id }) => {
   const [reviews, setReviews] = useState([]);
   const [reviewRenders, setReviewRenders] = useState(4);
   const [canRenderMoreRevues, setCanRenderMoreRevues] = useState(true);
+  const [sorting, setSorting] = useState('relevant');
   ///////////////////////////////////////////////////////////////////////////////////////
 
-  const getReviews = async (product_id, sort = null, count = null, page = null, reRender = false) => {
+  const getReviews = async (product_id, count = null, page = null, reRender = false) => {
     const config ={
       headers: {
         Authorization: import.meta.env.VITE_API_TOKEN
@@ -24,7 +25,7 @@ const RatingsReviews = ({ product_id }) => {
       params: {
         page: page,
         count: count,
-        sort: sort,
+        sort: sorting,
         product_id: product_id
       }
     };
@@ -34,7 +35,10 @@ const RatingsReviews = ({ product_id }) => {
         config
       );
       const {data} = reviewRes;
-      return (reRender ? data.results : setReviews(data.results))
+      return (reRender ?
+        data.results
+      : setReviews(data.results)
+      )
     } catch (err) {
       console.error(err);
     }
@@ -42,13 +46,14 @@ const RatingsReviews = ({ product_id }) => {
 
   useEffect(() => {
     if (!product_id) return;
-    getReviews(product_id, 'relevant', 2);
+    getReviews(product_id, 2);
+    setSorting('relevant');
     setReviewRenders(4);
   }, [product_id]);
 
   const getMoreReviews = async () => {
     try {
-      const moreReviews = await getReviews(product_id, null, reviewRenders + 1, null, true);
+      const moreReviews = await getReviews(product_id, sorting, reviewRenders + 1, null, true);
       if (moreReviews.length <= reviewRenders) {
         setCanRenderMoreRevues(false);
         setReviews(moreReviews);
@@ -92,8 +97,18 @@ const RatingsReviews = ({ product_id }) => {
     <section>
       <ReviewBreakdown/>
       <ProductBreakdown/>
-      <SortOptions/>
-      <ReviewList reviews={reviews} getMoreReviews={getMoreReviews} canRenderMoreRevues={canRenderMoreRevues} upvoteHelpful={upvoteHelpful}/>
+      <SortOptions
+        product_id={product_id}
+        getReviews={getReviews}
+        setReviewRenders={setReviewRenders}
+        setSorting={setSorting}
+      />
+      <ReviewList
+        reviews={reviews}
+        getMoreReviews={getMoreReviews}
+        canRenderMoreRevues={canRenderMoreRevues}
+        upvoteHelpful={upvoteHelpful}
+      />
       <NewReview/>
     </section>
   );
