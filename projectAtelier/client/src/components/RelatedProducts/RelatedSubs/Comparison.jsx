@@ -19,7 +19,7 @@ function Icon ({feature}) {
  }
 }
 function Comparison ({product, currentProduct}) {
-  console.log(currentProduct)
+
   function matchFeature(features, target) {
     let result = '';
     for (let feature of features) {
