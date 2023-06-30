@@ -10,7 +10,7 @@ import axios from 'axios';
 import convertPrice from '../../../Middleware/convertPrice.js';
 import ActionButton from './ActionButton.jsx';
 
-function RelatedCard({ product, currentProduct, handleClick, list }) {
+function RelatedCard({product, currentProduct, handleClick, list, setProduct, products }) {
   const [photo, setPhoto] = useState('');
 
   //gets and sets default photo for each card
@@ -32,7 +32,7 @@ function RelatedCard({ product, currentProduct, handleClick, list }) {
 
   //change current product on click
   function relatedClick(event) {
-    if (event.target.ariaHidden) {
+    if (event.target.ariaHidden || event.target.tagName === 'path') {
       event.stopPropagation();
       return null;
     }
@@ -40,36 +40,26 @@ function RelatedCard({ product, currentProduct, handleClick, list }) {
   }
   //open comparison modal
 
+
   //format as currency
   let price = convertPrice(product.default_price);
 
   return (
-    <Card
-      onClick={relatedClick}
-      sx={{
-        cursor: 'pointer',
-        width: 250,
-        m: 2,
-        flexBasis: 'auto',
-        flexShrink: 0,
-      }}
-    >
-      <Box height="300px" width="100%" position="relative">
-        <ActionButton
-          product={product}
-          currentProduct={currentProduct}
-          list={list}
-        />
-        <img height="100%" width="100%" src={photo}></img>
-      </Box>
-      <Box p={1}>
-        <div>{product.category}</div>
-        <div>{product.name}</div>
-        <div>{price}</div>
-        <Rating readOnly value={product.average} precision={0.25}></Rating>
-      </Box>
-    </Card>
-  );
+      <Card onClick={relatedClick} sx={{cursor:'pointer', width:250, m:2, flexBasis:'auto', flexShrink: 0}}>
+          <Box height='300px' width='100%' position='relative'>
+            <ActionButton product={product} currentProduct={currentProduct} list={list} products={products} setProduct={setProduct}/>
+            <img height='100%' width='100%' src={photo}></img>
+          </Box>
+          <Box p={1}>
+            <div>{product.category}</div>
+            <div>{product.name}</div>
+            <div>{price}</div>
+            <Rating readOnly value={product.average} precision={0.25}></Rating>
+          </Box>
+      </Card>
+
+
+  )
 }
 
 export default RelatedCard;

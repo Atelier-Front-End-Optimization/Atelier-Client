@@ -5,6 +5,7 @@ import Carousel from 'react-multi-carousel';
 import RelatedCard from './RelatedCard.jsx';
 import 'react-multi-carousel/lib/styles.css';
 import AddOutfit from './AddOutfit.jsx';
+import Stack from '@mui/material/Stack';
 import '../../../index.css';
 
 const responsive = {
@@ -31,15 +32,11 @@ const responsive = {
   },
 };
 
-function RelatedList({ currentProduct, setProduct, products, list }) {
-  //set the current product when a related card is clicked
-  function relatedClick(id) {
-    axios
-      .get(axiosConfig.url + '/products/' + id, axiosConfig)
-      .then((response) => {
-        setProduct(response.data);
-      });
-  }
+
+
+
+function RelatedList({currentProduct, setProduct, products, list, relatedClick}) {
+
 
   function addOutfit(product) {
     let ids = [];
@@ -53,31 +50,17 @@ function RelatedList({ currentProduct, setProduct, products, list }) {
     }
   }
 
-  function deleteOutfit(id) {
-    console.log('I was clicked ', id);
-  }
+
 
   if (list === 'related') {
     return (
-      <div>
-        <div className="related-outfit-header">Related Products</div>
-        <Box className="carousel-box">
-          <Carousel
-            itemClass="carousel-item"
-            responsive={responsive}
-            draggable={false}
-          >
-            {products.map((product) => {
-              return (
-                <RelatedCard
-                  key={product.id}
-                  product={product}
-                  currentProduct={currentProduct}
-                  handleClick={relatedClick}
-                  list={list}
-                />
-              );
-            })}
+    <div>
+      <div className='related-outfit-header'>Related Products</div>
+        <Box className='carousel-box'>
+          <Carousel itemClass='carousel-item' responsive={responsive}  draggable={false}>
+              {products.map((product) => {
+                  return <RelatedCard key={product.id} product={product} currentProduct={currentProduct} handleClick={relatedClick} list={list} setProduct={setProduct} products={products} />
+              })}
           </Carousel>
         </Box>
       </div>
@@ -85,37 +68,19 @@ function RelatedList({ currentProduct, setProduct, products, list }) {
   } else {
     return (
       <div>
-        <div className="related-outfit-header">Outfit</div>
-        <Box className="carousel-box">
-          <Carousel
-            itemClass="carousel-item"
-            responsive={responsive}
-            draggable={false}
-          >
-            {products.map((product, index) => {
-              if (!product) {
-                return (
-                  <AddOutfit
-                    key={index}
-                    handleClick={addOutfit}
-                    currentProduct={currentProduct}
-                  />
-                );
-              } else {
-                return (
-                  <RelatedCard
-                    key={product.id}
-                    product={product}
-                    currentProduct={currentProduct}
-                    handleClick={deleteOutfit}
-                    list={list}
-                  />
-                );
-              }
-            })}
+      <div className='related-outfit-header'>Outfit</div>
+      <Stack className='outfit-stack' direction='row'>
+        <AddOutfit handleClick={addOutfit} currentProduct={currentProduct}/>
+        <Box  className='carousel-box'>
+          <Carousel className='carousel' itemClass='carousel-item' responsive={responsive} draggable={false}>
+              {products.map((product) => {
+                  return <RelatedCard key={product.id} product={product} currentProduct={currentProduct} handleClick={relatedClick} list={list} setProduct={setProduct} products={products}/>
+              })}
           </Carousel>
         </Box>
-      </div>
+      </Stack>
+
+    </div>
     );
   }
 }
