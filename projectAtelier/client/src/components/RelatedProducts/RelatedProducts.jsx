@@ -1,21 +1,96 @@
 // import React from 'react'
 // import ReactDOM from 'react-dom/client'
-import RelatedCard from './RelatedSubs/RelatedCard.jsx';
 import RelatedList from './RelatedSubs/RelatedList.jsx';
-import OutfitList from './RelatedSubs/OutfitList.jsx';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import axiosConfig from '../../Middleware/axiosConfig.js';
+import averageRating from '../../Middleware/averageRating.js';
 
+function RelatedProducts({ currentProduct, setProduct, setRating }) {
+  const [relatedIDs, setRelatedIDs] = useState([]);
+  const [relatedProducts, setRelatedProducts] = useState([]);
+  const [outfit, setOutfit] = useState([null]);
 
-function RelatedProducts({currentProduct, setProduct}) {
+  //get all related id's to current product
+  useEffect(() => {
+    if (!!currentProduct.id) {
+      axios
+        .get(
+          axiosConfig.url + '/products/' + currentProduct.id + '/related',
+          axiosConfig
+        )
+        .then((response) => {
+          setRelatedIDs(response.data);
+          setRelatedProducts([]);
+        })
+        .catch((err) => {
+          console.log('GET RELATED ID ERROR ', err);
+        });
+    }
+  }, [currentProduct]);
+
+  //get all relevant info about each related id
+  useEffect(() => {
+    relatedIDs.forEach((product) => {
+      let options = axiosConfig;
+      options.params = {};
+      options.params.product_id = product;
+      axios
+        .get(options.url + '/reviews/meta', options)
+        .then((response) => {
+          let average = averageRating(response.data.ratings);
+          setRating(Number(average));
+          return Number(average);
+        })
+        .then((average) => {
+          axios
+            .get(axiosConfig.url + '/products/' + product, axiosConfig)
+            .then((res) => {
+              res.data.average = average;
+              setRelatedProducts((relatedProducts) => [
+                ...relatedProducts,
+                res.data,
+              ]);
+            })
+            .catch((err) => {
+              console.log('GET RELATED PRODUCTS ERROR ', err);
+            });
+        });
+    });
+  }, [relatedIDs]);
+
+  //unique-ify and group related products
+  function removeDupes(array) {
+    let uniques = [
+      ...new Map(array.map((product) => [product.id, product])).values(),
+    ];
+    return uniques;
+  }
+  let uniqueProds = removeDupes(relatedProducts);
+
+  //sort related products
+  uniqueProds = uniqueProds.sort((a, b) => {
+    return a.id - b.id;
+  });
+
   return (
     <div>
-      <div className='font-bold text-xl'>Related Products bb</div>
       <div>Current Product ID: {currentProduct.id}</div>
-      <div className='font-semibold text-lg'>Related Products</div>
-      <RelatedList currentProduct={currentProduct} setProduct={setProduct}/><br></br>
-      <OutfitList/>
-
+      <RelatedList
+        currentProduct={currentProduct}
+        setProduct={setProduct}
+        products={uniqueProds}
+        list={'related'}
+      />
+      <br></br>
+      <RelatedList
+        currentProduct={currentProduct}
+        setProduct={setOutfit}
+        products={outfit}
+        list={'outfit'}
+      />
+      <br></br>
     </div>
-
   );
 }
 

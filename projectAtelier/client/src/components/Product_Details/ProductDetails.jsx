@@ -13,8 +13,17 @@ import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
+import Rating from '@mui/material/Rating';
 
-const ProductDetails = ({ productId, description, slogan, name }) => {
+const ProductDetails = ({
+  productId,
+  description,
+  slogan,
+  name,
+  stylePhoto,
+  setStylePhoto,
+  rating,
+}) => {
   const [productFeatures, setProductFeatures] = useState({});
   const [productStyles, setProductStyles] = useState([]);
   const [productStylePhotos, setProductStylePhotos] = useState([]);
@@ -74,7 +83,7 @@ const ProductDetails = ({ productId, description, slogan, name }) => {
           paddingLeft: '50px',
           paddingRight: '50px',
           display: 'flex',
-          justifyContent: 'flex-start',
+          justifyContent: 'center',
         }}
       >
         <Stack
@@ -82,7 +91,7 @@ const ProductDetails = ({ productId, description, slogan, name }) => {
           justifyContent="flex-start"
           alignItems="flex-start"
         >
-          <ProductModal photos={productStylePhotos.results[0].photos} />
+          <ProductModal stylePhoto={stylePhoto} />
           <div>
             <ItemDescription slogan={slogan} description={description} />
           </div>
@@ -92,33 +101,33 @@ const ProductDetails = ({ productId, description, slogan, name }) => {
           direction="column"
           justifyContent="flex-start"
           alignItems="flex-start"
+          paddingLeft="75px"
         >
           <div>
+            <Rating name="read-only" value={rating} precision={0.25} readOnly />
+            <span> Read all reviews</span>
+            <h3>CATEGORY</h3>
             <h1>{name}</h1>
             <p>{`$${productStyles[0].original_price}`}</p>
             <span>{`STYLE > ${productStyles[0].name}`}</span>
-            <ProductStyles styles={productStyles} photos={productStylePhotos} />
+            <ProductStyles
+              styles={productStyles}
+              photos={productStylePhotos}
+              setStylePhoto={setStylePhoto}
+            />
+            <div>
+              <Stack
+                direction="row"
+                justifyContent="flex-end"
+                alignItems="flex-start"
+              >
+                <div>
+                  <SizeSelect />
+                  <QuantitySelect />
+                </div>
+              </Stack>
+            </div>
           </div>
-
-          <Stack
-            direction="row"
-            justifyContent="flex-end"
-            alignItems="flex-start"
-          >
-            <SizeSelect />
-            <QuantitySelect />
-          </Stack>
-
-          <Stack
-            direction="row"
-            justifyContent="flex-end"
-            alignItems="flex-start"
-            paddingLeft="25px"
-            spacing={2}
-          >
-            <AddBag />
-            <Favorite />
-          </Stack>
         </Stack>
       </Box>
     );

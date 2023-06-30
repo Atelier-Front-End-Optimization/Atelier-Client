@@ -1,51 +1,59 @@
 import React from 'react';
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
+import Button from '@mui/material/Button';
 import Avatar from '@mui/material/Avatar';
 import ProductDetails from '../ProductDetails.jsx';
+import ProductModal from './ProductModal';
 
-const ProductStyles = ({ styles, photos }) => {
-  let mid = Math.floor(photos.length / 2);
+const ProductStyles = ({ styles, photos, setStylePhoto }) => {
+  let mid = Math.floor(photos.results.length / 2);
 
-  let firstHalf = photos.results[0].photos.slice(0, mid);
-  let secondHalf = photos.results[0].photos.slice(mid);
+  let firstHalf = photos.results.slice(0, mid);
+  let secondHalf = photos.results.slice(mid);
 
   const photoIconClickHandler = (event) => {
-    console.log('EVENT CLICK IN STYLES', event);
-    console.log('EVENT TARGET CLICK IN STYLES', event.target);
+    setStylePhoto(event.target.src);
   };
 
   return (
     <Box>
       <div>
-        {firstHalf.map((photo) => (
-          <IconButton
+        {firstHalf.map((photo) => {
+          return (
+            <Button
+              key={Math.random()}
+              className="circle-button"
+              onClick={(event) => {
+                photoIconClickHandler(event);
+              }}
+            >
+              <Avatar
+                src={photo.photos[0].url}
+                alt="Product Image"
+                className="circle-image"
+                sx={{ width: 80, height: 80 }}
+              />
+            </Button>
+          );
+        })}
+      </div>
+      <div>
+        {secondHalf.map((photo) => (
+          <Button
             key={Math.random()}
             className="circle-button"
             onClick={(event) => {
-              console.log('click event recieved!');
               photoIconClickHandler(event);
             }}
           >
             <Avatar
-              src={photo.url}
+              src={photo.photos[0].url}
               alt="Product Image"
               className="circle-image"
               sx={{ width: 80, height: 80 }}
             />
-          </IconButton>
-        ))}
-      </div>
-      <div>
-        {secondHalf.map((photo) => (
-          <IconButton key={Math.random()} className="circle-button">
-            <Avatar
-              src={photo.url}
-              alt="Product Image"
-              className="circle-image"
-              sx={{ width: 80, height: 80 }}
-            />
-          </IconButton>
+          </Button>
         ))}
       </div>
     </Box>
