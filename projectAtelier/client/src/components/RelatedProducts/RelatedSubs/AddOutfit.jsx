@@ -11,6 +11,8 @@ function AddOutfit({ handleClick, currentProduct }) {
         cursor: 'pointer',
         width: 250,
         m: 2,
+        mr: '70px',
+        ml: '16px',
         flexBasis: 'auto',
         flexShrink: 0,
       }}
@@ -20,7 +22,7 @@ function AddOutfit({ handleClick, currentProduct }) {
           handleClick(currentProduct);
         }}
         className="add-outfit"
-        height="300px"
+        height="100%"
         width="100%"
         position="relative"
         margin="auto"

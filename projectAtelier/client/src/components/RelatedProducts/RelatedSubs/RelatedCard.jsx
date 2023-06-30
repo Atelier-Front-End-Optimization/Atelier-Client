@@ -9,6 +9,7 @@ import axiosConfig from '../../../Middleware/axiosConfig.js';
 import axios from 'axios';
 import convertPrice from '../../../Middleware/convertPrice.js';
 import ActionButton from './ActionButton.jsx';
+import averageRating from '../../../Middleware/averageRating.js';
 
 function RelatedCard({
   product,
@@ -19,6 +20,7 @@ function RelatedCard({
   products,
 }) {
   const [photo, setPhoto] = useState('');
+  const [rating, setRating] = useState(0);
 
   //gets and sets default photo for each card
   useEffect(() => {
@@ -35,6 +37,13 @@ function RelatedCard({
       .catch((err) => {
         console.log('AXIOS GET ERROR GETTING PHOTOS ', err);
       });
+    let options = axiosConfig;
+    options.params = {};
+    options.params.product_id = product.id;
+    axios.get(options.url + '/reviews/meta', options).then((response) => {
+      let average = averageRating(response.data.ratings);
+      setRating(Number(average));
+    });
   }, []);
 
   //change current product on click
@@ -75,7 +84,7 @@ function RelatedCard({
         <div>{product.category}</div>
         <div>{product.name}</div>
         <div>{price}</div>
-        <Rating readOnly value={product.average} precision={0.25}></Rating>
+        <Rating readOnly value={rating} precision={0.25}></Rating>
       </Box>
     </Card>
   );

@@ -164,7 +164,7 @@ function RelatedList({currentProduct, setProduct, products, list, relatedClick})
       <Stack className='outfit-stack' direction='row'>
         <AddOutfit handleClick={addOutfit} currentProduct={currentProduct}/>
         <Box  className='carousel-box'>
-          <Carousel className='carousel' itemClass='carousel-item' responsive={responsive} draggable={false}>
+          <Carousel className='carousel' itemClass='carousel-item-outfit' responsive={responsive} draggable={false}>
               {products.map((product) => {
                   return <RelatedCard key={product.id} product={product} currentProduct={currentProduct} handleClick={relatedClick} list={list} setProduct={setProduct} products={products}/>
               })}
