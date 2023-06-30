@@ -10,8 +10,7 @@ import axios from 'axios';
 import convertPrice from '../../../Middleware/convertPrice.js';
 import ActionButton from './ActionButton.jsx';
 
-function RelatedCard({product, currentProduct, handleClick, list}) {
-
+function RelatedCard({product, currentProduct, handleClick, list, setProduct, products }) {
   const [photo, setPhoto] = useState('');
 
   //gets and sets default photo for each card
@@ -30,13 +29,13 @@ function RelatedCard({product, currentProduct, handleClick, list}) {
 
   //change current product on click
   function relatedClick(event) {
-    if (event.target.ariaHidden) {
+    if (event.target.ariaHidden || event.target.tagName === 'path') {
       event.stopPropagation();
       return null;
     }
     handleClick(product.id);
   }
-  //open comparison modal
+  //delete from outfit
 
 
   //format as currency
@@ -45,7 +44,7 @@ function RelatedCard({product, currentProduct, handleClick, list}) {
   return (
       <Card onClick={relatedClick} sx={{cursor:'pointer', width:250, m:2, flexBasis:'auto', flexShrink: 0}}>
           <Box height='300px' width='100%' position='relative'>
-            <ActionButton product={product} currentProduct={currentProduct} list={list}/>
+            <ActionButton product={product} currentProduct={currentProduct} list={list} products={products} setProduct={setProduct}/>
             <img height='100%' width='100%' src={photo}></img>
           </Box>
           <Box p={1}>

@@ -28,7 +28,9 @@
 .table-head {
   background-color: gainsboro;
   border-bottom-width: 2px;
-  border-bottom-style: solid ;
+  border-bottom-style: solid;
+  position: sticky;
+  top: 0;
 }
 
 #name {
@@ -36,6 +38,15 @@
 }
 
 .carousel-box {
+  background-color: gainsboro;
+  min-width: 50%;
+  max-width: auto;
+  height: 430px;
+  min-width: 1086x;
+
+}
+
+.outfit-stack {
   background-color: gainsboro;
   min-width: 50%;
   max-width: auto;
@@ -67,5 +78,8 @@
 
 .outfit-card {
   position: relative;
-  top: 10%;
+  top: 0%;
+}
+.carousel {
+  height: 430px;
 }
