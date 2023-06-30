@@ -10,15 +10,16 @@ import '../../../index.css';
 
 
 function Icon ({feature}) {
-  if (feature) {
+  if (feature === true) {
   return <CheckIcon sx={{color:'green'}}/>
- } else {
+ } else if (!feature) {
   return <CloseIcon sx={{color:'red'}}/>
+ } else {
+  return <div>{feature}</div>
  }
-
 }
 function Comparison ({product, currentProduct}) {
-
+  console.log(currentProduct)
   function matchFeature(features, target) {
     let result = '';
     for (let feature of features) {
@@ -29,6 +30,29 @@ function Comparison ({product, currentProduct}) {
     }
   }
 
+  function getFeatures(selectedProduct, currentProduct) {
+    let features = [];
+    for (let feature of currentProduct) {
+      let featureName = feature.feature;
+      let featureValue = feature.value;
+      features.push({feature: {name: featureName, value1: featureValue, value2: null}})
+    }
+    for (let feature of selectedProduct) {
+      let featureName = feature.feature;
+      let featureValue = feature.value;
+      for (let i = 0; i < features.length; i++) {
+        if (features[i].feature.name === featureName) {
+          features[i].feature.value2 = featureValue;
+          break;
+        } else if (i === (features.length - 1)) {
+          features.push({feature: {name: featureName, value1: null, value2: featureValue}})
+
+        }
+      }
+    }
+    return features;
+  }
+let features = getFeatures(product.features, currentProduct.features)
 
   return (
     <Table className='table'>
@@ -45,31 +69,14 @@ function Comparison ({product, currentProduct}) {
           <TableCell className='table-cell' align='center'>Price</TableCell>
           <TableCell align='center'>{convertPrice(product.default_price)}</TableCell>
         </TableRow>
-        {product.features.map((feature) => {
-          let currentProductFeature = matchFeature(currentProduct.features, feature.feature);
-          return <TableRow key={feature.feature}>
+        {features.map((product, index) => {
+          return <TableRow key={index}>
             <TableCell className='table-cell' align='center'>
-                <Icon feature={currentProductFeature}/>
-                <div>{currentProductFeature}</div>
+                <Icon feature={product.feature.value1}/>
             </TableCell>
-            <TableCell className='table-cell' align='center'>{feature.feature}</TableCell>
+            <TableCell className='table-cell' align='center'>{product.feature.name}</TableCell>
             <TableCell align='center'>
-              <Icon feature={feature.value}/>
-              <div>{feature.value}</div>
-            </TableCell>
-          </TableRow>
-        })}
-        {currentProduct.features.map((feature) => {
-          let selectedProductFeature = matchFeature(product.features, feature.feature);
-          return <TableRow key={feature.feature}>
-            <TableCell className='table-cell' align='center'>
-              <Icon feature={feature.value}/>
-              <div>{feature.value}</div>
-            </TableCell>
-            <TableCell className='table-cell' align='center'>{feature.feature}</TableCell>
-            <TableCell align='center'>
-              <Icon feature={selectedProductFeature}/>
-              <div>{selectedProductFeature}</div>
+              <Icon feature={product.feature.value2}/>
             </TableCell>
           </TableRow>
         })}
