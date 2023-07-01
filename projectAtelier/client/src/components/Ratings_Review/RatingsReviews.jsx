@@ -49,7 +49,7 @@ const RatingsReviews = ({ product_id }) => {
   useEffect(() => {
     if (!product_id) return;
     setSorting('relevant');
-    getReviews(product_id)
+    getReviews(product_id, 2)
     setReviewRenders(4);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [product_id]);
