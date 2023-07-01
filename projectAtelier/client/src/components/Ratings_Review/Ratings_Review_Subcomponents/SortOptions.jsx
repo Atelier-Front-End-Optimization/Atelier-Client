@@ -3,16 +3,14 @@ import {useEffect, useState, useRef} from 'react';
 import { Button, ClickAwayListener, Grow, Paper, Popper, MenuItem, MenuList, Stack} from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
-const SortOptions = ({ product_id, getReviews, setReviewRenders, setSorting }) => {
+const SortOptions = ({ sorting, setSorting, setReviewRenders}) => {
 
 
 const [open, setOpen] = useState(false);
 const anchorRef = useRef(null);
 
 const handleSorting = (e) => {
-  console.log(e.target.getAttribute('value'));
   setSorting(e.target.getAttribute('value'));
-  getReviews(product_id, 2);
   setReviewRenders(4);
   handleClose(e);
 };
