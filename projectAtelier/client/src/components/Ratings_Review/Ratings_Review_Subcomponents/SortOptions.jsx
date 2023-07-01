@@ -3,7 +3,7 @@ import {useEffect, useState, useRef} from 'react';
 import { Button, ClickAwayListener, Grow, Paper, Popper, MenuItem, MenuList, Stack} from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
-const SortOptions = ({ sorting, setSorting, setReviewRenders}) => {
+const SortOptions = ({ numOfReviews, sorting, setSorting, setReviewRenders}) => {
 
 
 const [open, setOpen] = useState(false);
@@ -43,7 +43,7 @@ useEffect(() => {
 ////////////////////////////////////////////////////////
   return (
     <Stack direction='row' spacing={2}>
-      <h3>Sorted by</h3>
+      <h3>{numOfReviews} reviews, sorted by</h3>
 
       <Stack direction="row" spacing={2}>
         <div>

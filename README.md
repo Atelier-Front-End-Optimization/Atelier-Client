@@ -25,4 +25,14 @@ git checkout "current_branch"
 git branch "new-branch"
 git switch "new-branch"
 ```
+
+Want the latest main while still working on a branch? Use:
+```
+git checkout main
+git fetch origin
+git reset --hard origin/main
+
+git checkout "feature"
+git merge main
+```
 <3
