@@ -2,7 +2,7 @@
 import ReviewTile from './ReviewTile.jsx'
 import { Button, Box } from '@mui/material';
 
-const ReviewList = ({ reviews, getMoreReviews, canRenderMoreRevues, upvoteHelpful}) => {
+const ReviewList = ({ reviews, getMoreReviews, canRenderMoreRevues, upvoteHelpful, reportReview}) => {
 
 ////////////////////////////////////////////////////////
   return (
@@ -19,7 +19,14 @@ const ReviewList = ({ reviews, getMoreReviews, canRenderMoreRevues, upvoteHelpfu
           }}
         >
           {reviews.map((review) => {
-            return <ReviewTile key={review.review_id} review={review} upvoteHelpful={upvoteHelpful}/>
+            return (
+              <ReviewTile
+                key={review.review_id}
+                review={review}
+                upvoteHelpful={upvoteHelpful}
+                reportReview={reportReview}
+              />
+            )
           })}
       { canRenderMoreRevues ?
         <div>
