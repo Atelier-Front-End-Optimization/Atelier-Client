@@ -12,12 +12,12 @@ import axios from 'axios';
 const RatingsReviews = ({ product_id }) => {
 
   const [reviews, setReviews] = useState([]);
-  const [reviewRenders, setReviewRenders] = useState(4);
+  const [reviewRenders, setReviewRenders] = useState(2);
   const [canRenderMoreRevues, setCanRenderMoreRevues] = useState(true);
   const [sorting, setSorting] = useState('relevant');
   ///////////////////////////////////////////////////////////////////////////////////////
 
-  const getReviews = async (product_id, count = null, page = null, reRender = false) => {
+  const getReviews = async (product_id, numOfRenders = reviewRenders, reRender = false, count = 1000, page = null) => {
     const config ={
       headers: {
         Authorization: import.meta.env.VITE_API_TOKEN
@@ -37,7 +37,7 @@ const RatingsReviews = ({ product_id }) => {
       const {data} = reviewRes;
       return (reRender ?
         data.results
-      : setReviews(data.results)
+      : setReviews(data.results.slice(0, numOfRenders))
       )
     } catch (err) {
       console.error(err);
@@ -46,21 +46,28 @@ const RatingsReviews = ({ product_id }) => {
 
   useEffect(() => {
     if (!product_id) return;
-    getReviews(product_id, 2);
     setSorting('relevant');
+    getReviews(product_id)
     setReviewRenders(4);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [product_id]);
+
+  useEffect(() => {
+    if (!product_id) return;
+    getReviews(product_id, 2);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sorting]);
 
   const getMoreReviews = async () => {
     try {
-      const moreReviews = await getReviews(product_id, sorting, reviewRenders + 1, null, true);
-      if (moreReviews.length <= reviewRenders) {
+
+      const moreReviews = await getReviews(product_id, reviewRenders, true);
+      if (moreReviews.length > reviewRenders) {
+        setReviews(moreReviews.slice(0, reviewRenders));
+        setReviewRenders(reviewRenders + 2);
+      } else {
         setCanRenderMoreRevues(false);
         setReviews(moreReviews);
-      } else {
-        moreReviews.pop();
-        setReviews(moreReviews);
-        setReviewRenders(reviewRenders + 2);
       }
 
     } catch (err) {
@@ -98,8 +105,6 @@ const RatingsReviews = ({ product_id }) => {
       <ReviewBreakdown/>
       <ProductBreakdown/>
       <SortOptions
-        product_id={product_id}
-        getReviews={getReviews}
         setReviewRenders={setReviewRenders}
         sorting={sorting}
         setSorting={setSorting}
