@@ -1,15 +1,17 @@
+/* eslint-disable react/prop-types */
 import {useEffect, useState, useRef} from 'react';
-import { Button, Box, ClickAwayListener, Grow, Paper, Popper, MenuItem, MenuList, Stack} from '@mui/material';
+import { Button, ClickAwayListener, Grow, Paper, Popper, MenuItem, MenuList, Stack} from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
-const SortOptions = () => {
+const SortOptions = ({ sorting, setSorting, setReviewRenders}) => {
 
-const [sorting, setSorting] = useState('relevant');
+
 const [open, setOpen] = useState(false);
 const anchorRef = useRef(null);
 
 const handleSorting = (e) => {
-  console.log(e.target.getAttribute('value'));
+  setSorting(e.target.getAttribute('value'));
+  setReviewRenders(4);
   handleClose(e);
 };
 const handleToggle = () => {
@@ -41,11 +43,12 @@ useEffect(() => {
 ////////////////////////////////////////////////////////
   return (
     <Stack direction='row' spacing={2}>
-      <span>Sorted by</span>
+      <h3>Sorted by</h3>
 
       <Stack direction="row" spacing={2}>
         <div>
           <Button
+            variant='text'
             ref={anchorRef}
             id="composition-button"
             aria-controls={open ? 'composition-menu' : undefined}
@@ -88,9 +91,24 @@ useEffect(() => {
                     aria-labelledby="composition-button"
                     onKeyDown={handleListKeyDown}
                   >
-                    <MenuItem onClick={handleSorting} value='newest'>Newest</MenuItem>
-                    <MenuItem onClick={handleSorting} value='helpful'>Helpfulness</MenuItem>
-                    <MenuItem onClick={handleSorting} value='relevant'>Relevance</MenuItem>
+                    <MenuItem
+                      onClick={handleSorting}
+                      value='newest'
+                    >
+                      Newest
+                    </MenuItem>
+                    <MenuItem
+                      onClick={handleSorting}
+                      value='helpful'
+                    >
+                      Helpfulness
+                    </MenuItem>
+                    <MenuItem
+                      onClick={handleSorting}
+                      value='relevant'
+                    >
+                      Relevance
+                    </MenuItem>
                   </MenuList>
                 </ClickAwayListener>
               </Paper>
