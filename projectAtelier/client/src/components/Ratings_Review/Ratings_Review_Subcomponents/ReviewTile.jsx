@@ -4,7 +4,7 @@ import { Box, Rating, Modal, Button, Stack, Avatar} from '@mui/material';
 import CheckIcon from '@mui/icons-material/Check';
 import ImageNotSupportedIcon from '@mui/icons-material/ImageNotSupported';
 
-const ReviewTile = ( {review: { review_id, body, date, helpfulness, photos, rating, recommend, response, reviewer_name, summary}, upvoteHelpful}) => {
+const ReviewTile = ( {review: { review_id, body, date, helpfulness, photos, rating, recommend, response, reviewer_name, summary}, upvoteHelpful, reportReview}) => {
   const [wasClicked, setWasClicked] = useState(false);
   const [helpful, setHelpful] = useState(helpfulness);
   const [showMore, setshowMore] = useState(false);
@@ -26,8 +26,13 @@ const ReviewTile = ( {review: { review_id, body, date, helpfulness, photos, rati
     }
   };
 
-  const handleNotHelpful = () => {
+  const handleReport = async () => {
+    try {
+    await reportReview(review_id)
     setWasClicked(true);
+    } catch (err) {
+      alert('Oops! We ran into a problem submitting your vote. Please try again in a few moments!')
+    }
   };
 
   const handleShow = () => {
@@ -160,7 +165,7 @@ const ReviewTile = ( {review: { review_id, body, date, helpfulness, photos, rati
           variant='text'
           size='small'
           // color='black'
-          onClick={handleNotHelpful}
+          onClick={handleReport}
           disabled={wasClicked}
         >
           Report

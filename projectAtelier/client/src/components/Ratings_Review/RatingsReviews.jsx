@@ -98,6 +98,28 @@ const RatingsReviews = ({ product_id }) => {
     }
   };
 
+  const reportReview = async (review_id) => {
+    const config ={
+      headers: {
+        Authorization: import.meta.env.VITE_API_TOKEN
+      },
+      params: {
+        review_id:review_id
+      }
+    };
+    try {
+      // axios.put(
+      //   axiosConfig.url + `/reviews/${review_id}/report`,
+      //   null,
+      //   config
+      // );
+      console.log(`REVIEW ${review_id} TO BE MARKED FOR REPORT`)
+    } catch (err) {
+      console.error(err);
+      return err;
+    }
+  };
+
 ////////////////////////////////////////////////////////
   return (
     <section>
@@ -114,6 +136,7 @@ const RatingsReviews = ({ product_id }) => {
         getMoreReviews={getMoreReviews}
         canRenderMoreRevues={canRenderMoreRevues}
         upvoteHelpful={upvoteHelpful}
+        reportReview={reportReview}
       />
       <NewReview/>
     </section>
