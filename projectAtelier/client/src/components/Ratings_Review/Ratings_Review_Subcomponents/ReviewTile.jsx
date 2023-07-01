@@ -8,6 +8,7 @@ const ReviewTile = ( {review: { review_id, body, date, helpfulness, photos, rati
   const [wasClicked, setWasClicked] = useState(false);
   const [helpful, setHelpful] = useState(helpfulness);
   const [showMore, setshowMore] = useState(false);
+  // const [open, setOpen] = useState(false);
 
   let formattedDate;
   if (date) {
@@ -38,6 +39,10 @@ const ReviewTile = ( {review: { review_id, body, date, helpfulness, photos, rati
   const handleShow = () => {
     setshowMore(!showMore);
   };
+
+  // const confirmReport = () => {
+  //   setOpen(!open);
+  // };
 
   const modalStyle = {
     position: 'absolute',
