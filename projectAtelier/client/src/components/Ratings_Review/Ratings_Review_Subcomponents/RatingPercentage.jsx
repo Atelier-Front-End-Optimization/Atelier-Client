@@ -1,20 +1,24 @@
 /* eslint-disable react/prop-types */
 import {useEffect, useState} from 'react';
 
-const RatingPercentage = ({ allReviews }) => {
-  let numOfRecommendations = 0;
-  allReviews.forEach((review) => {
-    if (review.recommend) numOfRecommendations++;
-  });
-  const totalReviews = allReviews.length;
-  let recPercentage = numOfRecommendations / totalReviews;
-
-  recPercentage = Math.round(recPercentage * 100);
-  console.log(recPercentage);
-////////////////////////////////////////////////////////
+const RatingPercentage = ({ recommended }) => {
+  let recPercentage;
+  if (recommended) {
+    const totalReviews = Number(recommended.false) + Number(recommended.true);
+    const numOfRecommendations = recommended.true;
+    recPercentage = numOfRecommendations / totalReviews;
+    recPercentage = Math.round(recPercentage * 100);
+  }
+  ////////////////////////////////////////////////////////
   return (
     <div>
-      RatingPercentage
+      <h4>
+        {
+          recPercentage ?
+            `${recPercentage}% of reviews recommend this product`
+          : ''
+        }
+      </h4>
     </div>
   );
 };
