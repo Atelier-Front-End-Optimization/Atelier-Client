@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 import ReviewTile from './ReviewTile.jsx'
 import { Button, Box } from '@mui/material';
-import {useEffect, useState} from 'react';
 
 const ReviewList = ({ reviews, getMoreReviews, canRenderMoreRevues, upvoteHelpful}) => {
 
