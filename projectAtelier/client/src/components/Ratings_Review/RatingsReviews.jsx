@@ -108,12 +108,11 @@ const RatingsReviews = ({ product_id }) => {
       }
     };
     try {
-      // axios.put(
-      //   axiosConfig.url + `/reviews/${review_id}/report`,
-      //   null,
-      //   config
-      // );
-      console.log(`REVIEW ${review_id} TO BE MARKED FOR REPORT`)
+      axios.put(
+        axiosConfig.url + `/reviews/${review_id}/report`,
+        null,
+        config
+      );
     } catch (err) {
       console.error(err);
       return err;
