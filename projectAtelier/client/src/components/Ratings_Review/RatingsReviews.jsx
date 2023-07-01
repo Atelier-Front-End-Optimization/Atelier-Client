@@ -15,6 +15,7 @@ const RatingsReviews = ({ product_id }) => {
   const [allReviews, setAllReviews] = useState([]);
   const [reviewRenders, setReviewRenders] = useState(2);
   const [canRenderMoreRevues, setCanRenderMoreRevues] = useState(true);
+  const [metaData, setMetaData] = useState({});
   const [sorting, setSorting] = useState('relevant');
   const [numOfReviews, setNumOfReviews] = useState(0);
   ///////////////////////////////////////////////////////////////////////////////////////
@@ -52,6 +53,7 @@ const RatingsReviews = ({ product_id }) => {
     if (!product_id) return;
     setSorting('relevant');
     getReviews(product_id, 2)
+    getMetaData(product_id)
     setReviewRenders(4);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [product_id]);
@@ -61,6 +63,27 @@ const RatingsReviews = ({ product_id }) => {
     getReviews(product_id, 2);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sorting]);
+
+  const getMetaData = async (product_id) => {
+    const config ={
+      headers: {
+        Authorization: import.meta.env.VITE_API_TOKEN
+      },
+      params: {
+        product_id: product_id
+      }
+    };
+    try {
+      const metaDataRes = await axios.get(
+        axiosConfig.url + '/reviews/meta',
+        config
+      );
+      const {data} = metaDataRes;
+      setMetaData(data);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   const getMoreReviews = async () => {
     try {
@@ -126,6 +149,7 @@ const RatingsReviews = ({ product_id }) => {
     <section>
       <ReviewBreakdown
         allReviews={allReviews}
+        metaData={metaData}
       />
       <ProductBreakdown/>
       <SortOptions
