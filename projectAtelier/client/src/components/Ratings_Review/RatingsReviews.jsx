@@ -15,6 +15,7 @@ const RatingsReviews = ({ product_id }) => {
   const [reviewRenders, setReviewRenders] = useState(2);
   const [canRenderMoreRevues, setCanRenderMoreRevues] = useState(true);
   const [sorting, setSorting] = useState('relevant');
+  const [numOfReviews, setNumOfReviews] = useState(0);
   ///////////////////////////////////////////////////////////////////////////////////////
 
   const getReviews = async (product_id, numOfRenders = reviewRenders, reRender = false, count = 1000, page = null) => {
@@ -35,6 +36,7 @@ const RatingsReviews = ({ product_id }) => {
         config
       );
       const {data} = reviewRes;
+      setNumOfReviews(data.results.length);
       return (reRender ?
         data.results
       : setReviews(data.results.slice(0, numOfRenders))
@@ -105,6 +107,7 @@ const RatingsReviews = ({ product_id }) => {
       <ReviewBreakdown/>
       <ProductBreakdown/>
       <SortOptions
+        numOfReviews={numOfReviews}
         setReviewRenders={setReviewRenders}
         sorting={sorting}
         setSorting={setSorting}
