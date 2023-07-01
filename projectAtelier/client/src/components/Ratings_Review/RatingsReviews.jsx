@@ -12,6 +12,7 @@ import axios from 'axios';
 const RatingsReviews = ({ product_id }) => {
 
   const [reviews, setReviews] = useState([]);
+  const [allReviews, setAllReviews] = useState([]);
   const [reviewRenders, setReviewRenders] = useState(2);
   const [canRenderMoreRevues, setCanRenderMoreRevues] = useState(true);
   const [sorting, setSorting] = useState('relevant');
@@ -37,6 +38,7 @@ const RatingsReviews = ({ product_id }) => {
       );
       const {data} = reviewRes;
       setNumOfReviews(data.results.length);
+      setAllReviews(data.results)
       return (reRender ?
         data.results
       : setReviews(data.results.slice(0, numOfRenders))
@@ -122,7 +124,9 @@ const RatingsReviews = ({ product_id }) => {
 ////////////////////////////////////////////////////////
   return (
     <section>
-      <ReviewBreakdown/>
+      <ReviewBreakdown
+        allReviews={allReviews}
+      />
       <ProductBreakdown/>
       <SortOptions
         numOfReviews={numOfReviews}

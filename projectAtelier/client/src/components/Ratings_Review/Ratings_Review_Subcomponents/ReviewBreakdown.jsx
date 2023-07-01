@@ -1,12 +1,20 @@
+/* eslint-disable react/prop-types */
+import RatingSummary from './RatingSummary.jsx'
+import RatingPercentage from './RatingPercentage.jsx'
+import RatingFilter from './RatingFilter.jsx'
 import {useEffect, useState} from 'react';
 
-const ReviewBreakdown = () => {
+const ReviewBreakdown = ({ allReviews }) => {
 
 
 ////////////////////////////////////////////////////////
   return (
     <div>
-      ReviewBreakdown
+      <RatingSummary />
+      <RatingPercentage
+        allReviews={allReviews}
+      />
+      <RatingFilter />
     </div>
   );
 };
