@@ -12,7 +12,6 @@ const getStylePhoto = (productId) => {
         }
       )
       .then((response) => {
-        console.log(response.data.results[0].photos[0]);
         resolve(response.data.results[0].photos[0].url);
       })
       .catch((error) => {
