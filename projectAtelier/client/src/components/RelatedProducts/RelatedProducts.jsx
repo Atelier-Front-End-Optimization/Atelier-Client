@@ -6,7 +6,12 @@ import axios from 'axios';
 import axiosConfig from '../../Middleware/axiosConfig.js';
 import averageRating from '../../Middleware/averageRating.js';
 
-function RelatedProducts({ currentProduct, setProduct, setRating }) {
+function RelatedProducts({
+  currentProduct,
+  setProduct,
+  setRating,
+  setStylePhoto,
+}) {
   const [relatedIDs, setRelatedIDs] = useState([]);
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [outfit, setOutfit] = useState([null]);
@@ -81,6 +86,7 @@ function RelatedProducts({ currentProduct, setProduct, setRating }) {
         setProduct={setProduct}
         products={uniqueProds}
         list={'related'}
+        setStylePhoto={setStylePhoto}
       />
       <br></br>
       <RelatedList

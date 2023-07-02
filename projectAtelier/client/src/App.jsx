@@ -4,6 +4,7 @@ import axiosConfig from './Middleware/axiosConfig.js';
 import RelatedProducts from './components/RelatedProducts/RelatedProducts.jsx';
 import ProductDetails from './components/Product_Details/ProductDetails.jsx';
 import RatingsReviews from './components/Ratings_Review/RatingsReviews.jsx';
+import Header from './components/Header.jsx';
 import axios from 'axios';
 
 function App() {
@@ -23,6 +24,9 @@ function App() {
 
   return (
     <div>
+      <header>
+        <Header />
+      </header>
       <div>
         <br></br>
         <ProductDetails
@@ -42,6 +46,7 @@ function App() {
           currentProduct={product}
           setProduct={setProduct}
           setRating={setRating}
+          setStylePhoto={setStylePhoto}
         />
       </div>
       <div>
