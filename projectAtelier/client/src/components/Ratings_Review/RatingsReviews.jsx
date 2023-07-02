@@ -147,6 +147,7 @@ const RatingsReviews = ({ product_id }) => {
 ////////////////////////////////////////////////////////
   return (
     <section>
+      <h4>RATINGS & REVIEWS</h4>
       <ReviewBreakdown
         allReviews={allReviews}
         metaData={metaData}

@@ -4,12 +4,14 @@ import RatingPercentage from './RatingPercentage.jsx'
 import RatingFilter from './RatingFilter.jsx'
 import {useEffect, useState} from 'react';
 
-const ReviewBreakdown = ({ allReviews, metaData:{ recommended } }) => {
+const ReviewBreakdown = ({ allReviews, metaData:{ recommended, ratings }, metaData }) => {
 
 ////////////////////////////////////////////////////////
   return (
     <div>
-      <RatingSummary />
+      <RatingSummary
+        ratings={ratings}
+      />
       <RatingPercentage
         recommended={recommended}
       />
