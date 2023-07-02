@@ -87,14 +87,11 @@ const RatingsReviews = ({ product_id }) => {
       }
     };
     try {
-      const helpfulRes = await axios.put(
+      axios.put(
         axiosConfig.url + `/reviews/${review_id}/helpful`,
         null,
         config
       );
-      ///////////////////////////////////////
-      console.log('RESP FROM API: ', helpfulRes)
-      ///////////////////////////////////////
     } catch (err) {
       console.error(err);
       return err;
