@@ -4,21 +4,29 @@ import { Box, Rating, Button} from '@mui/material';
 import averageRating from "../../../Middleware/averageRating.js";
 
 const RatingSummary = ({ ratings}) => {
-  // const [avgRating, setAvgRating] = useState(0);
+  let avgRating;
 
-  const avgRating = averageRating(ratings)
-  console.log(avgRating)
+  if (ratings) {
+    avgRating = Number(averageRating(ratings))
+  }
 
 ////////////////////////////////////////////////////////
   return (
     <Box>
-    {/* //    <Rating */}
-    {/* //       name="Item Review"
-    //       value={rating}
-    //       precision={0.25}
-    //       size='small'
-    //       readOnly
-    //     /> */}
+      {
+        avgRating ?
+          <div>
+            <span style={{fontSize: 'xxx-Large'}}>{avgRating}</span>
+            <Rating
+              name="Average Review"
+              value={avgRating}
+              precision={0.25}
+              size='small'
+              readOnly
+          />
+          </div>
+        : ''
+      }
     </Box>
   );
 };
