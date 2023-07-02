@@ -66,7 +66,13 @@ const ReviewTile = ( {review: { review_id, body, date, helpfulness, photos, rati
       }}
     >
       <div>
-        <Rating name="Item Review" value={rating} precision={0.25} size='small' readOnly />
+        <Rating
+          name="Item Review"
+          value={rating}
+          precision={0.25}
+          size='small'
+          readOnly
+        />
       </div>
       <div>
         <p>
