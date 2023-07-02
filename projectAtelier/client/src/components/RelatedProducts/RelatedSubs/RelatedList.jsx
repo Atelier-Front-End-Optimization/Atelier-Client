@@ -8,6 +8,7 @@ import AddOutfit from './AddOutfit.jsx';
 import Stack from '@mui/material/Stack';
 import '../../../index.css';
 import getStylePhoto from '../../../Middleware/getStylePhoto';
+import getStylePhoto from '../../../Middleware/getStylePhoto';
 
 const responsive = {
   evenBiggerDesktop: {
@@ -33,7 +34,6 @@ const responsive = {
   },
 };
 
-<<<<<<< HEAD
 function RelatedList({
   currentProduct,
   setProduct,
@@ -57,13 +57,6 @@ function RelatedList({
         console.log('ERROR IN RELATED CLICK STYLE PHOTO HANDLER');
       });
   }
-=======
-
-
-
-function RelatedList({currentProduct, setProduct, products, list, relatedClick}) {
-
->>>>>>> 0bc830d (+ button moved outside car, delete works, car spacing needs fix)
 
   function addOutfit(product) {
     let ids = [];
@@ -76,10 +69,6 @@ function RelatedList({currentProduct, setProduct, products, list, relatedClick})
 <<<<<<< HEAD
       setProduct((products) => [...products, product]);
     }
-  }
-
-  function deleteOutfit(id) {
-    console.log('I was clicked ', id);
   }
 
   if (list === 'related') {
@@ -100,26 +89,11 @@ function RelatedList({currentProduct, setProduct, products, list, relatedClick})
                   currentProduct={currentProduct}
                   handleClick={relatedClick}
                   list={list}
+                  setProduct={setProduct}
+                  products={products}
                 />
               );
             })}
-=======
-      setProduct(products => [...products, product]);
-    }
-  }
-
-
-
-  if (list === 'related') {
-    return (
-    <div>
-      <div className='related-outfit-header'>Related Products</div>
-        <Box className='carousel-box'>
-          <Carousel itemClass='carousel-item' responsive={responsive}  draggable={false}>
-              {products.map((product) => {
-                  return <RelatedCard key={product.id} product={product} currentProduct={currentProduct} handleClick={relatedClick} list={list} setProduct={setProduct} products={products} />
-              })}
->>>>>>> 0bc830d (+ button moved outside car, delete works, car spacing needs fix)
           </Carousel>
         </Box>
       </div>
@@ -127,53 +101,33 @@ function RelatedList({currentProduct, setProduct, products, list, relatedClick})
   } else {
     return (
       <div>
-<<<<<<< HEAD
         <div className="related-outfit-header">Outfit</div>
-        <Box className="carousel-box">
-          <Carousel
-            itemClass="carousel-item"
-            responsive={responsive}
-            draggable={false}
-          >
-            {products.map((product, index) => {
-              if (!product) {
-                return (
-                  <AddOutfit
-                    key={index}
-                    handleClick={addOutfit}
-                    currentProduct={currentProduct}
-                  />
-                );
-              } else {
+        <Stack className="outfit-stack" direction="row">
+          <AddOutfit handleClick={addOutfit} currentProduct={currentProduct} />
+          <Box className="carousel-box">
+            <Carousel
+              className="carousel"
+              itemClass="carousel-item-outfit"
+              responsive={responsive}
+              draggable={false}
+            >
+              {products.map((product) => {
                 return (
                   <RelatedCard
                     key={product.id}
                     product={product}
                     currentProduct={currentProduct}
-                    handleClick={deleteOutfit}
+                    handleClick={relatedClick}
                     list={list}
+                    setProduct={setProduct}
+                    products={products}
                   />
                 );
-              }
-            })}
-          </Carousel>
-        </Box>
-      </div>
-=======
-      <div className='related-outfit-header'>Outfit</div>
-      <Stack className='outfit-stack' direction='row'>
-        <AddOutfit handleClick={addOutfit} currentProduct={currentProduct}/>
-        <Box  className='carousel-box'>
-          <Carousel className='carousel' itemClass='carousel-item-outfit' responsive={responsive} draggable={false}>
-              {products.map((product) => {
-                  return <RelatedCard key={product.id} product={product} currentProduct={currentProduct} handleClick={relatedClick} list={list} setProduct={setProduct} products={products}/>
               })}
-          </Carousel>
-        </Box>
-      </Stack>
-
-    </div>
->>>>>>> 0bc830d (+ button moved outside car, delete works, car spacing needs fix)
+            </Carousel>
+          </Box>
+        </Stack>
+      </div>
     );
   }
 }
