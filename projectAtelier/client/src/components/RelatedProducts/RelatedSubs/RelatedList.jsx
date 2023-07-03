@@ -6,10 +6,9 @@ import RelatedCard from './RelatedCard.jsx';
 import 'react-multi-carousel/lib/styles.css';
 import AddOutfit from './AddOutfit.jsx';
 import Stack from '@mui/material/Stack';
-import Stack from '@mui/material/Stack';
 import '../../../index.css';
 import getStylePhoto from '../../../Middleware/getStylePhoto';
-import getStylePhoto from '../../../Middleware/getStylePhoto';
+
 
 const responsive = {
   evenBiggerDesktop: {
@@ -67,7 +66,6 @@ function RelatedList({
       }
     }
     if (ids.length === 0 || !ids.includes(product.id)) {
-<<<<<<< HEAD
       setProduct((products) => [...products, product]);
     }
   }

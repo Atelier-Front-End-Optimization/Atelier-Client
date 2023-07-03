@@ -15,7 +15,6 @@ function RelatedProducts({
   const [relatedIDs, setRelatedIDs] = useState([]);
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [outfit, setOutfit] = useState([]);
-  const [outfit, setOutfit] = useState([]);
 
   //get all related id's to current product
   useEffect(() => {
