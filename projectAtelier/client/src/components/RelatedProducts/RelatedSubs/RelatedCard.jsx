@@ -11,8 +11,14 @@ import convertPrice from '../../../Middleware/convertPrice.js';
 import ActionButton from './ActionButton.jsx';
 import averageRating from '../../../Middleware/averageRating.js';
 
-
-function RelatedCard({product, currentProduct, handleClick, list, setProduct, products }) {
+function RelatedCard({
+  product,
+  currentProduct,
+  handleClick,
+  list,
+  setProduct,
+  products,
+}) {
   const [photo, setPhoto] = useState('');
   const [rating, setRating] = useState(0);
 
@@ -31,15 +37,13 @@ function RelatedCard({product, currentProduct, handleClick, list, setProduct, pr
       .catch((err) => {
         console.log('AXIOS GET ERROR GETTING PHOTOS ', err);
       });
-      let options = axiosConfig;
-      options.params = {};
-      options.params.product_id = product.id;
-      axios
-      .get(options.url + '/reviews/meta', options)
-      .then((response) => {
-        let average = averageRating(response.data.ratings);
-        setRating(Number(average));
-      })
+    let options = axiosConfig;
+    options.params = {};
+    options.params.product_id = product.id;
+    axios.get(options.url + '/reviews/meta', options).then((response) => {
+      let average = averageRating(response.data.ratings);
+      setRating(Number(average));
+    });
   }, []);
 
   //change current product on click
@@ -52,26 +56,38 @@ function RelatedCard({product, currentProduct, handleClick, list, setProduct, pr
   }
   //open comparison modal
 
-
   //format as currency
   let price = convertPrice(product.default_price);
 
   return (
-      <Card onClick={relatedClick} sx={{cursor:'pointer', width:250, m:2, flexBasis:'auto', flexShrink: 0}}>
-          <Box height='300px' width='100%' position='relative'>
-            <ActionButton product={product} currentProduct={currentProduct} list={list} products={products} setProduct={setProduct}/>
-            <img height='100%' width='100%' src={photo}></img>
-          </Box>
-          <Box p={1}>
-            <div>{product.category}</div>
-            <div>{product.name}</div>
-            <div>{price}</div>
-            <Rating readOnly value={rating} precision={0.25}></Rating>
-          </Box>
-      </Card>
-
-
-  )
+    <Card
+      onClick={relatedClick}
+      sx={{
+        cursor: 'pointer',
+        width: 250,
+        m: 2,
+        flexBasis: 'auto',
+        flexShrink: 0,
+      }}
+    >
+      <Box height="300px" width="100%" position="relative">
+        <ActionButton
+          product={product}
+          currentProduct={currentProduct}
+          list={list}
+          products={products}
+          setProduct={setProduct}
+        />
+        <img height="100%" width="100%" src={photo}></img>
+      </Box>
+      <Box p={1}>
+        <div>{product.category}</div>
+        <div>{product.name}</div>
+        <div>{price}</div>
+        <Rating readOnly value={rating} precision={0.25}></Rating>
+      </Box>
+    </Card>
+  );
 }
 
 export default RelatedCard;

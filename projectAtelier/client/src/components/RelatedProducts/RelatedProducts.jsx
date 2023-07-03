@@ -6,9 +6,15 @@ import axios from 'axios';
 import axiosConfig from '../../Middleware/axiosConfig.js';
 import averageRating from '../../Middleware/averageRating.js';
 
-function RelatedProducts({ currentProduct, setProduct, setRating }) {
+function RelatedProducts({
+  currentProduct,
+  setProduct,
+  setRating,
+  setStylePhoto,
+}) {
   const [relatedIDs, setRelatedIDs] = useState([]);
   const [relatedProducts, setRelatedProducts] = useState([]);
+  const [outfit, setOutfit] = useState([]);
   const [outfit, setOutfit] = useState([]);
 
   //get all related id's to current product
@@ -60,9 +66,11 @@ function RelatedProducts({ currentProduct, setProduct, setRating }) {
   }, [relatedIDs]);
 
   function relatedClick(id) {
-    axios.get(axiosConfig.url + '/products/' + id, axiosConfig).then((response) => {
-      setProduct(response.data);
-    })
+    axios
+      .get(axiosConfig.url + '/products/' + id, axiosConfig)
+      .then((response) => {
+        setProduct(response.data);
+      });
   }
 
   //unique-ify and group related products
@@ -88,6 +96,7 @@ function RelatedProducts({ currentProduct, setProduct, setRating }) {
         products={uniqueProds}
         list={'related'}
         relatedClick={relatedClick}
+        setStylePhoto={setStylePhoto}
       />
       <br></br>
       <RelatedList

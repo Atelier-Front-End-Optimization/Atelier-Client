@@ -6,7 +6,7 @@ import Avatar from '@mui/material/Avatar';
 import ProductDetails from '../ProductDetails.jsx';
 import ProductModal from './ProductModal';
 
-const ProductStyles = ({ styles, photos, setStylePhoto }) => {
+const ProductStyles = ({ styles, photos, setStylePhoto, setStyleName }) => {
   let mid = Math.floor(photos.results.length / 2);
 
   let firstHalf = photos.results.slice(0, mid);
@@ -26,6 +26,7 @@ const ProductStyles = ({ styles, photos, setStylePhoto }) => {
               className="circle-button"
               onClick={(event) => {
                 photoIconClickHandler(event);
+                setStyleName(photo.name);
               }}
             >
               <Avatar
@@ -45,6 +46,7 @@ const ProductStyles = ({ styles, photos, setStylePhoto }) => {
             className="circle-button"
             onClick={(event) => {
               photoIconClickHandler(event);
+              setStyleName(photo.name);
             }}
           >
             <Avatar

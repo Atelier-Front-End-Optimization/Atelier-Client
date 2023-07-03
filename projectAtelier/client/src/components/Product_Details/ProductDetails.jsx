@@ -27,6 +27,7 @@ const ProductDetails = ({
   const [productFeatures, setProductFeatures] = useState({});
   const [productStyles, setProductStyles] = useState([]);
   const [productStylePhotos, setProductStylePhotos] = useState([]);
+  const [styleName, setStyleName] = useState('');
 
   useEffect(() => {
     const fetchProductFeatures = (productId) => {
@@ -59,6 +60,7 @@ const ProductDetails = ({
         )
         .then((response) => {
           setProductStyles(response.data.results);
+          setStyleName(response.data.results[0].name);
           setProductStylePhotos(response.data);
         })
         .catch((error) => {
@@ -73,6 +75,7 @@ const ProductDetails = ({
   }, [productId]);
 
   if (productStyles && productStyles.length > 0) {
+    // setStyleName(productStyles[0].name);
     // console.log(productStyles, 'STYLES');
     // console.log(productFeatures, 'FEATURES');
     // console.log(productStylePhotos, 'PHOTOS');
@@ -109,11 +112,12 @@ const ProductDetails = ({
             <h3>CATEGORY</h3>
             <h1>{name}</h1>
             <p>{`$${productStyles[0].original_price}`}</p>
-            <span>{`STYLE > ${productStyles[0].name}`}</span>
+            <span>{`STYLE > ${styleName}`}</span>
             <ProductStyles
               styles={productStyles}
               photos={productStylePhotos}
               setStylePhoto={setStylePhoto}
+              setStyleName={setStyleName}
             />
             <div>
               <Stack
