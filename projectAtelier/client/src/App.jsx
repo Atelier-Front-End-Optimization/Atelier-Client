@@ -38,6 +38,7 @@ function App() {
           stylePhoto={stylePhoto}
           setStylePhoto={setStylePhoto}
           rating={rating}
+          product={product}
         />
       </div>
       <div>

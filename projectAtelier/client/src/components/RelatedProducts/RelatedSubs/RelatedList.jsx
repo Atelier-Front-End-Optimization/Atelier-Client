@@ -7,7 +7,6 @@ import 'react-multi-carousel/lib/styles.css';
 import AddOutfit from './AddOutfit.jsx';
 import Stack from '@mui/material/Stack';
 import '../../../index.css';
-import getStylePhoto from '../../../Middleware/getStylePhoto';
 
 
 const responsive = {
@@ -39,7 +38,6 @@ function RelatedList({
   setProduct,
   products,
   list,
-  setStylePhoto,
 }) {
   //set the current product when a related card is clicked
   function relatedClick(id) {
@@ -47,14 +45,6 @@ function RelatedList({
       .get(axiosConfig.url + '/products/' + id, axiosConfig)
       .then((response) => {
         setProduct(response.data);
-      });
-
-    getStylePhoto(id)
-      .then((stylePhoto) => {
-        setStylePhoto(stylePhoto);
-      })
-      .catch((error) => {
-        console.log('ERROR IN RELATED CLICK STYLE PHOTO HANDLER');
       });
   }
 
