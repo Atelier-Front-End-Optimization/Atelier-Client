@@ -5,7 +5,8 @@ import Button from '@mui/material/Button';
 
 const AddBag = () => {
   return (
-    <Button variant="outlined" endIcon={<AddIcon />}>
+    <Button
+    sx={{ m: 1, minWidth: 300, minHeight: 60, color:'gray', borderColor:'gray'}} variant="outlined" endIcon={<AddIcon />}>
       ADD TO BAG
     </Button>
   );
