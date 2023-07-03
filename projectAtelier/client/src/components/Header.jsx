@@ -56,7 +56,7 @@ const Header = () => {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar
         position="static"
-        sx={{ backgroundColor: 'white', maxWidth: '1200px', margin: '0 auto' }}
+        sx={{ backgroundColor: 'white', maxWidth: '1255px', margin: '0 auto' }}
       >
         <Toolbar>
           <Typography
@@ -83,6 +83,16 @@ const Header = () => {
           </Search>
         </Toolbar>
       </AppBar>
+      <div
+      style={{display:"flex",
+      justifyContent:"center",
+      alignItems:"center",
+      position: 'relative',
+      marginTop: "15px"
+    }}
+      >
+      <span> SITE WIDE ANNOUNCEMENT! -- SALE/DISCOUNT <strong>OFFER</strong> -- <u>NEW PRODUCT HIGHLIGHT</u></span>
+      </div>
     </Box>
   );
 };

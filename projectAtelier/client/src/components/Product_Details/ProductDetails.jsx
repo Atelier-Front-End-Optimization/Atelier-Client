@@ -8,6 +8,7 @@ import ProductStyles from './Product_Subcomps/ProductStyles.jsx';
 import ProductModal from './Product_Subcomps/ProductModal.jsx';
 import QuantitySelect from './Product_Subcomps/QuantitySelect';
 import SizeSelect from './Product_Subcomps/SizeSelect.jsx';
+import ImageListComp from './Product_Subcomps/ImageList.jsx';
 import Favorite from './Product_Subcomps/Favorite';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
@@ -87,6 +88,7 @@ const ProductDetails = ({
           paddingRight: '50px',
           display: 'flex',
           justifyContent: 'center',
+          marginBottom: '0px',
         }}
       >
         <Stack
@@ -95,6 +97,7 @@ const ProductDetails = ({
           alignItems="flex-start"
         >
           <ProductModal stylePhoto={stylePhoto} />
+          <ImageListComp photos={productStylePhotos}/>
           <div>
             <ItemDescription slogan={slogan} description={description} />
           </div>
@@ -125,9 +128,17 @@ const ProductDetails = ({
                 justifyContent="flex-end"
                 alignItems="flex-start"
               >
-                <div>
+                <div style={{ flexShrink: 0 }}>
                   <SizeSelect />
                   <QuantitySelect />
+                  <Stack
+                  direction="row"
+                  alignItems="flex-end"
+                  spacing={2}
+                  style={{marginTop: '-175px'}}>
+                    <AddBag />
+                    <Favorite />
+                  </Stack>
                 </div>
               </Stack>
             </div>
