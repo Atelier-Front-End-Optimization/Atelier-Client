@@ -4,7 +4,6 @@ import RelatedList from './RelatedSubs/RelatedList.jsx';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import axiosConfig from '../../Middleware/axiosConfig.js';
-import averageRating from '../../Middleware/averageRating.js';
 
 function RelatedProducts({
   currentProduct,
@@ -36,9 +35,6 @@ function RelatedProducts({
   //get all relevant info about each related id
   useEffect(() => {
     relatedIDs.forEach((product) => {
-      let options = axiosConfig;
-      options.params = {};
-      options.params.product_id = product;
           axios
             .get(axiosConfig.url + '/products/' + product, axiosConfig)
             .then((res) => {

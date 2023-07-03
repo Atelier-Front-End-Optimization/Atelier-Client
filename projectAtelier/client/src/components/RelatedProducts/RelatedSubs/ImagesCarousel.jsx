@@ -37,7 +37,6 @@ function ImagesCarousel({photos, imagesClick}) {
           <img src={photo}></img>
         })}
       </Carousel>
-
     </Box>
   )
 }

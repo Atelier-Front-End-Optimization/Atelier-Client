@@ -45,8 +45,10 @@ function RelatedCard({
       .catch((err) => {
         console.log('AXIOS GET ERROR GETTING PHOTOS ', err);
       });
-    //gets and sets average rating
-    getAvgRating(product.id).then((average) => {
+
+      //gets and sets average rating
+    console.log(product.id)
+      getAvgRating(product.id).then((average) => {
       setRating(average);
     }).catch((err) => {
       console.log('ERROR IN SETTING AVERAGE RATING ', err);

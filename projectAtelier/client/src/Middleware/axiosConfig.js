@@ -9,7 +9,7 @@
     headers: {
       Authorization: import.meta.env.VITE_API_TOKEN,
     },
-    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe'
+    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe',
   }
 
 //await line 17

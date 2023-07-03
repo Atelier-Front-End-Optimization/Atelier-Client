@@ -37,15 +37,9 @@ function RelatedList({
   setProduct,
   products,
   list,
+  relatedClick
 }) {
-  //set the current product when a related card is clicked
-  function relatedClick(id) {
-    axios
-      .get(axiosConfig.url + '/products/' + id, axiosConfig)
-      .then((response) => {
-        setProduct(response.data);
-})
-  }
+
   //set the current product when a related card is clicked
   function handleClick(id) {
     relatedClick(id);
