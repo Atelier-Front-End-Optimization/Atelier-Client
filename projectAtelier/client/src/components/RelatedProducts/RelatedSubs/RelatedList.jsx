@@ -44,8 +44,8 @@ function RelatedList({
       .get(axiosConfig.url + '/products/' + id, axiosConfig)
       .then((response) => {
         setProduct(response.data);
-
-}) {
+})
+  }
   //set the current product when a related card is clicked
   function handleClick(id) {
     relatedClick(id);

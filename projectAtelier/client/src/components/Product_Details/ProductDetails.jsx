@@ -10,7 +10,6 @@ import QuantitySelect from './Product_Subcomps/QuantitySelect';
 import SizeSelect from './Product_Subcomps/SizeSelect.jsx';
 import ImageListComp from './Product_Subcomps/ImageList.jsx';
 import Favorite from './Product_Subcomps/Favorite';
-import ProductCarousel from './Product_Subcomps/ProductCarousel'
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
@@ -101,7 +100,6 @@ const ProductDetails = ({
           justifyContent="flex-start"
           alignItems="flex-start"
         >
-          <ProductCarousel productStylePhotos={productStylePhotos} />
           <ProductModal stylePhoto={stylePhoto} productStylePhotos={productStylePhotos} activeIndex={activeIndex} setActiveIndex={setActiveIndex}/>
           <ImageListComp photos={productStylePhotos}/>
           <div>
