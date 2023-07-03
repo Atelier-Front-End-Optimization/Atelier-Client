@@ -39,7 +39,10 @@ function App() {
           setProduct={setProduct}
           stylePhoto={stylePhoto}
           setStylePhoto={setStylePhoto}
-          rating={mainRating}
+
+          rating={rating}
+          product={product}
+
         />
       </div>
       <div>

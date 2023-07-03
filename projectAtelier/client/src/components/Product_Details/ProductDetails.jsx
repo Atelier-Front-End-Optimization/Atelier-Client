@@ -10,6 +10,7 @@ import QuantitySelect from './Product_Subcomps/QuantitySelect';
 import SizeSelect from './Product_Subcomps/SizeSelect.jsx';
 import ImageListComp from './Product_Subcomps/ImageList.jsx';
 import Favorite from './Product_Subcomps/Favorite';
+import ProductCarousel from './Product_Subcomps/ProductCarousel'
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
@@ -24,30 +25,32 @@ const ProductDetails = ({
   stylePhoto,
   setStylePhoto,
   rating,
+  product
 }) => {
   const [productFeatures, setProductFeatures] = useState({});
   const [productStyles, setProductStyles] = useState([]);
   const [productStylePhotos, setProductStylePhotos] = useState([]);
   const [styleName, setStyleName] = useState('');
+  const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
-    const fetchProductFeatures = (productId) => {
-      axios
-        .get(
-          `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${productId}`,
-          {
-            headers: {
-              Authorization: import.meta.env.VITE_API_TOKEN,
-            },
-          }
-        )
-        .then((response) => {
-          setProductFeatures(response.data.features);
-        })
-        .catch((error) => {
-          console.log('ERROR IN GET PRODUCT FEATURES');
-        });
-    };
+    // const fetchProductFeatures = (productId) => {
+    //   axios
+    //     .get(
+    //       `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${productId}`,
+    //       {
+    //         headers: {
+    //           Authorization: import.meta.env.VITE_API_TOKEN,
+    //         },
+    //       }
+    //     )
+    //     .then((response) => {
+    //       setProductFeatures(response.data.features);
+    //     })
+    //     .catch((error) => {
+    //       console.log('ERROR IN GET PRODUCT FEATURES');
+    //     });
+    // };
 
     const fetchProductStyles = (productId) => {
       axios
@@ -63,6 +66,7 @@ const ProductDetails = ({
           setProductStyles(response.data.results);
           setStyleName(response.data.results[0].name);
           setProductStylePhotos(response.data);
+          setStylePhoto(response.data.results[0].photos[0].url)
         })
         .catch((error) => {
           console.log('ERROR IN GET PRODUCT STYLES');
@@ -70,10 +74,11 @@ const ProductDetails = ({
     };
 
     if (productId) {
-      fetchProductFeatures(productId);
+      // fetchProductFeatures(productId);
       fetchProductStyles(productId);
+      setProductFeatures(product.features)
     }
-  }, [productId]);
+  }, [product]);
 
   if (productStyles && productStyles.length > 0) {
     // setStyleName(productStyles[0].name);
@@ -96,7 +101,8 @@ const ProductDetails = ({
           justifyContent="flex-start"
           alignItems="flex-start"
         >
-          <ProductModal stylePhoto={stylePhoto} />
+          <ProductCarousel productStylePhotos={productStylePhotos} />
+          <ProductModal stylePhoto={stylePhoto} productStylePhotos={productStylePhotos} activeIndex={activeIndex} setActiveIndex={setActiveIndex}/>
           <ImageListComp photos={productStylePhotos}/>
           <div>
             <ItemDescription slogan={slogan} description={description} />
@@ -121,6 +127,7 @@ const ProductDetails = ({
               photos={productStylePhotos}
               setStylePhoto={setStylePhoto}
               setStyleName={setStyleName}
+              setActiveIndex={setActiveIndex}
             />
             <div>
               <Stack
