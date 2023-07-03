@@ -4,8 +4,26 @@ import RatingPercentage from './RatingPercentage.jsx'
 import RatingFilter from './RatingFilter.jsx'
 import {useEffect, useState} from 'react';
 
-const ReviewBreakdown = ({ allReviews, metaData:{ recommended, ratings }, metaData }) => {
+const ReviewBreakdown = ({ metaData, metaData:{ recommended, ratings } }) => {
 
+
+  const [ratingsData, setRatingsData] = useState([]);
+  console.log('DATA IN BREAKDOWN: ', ratingsData)
+  console.log(ratings)
+
+  useEffect(() => {
+    if (!metaData.ratings) return;
+    setRatingsData([
+      { stars: '1 stars', votes: Number(ratings['1']) },
+      { stars: '2 stars', votes: Number(ratings['2']) },
+      { stars: '3 stars', votes: Number(ratings['3']) },
+      { stars: '4 stars', votes: Number(ratings['4']) },
+      { stars: '5 stars', votes: Number(ratings['5']) }
+    ])
+  }, [metaData])
+
+
+  // console.log(ratingsData)
 ////////////////////////////////////////////////////////
   return (
     <div>
@@ -15,7 +33,7 @@ const ReviewBreakdown = ({ allReviews, metaData:{ recommended, ratings }, metaDa
       <RatingPercentage
         recommended={recommended}
       />
-      <RatingFilter />
+      <RatingFilter ratingsData={ratingsData}/>
     </div>
   );
 };
