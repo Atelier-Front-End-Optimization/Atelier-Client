@@ -36,6 +36,12 @@ function ActionButton({ product, currentProduct, list, products, setProduct }) {
     return (
       <Box position="absolute" bottom="87%" left="85%">
         <HighlightOffIcon
+          className="delete-button"
+          onClick={(e) => {
+            e.stopPropagation();
+            e.preventDefault();
+            deleteOutfit(product);
+          }}
           sx={{ '&:hover': { color: 'red' } }}
         ></HighlightOffIcon>
       </Box>

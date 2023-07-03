@@ -6,6 +6,7 @@ import RelatedCard from './RelatedCard.jsx';
 import 'react-multi-carousel/lib/styles.css';
 import AddOutfit from './AddOutfit.jsx';
 import Stack from '@mui/material/Stack';
+import Stack from '@mui/material/Stack';
 import '../../../index.css';
 import getStylePhoto from '../../../Middleware/getStylePhoto';
 import getStylePhoto from '../../../Middleware/getStylePhoto';
