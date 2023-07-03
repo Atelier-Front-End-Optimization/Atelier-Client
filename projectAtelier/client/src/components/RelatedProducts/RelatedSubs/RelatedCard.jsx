@@ -1,7 +1,5 @@
 //import Card from './Card.jsx';
 import { Box } from '@mui/material/';
-import StarBorderIcon from '@mui/icons-material/StarBorder';
-import ComparisonModal from './ComparisonModal';
 import Card from '@mui/material/Card';
 import Rating from '@mui/material/Rating';
 import { useEffect, useState } from 'react';
@@ -10,6 +8,7 @@ import axios from 'axios';
 import convertPrice from '../../../Middleware/convertPrice.js';
 import ActionButton from './ActionButton.jsx';
 import averageRating from '../../../Middleware/averageRating.js';
+import getAvgRating from '../../../Middleware/getAvgRating.js';
 
 function RelatedCard({
   product,
@@ -37,15 +36,12 @@ function RelatedCard({
       .catch((err) => {
         console.log('AXIOS GET ERROR GETTING PHOTOS ', err);
       });
-    let options = axiosConfig;
-    options.params = {};
-    options.params.product_id = product.id;
-    axios.get(options.url + '/reviews/meta', options).then((response) => {
-      let average = averageRating(response.data.ratings);
-      setRating(Number(average));
+    //gets and sets average rating
+    getAvgRating(product.id).then((average) => {
+      setRating(average);
     }).catch((err) => {
-      console.log('ERROR IN RELATED CARD META REVIEWS AXIOS GET ', err);
-    });
+      console.log('ERROR IN SETTING AVERAGE RATING ', err);
+    })
   }, []);
 
   //change current product on click
