@@ -1,5 +1,4 @@
-import axios from 'axios';
-import axiosConfig from '../../../Middleware/axiosConfig.js';
+
 import { Box } from '@mui/material/';
 import Carousel from 'react-multi-carousel';
 import RelatedCard from './RelatedCard.jsx';
@@ -39,22 +38,19 @@ function RelatedList({
   setProduct,
   products,
   list,
+  relatedClick,
   setStylePhoto,
 }) {
   //set the current product when a related card is clicked
-  function relatedClick(id) {
-    axios
-      .get(axiosConfig.url + '/products/' + id, axiosConfig)
-      .then((response) => {
-        setProduct(response.data);
-      });
+  function handleClick(id) {
+    relatedClick(id);
 
     getStylePhoto(id)
       .then((stylePhoto) => {
         setStylePhoto(stylePhoto);
       })
       .catch((error) => {
-        console.log('ERROR IN RELATED CLICK STYLE PHOTO HANDLER');
+        console.log('ERROR IN RELATED CLICK STYLE PHOTO HANDLER ', error);
       });
   }
 
@@ -86,7 +82,7 @@ function RelatedList({
                   key={product.id}
                   product={product}
                   currentProduct={currentProduct}
-                  handleClick={relatedClick}
+                  handleClick={handleClick}
                   list={list}
                   setProduct={setProduct}
                   products={products}
@@ -116,7 +112,7 @@ function RelatedList({
                     key={product.id}
                     product={product}
                     currentProduct={currentProduct}
-                    handleClick={relatedClick}
+                    handleClick={handleClick}
                     list={list}
                     setProduct={setProduct}
                     products={products}

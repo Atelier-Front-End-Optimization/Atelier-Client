@@ -43,6 +43,8 @@ function RelatedCard({
     axios.get(options.url + '/reviews/meta', options).then((response) => {
       let average = averageRating(response.data.ratings);
       setRating(Number(average));
+    }).catch((err) => {
+      console.log('ERROR IN RELATED CARD META REVIEWS AXIOS GET ', err);
     });
   }, []);
 

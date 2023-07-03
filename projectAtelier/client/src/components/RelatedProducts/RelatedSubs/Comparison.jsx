@@ -20,15 +20,6 @@ function Icon ({feature}) {
 }
 function Comparison ({product, currentProduct}) {
 
-  function matchFeature(features, target) {
-    let result = '';
-    for (let feature of features) {
-      if (feature.feature === target) {
-        result = feature.value;
-      }
-      return result;
-    }
-  }
 
   function getFeatures(selectedProduct, currentProduct) {
     let features = [];
