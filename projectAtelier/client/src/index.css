@@ -87,3 +87,10 @@
 .carousel-item-outfit {
   padding: 40px;
 }
+
+.images-carousel-box {
+  height: 120px;
+}
+.images-carousel {
+  height: 100%;
+}

@@ -7,8 +7,8 @@ import axiosConfig from '../../../Middleware/axiosConfig.js';
 import axios from 'axios';
 import convertPrice from '../../../Middleware/convertPrice.js';
 import ActionButton from './ActionButton.jsx';
-import averageRating from '../../../Middleware/averageRating.js';
 import getAvgRating from '../../../Middleware/getAvgRating.js';
+import ImagesCarousel from './ImagesCarousel.jsx';
 
 function RelatedCard({
   product,
@@ -19,7 +19,9 @@ function RelatedCard({
   products,
 }) {
   const [photo, setPhoto] = useState('');
+  const [photos, setPhotos] = useState([]);
   const [rating, setRating] = useState(0);
+  const [isHovering, setIsHovering] = useState(false);
 
   //gets and sets default photo for each card
   useEffect(() => {
@@ -27,9 +29,16 @@ function RelatedCard({
       .get(axiosConfig.url + '/products/' + product.id + '/styles', axiosConfig)
       .then((response) => {
         setPhoto(response.data.results[0].photos[0].thumbnail_url);
+        for (let photo of response.data.results[0].photos) {
+          setPhotos((photos) => [...photos, photo.thumbnail_url]);
+        }
         for (let style of response.data.results) {
           if (style['default?']) {
             setPhoto(style.photos[0].thumbnail_url);
+            setPhotos([]);
+            for (let photo of style.photos) {
+              setPhotos((photos) => [...photos, photo.thumbnail_url]);
+            }
           }
         }
       })
@@ -52,10 +61,19 @@ function RelatedCard({
     }
     handleClick(product.id);
   }
-  //open comparison modal
 
   //format as currency
   let price = convertPrice(product.default_price);
+
+  //open close carousel on hover
+  function handleHover() {
+      setIsHovering(!isHovering);
+  }
+
+  //change thumbnail on click
+  function imagesClick(photo) {
+    setPhoto(photo);
+  }
 
   return (
     <Card
@@ -68,7 +86,7 @@ function RelatedCard({
         flexShrink: 0,
       }}
     >
-      <Box height="300px" width="100%" position="relative">
+      <Box onMouseEnter={handleHover} onMouseLeave={handleHover} height="300px" width="100%" position="relative">
         <ActionButton
           product={product}
           currentProduct={currentProduct}
@@ -77,6 +95,7 @@ function RelatedCard({
           setProduct={setProduct}
         />
         <img height="100%" width="100%" src={photo}></img>
+        {isHovering && <ImagesCarousel photos={photos} imagesClick={imagesClick}/>}
       </Box>
       <Box p={1}>
         <div>{product.category}</div>
