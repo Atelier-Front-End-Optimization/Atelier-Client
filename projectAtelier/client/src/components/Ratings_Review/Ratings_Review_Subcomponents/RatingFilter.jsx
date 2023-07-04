@@ -9,7 +9,6 @@ import { Stack, Link } from '@mui/material';
 
 const RatingFilter = ({ ratingsData, ratings }) => {
 
-  console.log(ratingsData)
 
   ////////////////////////////////////////////////////////
   return (
