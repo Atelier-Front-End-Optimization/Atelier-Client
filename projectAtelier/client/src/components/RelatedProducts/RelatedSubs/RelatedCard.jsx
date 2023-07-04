@@ -47,7 +47,6 @@ function RelatedCard({
       });
 
       //gets and sets average rating
-    console.log(product.id)
       getAvgRating(product.id).then((average) => {
       setRating(average);
     }).catch((err) => {
@@ -97,7 +96,11 @@ function RelatedCard({
           setProduct={setProduct}
         />
         <img height="100%" width="100%" src={photo}></img>
-        {isHovering && <ImagesCarousel photos={photos} imagesClick={imagesClick}/>}
+        {isHovering && <ImagesCarousel nMouseDown={(e) => {
+      e.stopPropagation();
+      e.preventDefault();
+    }}
+    photos={photos} imagesClick={imagesClick}/>}
       </Box>
       <Box p={1}>
         <div>{product.category}</div>
