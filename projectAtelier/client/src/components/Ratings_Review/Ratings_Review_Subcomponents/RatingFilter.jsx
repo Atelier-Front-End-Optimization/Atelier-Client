@@ -8,7 +8,15 @@ import { Animation } from '@devexpress/dx-react-chart';
 import { Stack, Link } from '@mui/material';
 
 const RatingFilter = ({ ratingsData, ratings }) => {
+  const [hover1Star, setHover1Star] = useState(false);
+  const [hover2Star, setHover2Star] = useState(false);
+  const [hover3Star, setHover3Star] = useState(false);
+  const [hover4Star, setHover4Star] = useState(false);
+  const [hover5Star, setHover5Star] = useState(false);
 
+  const handleLinkClick = (e) => {
+    console.log('Clicked')
+  }
 
   ////////////////////////////////////////////////////////
   return (
@@ -38,8 +46,13 @@ const RatingFilter = ({ ratingsData, ratings }) => {
             <div
               style={{
                 marginTop: '22.5px',
-                marginLeft: '25px'
+                marginLeft: '25px',
+                cursor:'pointer',
+                backgroundColor: hover5Star ? 'rgba(155, 155, 275, 0.25)' : ''
               }}
+              onMouseEnter={() => setHover5Star(true)}
+              onMouseLeave={() => setHover5Star(false)}
+              onClick={handleLinkClick}
             >
               <Link
                 sx={{textDecoration: 'underline'}}
@@ -50,8 +63,12 @@ const RatingFilter = ({ ratingsData, ratings }) => {
             <div
               style={{
                 marginTop: '22.5px',
-                marginLeft: '25px'
+                marginLeft: '25px',
+                cursor:'pointer',
+                backgroundColor: hover4Star ? 'rgba(155, 155, 275, 0.25)' : ''
               }}
+              onMouseEnter={() => setHover4Star(true)}
+              onMouseLeave={() => setHover4Star(false)}
             >
               <Link
                 sx={{textDecoration: 'underline'}}>
@@ -61,8 +78,12 @@ const RatingFilter = ({ ratingsData, ratings }) => {
             <div
               style={{
                 marginTop: '22.5px',
-                marginLeft: '25px'
+                marginLeft: '25px',
+                cursor:'pointer',
+                backgroundColor: hover3Star ? 'rgba(155, 155, 275, 0.25)' : ''
               }}
+              onMouseEnter={() => setHover3Star(true)}
+              onMouseLeave={() => setHover3Star(false)}
             >
               <Link sx={{textDecoration: 'underline'}}>
                 3 stars
@@ -71,8 +92,12 @@ const RatingFilter = ({ ratingsData, ratings }) => {
             <div
               style={{
                 marginTop: '22.5px',
-                marginLeft: '25px'
+                marginLeft: '25px',
+                cursor:'pointer',
+                backgroundColor: hover2Star ? 'rgba(155, 155, 275, 0.25)' : ''
               }}
+              onMouseEnter={() => setHover2Star(true)}
+              onMouseLeave={() => setHover2Star(false)}
             >
               <Link sx={{textDecoration: 'underline'}}>
                 2 stars
@@ -81,8 +106,12 @@ const RatingFilter = ({ ratingsData, ratings }) => {
             <div
               style={{
                 marginTop: '22.5px',
-                marginLeft: '25px'
+                marginLeft: '25px',
+                cursor:'pointer',
+                backgroundColor: hover1Star ? 'rgba(155, 155, 275, 0.25)' : ''
               }}
+              onMouseEnter={() => setHover1Star(true)}
+              onMouseLeave={() => setHover1Star(false)}
             >
               <Link sx={{textDecoration: 'underline'}}>
                 1 stars
