@@ -6,17 +6,17 @@ import {useEffect, useState} from 'react';
 
 const ReviewBreakdown = ({ metaData, metaData:{ recommended, ratings } }) => {
 
-
+  let total = Number(recommended.false) + Number(recommended.true);
   const [ratingsData, setRatingsData] = useState([]);
 
   useEffect(() => {
     if (!metaData.ratings) return;
     setRatingsData([
-      { stars: '1 stars', votes: Number(ratings['1']) },
-      { stars: '2 stars', votes: Number(ratings['2']) },
-      { stars: '3 stars', votes: Number(ratings['3']) },
-      { stars: '4 stars', votes: Number(ratings['4']) },
-      { stars: '5 stars', votes: Number(ratings['5']) }
+      { stars: '1 stars', votes: Number(ratings['1']), total: total },
+      { stars: '2 stars', votes: Number(ratings['2']), total: total },
+      { stars: '3 stars', votes: Number(ratings['3']), total: total },
+      { stars: '4 stars', votes: Number(ratings['4']), total: total },
+      { stars: '5 stars', votes: Number(ratings['5']), total: total }
     ])
   }, [metaData])
 

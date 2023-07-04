@@ -106,8 +106,14 @@ const RatingFilter = ({ ratingsData, ratings }) => {
                 rotated
               >
               <BarSeries
+                valueField="total"
+                argumentField="stars"
+                color='rgba(155, 155, 155, 0.25)'
+              />
+              <BarSeries
                 valueField="votes"
                 argumentField="stars"
+                color='green'
               />
               <Animation />
             </Chart>
