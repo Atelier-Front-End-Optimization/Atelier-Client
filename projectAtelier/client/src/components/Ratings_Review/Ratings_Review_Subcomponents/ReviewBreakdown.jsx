@@ -8,8 +8,6 @@ const ReviewBreakdown = ({ metaData, metaData:{ recommended, ratings } }) => {
 
 
   const [ratingsData, setRatingsData] = useState([]);
-  console.log('DATA IN BREAKDOWN: ', ratingsData)
-  console.log(ratings)
 
   useEffect(() => {
     if (!metaData.ratings) return;
@@ -33,7 +31,10 @@ const ReviewBreakdown = ({ metaData, metaData:{ recommended, ratings } }) => {
       <RatingPercentage
         recommended={recommended}
       />
-      <RatingFilter ratingsData={ratingsData}/>
+      <RatingFilter
+        ratingsData={ratingsData}
+        ratings={ratings}
+      />
     </div>
   );
 };

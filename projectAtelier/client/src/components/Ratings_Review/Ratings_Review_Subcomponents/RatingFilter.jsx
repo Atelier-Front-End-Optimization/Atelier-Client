@@ -5,9 +5,9 @@ import {
   BarSeries,
 } from '@devexpress/dx-react-chart-material-ui';
 import { Animation } from '@devexpress/dx-react-chart';
-import { Box, Stack, Link } from '@mui/material';
+import { Stack, Link } from '@mui/material';
 
-const RatingFilter = ({ ratingsData }) => {
+const RatingFilter = ({ ratingsData, ratings }) => {
 
   console.log(ratingsData)
 
@@ -24,9 +24,9 @@ const RatingFilter = ({ ratingsData }) => {
           direction='row'
         >
           <Stack
-          style={{
-            paddingTop: '90px'
-          }}
+            style={{
+              paddingTop: '90px'
+            }}
             direction="column"
             justifyContent="space-evenly"
             alignItems="flex-start"
@@ -34,7 +34,6 @@ const RatingFilter = ({ ratingsData }) => {
             sx={{
               height: "22px",
               width: '100px',
-
             }}
           >
             <div
@@ -113,6 +112,60 @@ const RatingFilter = ({ ratingsData }) => {
               <Animation />
             </Chart>
 
+          </Stack>
+          <Stack
+            style={{
+              paddingTop: '90px'
+            }}
+            direction="column"
+            justifyContent="space-evenly"
+            alignItems="flex-start"
+            spacing={1}
+            sx={{
+              height: "22px",
+              width: '100px',
+            }}
+          >
+            <div
+              style={{
+                marginTop: '22.5px',
+                marginLeft: '25px'
+              }}
+            >
+              <span>{ratings[5]}</span>
+            </div>
+            <div
+              style={{
+                marginTop: '22.5px',
+                marginLeft: '25px'
+              }}
+            >
+              <span>{ratings[4]}</span>
+            </div>
+            <div
+              style={{
+                marginTop: '22.5px',
+                marginLeft: '25px'
+              }}
+            >
+              <span>{ratings[3]}</span>
+            </div>
+            <div
+              style={{
+                marginTop: '22.5px',
+                marginLeft: '25px'
+              }}
+            >
+              <span>{ratings[2]}</span>
+            </div>
+            <div
+              style={{
+                marginTop: '22.5px',
+                marginLeft: '25px'
+              }}
+            >
+              <span>{ratings[1]}</span>
+            </div>
           </Stack>
         </Stack>
 
