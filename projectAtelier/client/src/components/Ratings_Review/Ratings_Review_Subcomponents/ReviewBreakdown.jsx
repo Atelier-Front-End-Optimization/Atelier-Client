@@ -4,7 +4,7 @@ import RatingPercentage from './RatingPercentage.jsx'
 import RatingFilter from './RatingFilter.jsx'
 import {useEffect, useState} from 'react';
 
-const ReviewBreakdown = ({ metaData, metaData:{ recommended, ratings } }) => {
+const ReviewBreakdown = ({ metaData, metaData:{ recommended, ratings }, filters, setFilters }) => {
 
   const [ratingsData, setRatingsData] = useState([]);
 
@@ -34,6 +34,8 @@ const ReviewBreakdown = ({ metaData, metaData:{ recommended, ratings } }) => {
       <RatingFilter
         ratingsData={ratingsData}
         ratings={ratings}
+        filters={filters}
+        setFilters={setFilters}
       />
     </div>
   );

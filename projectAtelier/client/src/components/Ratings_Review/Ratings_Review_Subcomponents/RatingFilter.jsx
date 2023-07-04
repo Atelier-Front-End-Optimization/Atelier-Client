@@ -7,15 +7,17 @@ import {
 import { Animation } from '@devexpress/dx-react-chart';
 import { Stack, Link } from '@mui/material';
 
-const RatingFilter = ({ ratingsData, ratings }) => {
+const RatingFilter = ({ ratingsData, ratings, filters, setFilters }) => {
   const [hover1Star, setHover1Star] = useState(false);
   const [hover2Star, setHover2Star] = useState(false);
   const [hover3Star, setHover3Star] = useState(false);
   const [hover4Star, setHover4Star] = useState(false);
   const [hover5Star, setHover5Star] = useState(false);
 
+
   const handleLinkClick = (e) => {
-    console.log('Clicked')
+    console.log(e.target.getAttribute('filter'))
+    // console.log(setFilters)
   }
 
   ////////////////////////////////////////////////////////
@@ -52,10 +54,11 @@ const RatingFilter = ({ ratingsData, ratings }) => {
               }}
               onMouseEnter={() => setHover5Star(true)}
               onMouseLeave={() => setHover5Star(false)}
-              onClick={handleLinkClick}
             >
               <Link
                 sx={{textDecoration: 'underline'}}
+                filter='fiveStars'
+                onClick={handleLinkClick}
               >
                 5 stars
               </Link>
@@ -71,7 +74,10 @@ const RatingFilter = ({ ratingsData, ratings }) => {
               onMouseLeave={() => setHover4Star(false)}
             >
               <Link
-                sx={{textDecoration: 'underline'}}>
+                sx={{textDecoration: 'underline'}}
+                filter='fourStars'
+                onClick={handleLinkClick}
+              >
                 4 stars
               </Link >
             </div>
@@ -85,7 +91,11 @@ const RatingFilter = ({ ratingsData, ratings }) => {
               onMouseEnter={() => setHover3Star(true)}
               onMouseLeave={() => setHover3Star(false)}
             >
-              <Link sx={{textDecoration: 'underline'}}>
+              <Link
+                sx={{textDecoration: 'underline'}}
+                filter='threeStars'
+                onClick={handleLinkClick}
+              >
                 3 stars
               </Link>
             </div>
@@ -99,7 +109,11 @@ const RatingFilter = ({ ratingsData, ratings }) => {
               onMouseEnter={() => setHover2Star(true)}
               onMouseLeave={() => setHover2Star(false)}
             >
-              <Link sx={{textDecoration: 'underline'}}>
+              <Link
+                sx={{textDecoration: 'underline'}}
+                filter='twoStars'
+                onClick={handleLinkClick}
+              >
                 2 stars
               </Link>
             </div>
@@ -113,7 +127,11 @@ const RatingFilter = ({ ratingsData, ratings }) => {
               onMouseEnter={() => setHover1Star(true)}
               onMouseLeave={() => setHover1Star(false)}
             >
-              <Link sx={{textDecoration: 'underline'}}>
+              <Link
+                sx={{textDecoration: 'underline'}}
+                filter='oneStars'
+                onClick={handleLinkClick}
+              >
                 1 stars
               </Link>
             </div>

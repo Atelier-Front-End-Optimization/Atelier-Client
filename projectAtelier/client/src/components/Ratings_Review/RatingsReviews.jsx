@@ -18,6 +18,13 @@ const RatingsReviews = ({ product_id }) => {
   const [metaData, setMetaData] = useState({});
   const [sorting, setSorting] = useState('relevant');
   const [numOfReviews, setNumOfReviews] = useState(0);
+  const [filters, setFilters] = useState({
+    fiveStars: false,
+    fourStars: false,
+    threeStars: false,
+    twoStars: false,
+    oneStars: false
+  });
   ///////////////////////////////////////////////////////////////////////////////////////
 
   const getReviews = async (product_id, numOfRenders = reviewRenders, reRender = false, count = 1000, page = null) => {
@@ -151,6 +158,8 @@ const RatingsReviews = ({ product_id }) => {
       <ReviewBreakdown
         allReviews={allReviews}
         metaData={metaData}
+        filters={filters}
+        setFilters={setFilters}
       />
       <ProductBreakdown/>
       <SortOptions
