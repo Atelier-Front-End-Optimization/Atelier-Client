@@ -6,7 +6,7 @@ import Button from '@mui/material/Button'
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-const StyleScroller = ({ productStylePhotos }) => {
+const StyleScroller = ({ productStylePhotos, setActiveIndex }) => {
   const [scrollPosition, setScrollPosition] = useState(0);
 
   const handleScroll = (direction) => {
@@ -18,20 +18,27 @@ const StyleScroller = ({ productStylePhotos }) => {
     }
   };
 
+  const handleImageListClick = (index) => {
+    setActiveIndex(index)
+    console.log(index)
+  }
+
   return (
     <div>
-    <Button onClick={() => handleScroll('up')}>
+    <Button onClick={() => handleScroll('up')} style={{ position: 'absolute', top: '0%', left: '50%', transform: 'translate(-50%, -50%)' }}>
       <ExpandLessIcon />
     </Button>
     <ImageList
       id="imageListContainer"
-      sx={{ width: 100, height: 500, overflow: 'auto', scrollBehavior: 'smooth', scrollbarWidth: 'none',
+      sx={{ width: 67, height: 400, scrollBehavior: 'smooth', overflow:'hidden'
     }}
       cols={1}
-      rowHeight={164}
+      rowHeight={67}
     >
-      {productStylePhotos.results.map((photo) => (
-        <ImageListItem key={Math.random()} sx={{ marginBottom: '5px' }}>
+      {productStylePhotos.results.map((photo, index) => (
+        <ImageListItem key={Math.random()} sx={{ marginBottom: '10px' }} onClick={(() => {
+          handleImageListClick(index)
+        })} style={{cursor:'pointer'}}>
           <img
             src={`${photo.photos[0].url}`}
             srcSet={`${photo.photos[0].url}`}
@@ -44,6 +51,7 @@ const StyleScroller = ({ productStylePhotos }) => {
     </ImageList>
     <Button
       onClick={() => handleScroll('down')}
+      style={{ position: 'absolute', top: '100%', left: '50%', transform: 'translate(-50%, -50%)' }}
     >
       <ExpandMoreIcon />
     </Button>
