@@ -8,7 +8,7 @@ import ProductStyles from './Product_Subcomps/ProductStyles.jsx';
 import ProductModal from './Product_Subcomps/ProductModal.jsx';
 import QuantitySelect from './Product_Subcomps/QuantitySelect';
 import SizeSelect from './Product_Subcomps/SizeSelect.jsx';
-import ImageListComp from './Product_Subcomps/ImageList.jsx';
+import StyleScroller from './Product_Subcomps/StyleScroller.jsx';
 import Favorite from './Product_Subcomps/Favorite';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
@@ -83,7 +83,7 @@ const ProductDetails = ({
     // setStyleName(productStyles[0].name);
     // console.log(productStyles, 'STYLES');
     // console.log(productFeatures, 'FEATURES');
-    // console.log(productStylePhotos, 'PHOTOS');
+    console.log(productStylePhotos, 'PHOTOS');
     return (
       <Box
         sx={{
@@ -101,7 +101,7 @@ const ProductDetails = ({
           alignItems="flex-start"
         >
           <ProductModal stylePhoto={stylePhoto} productStylePhotos={productStylePhotos} activeIndex={activeIndex} setActiveIndex={setActiveIndex}/>
-          <ImageListComp photos={productStylePhotos}/>
+
           <div>
             <ItemDescription slogan={slogan} description={description} />
           </div>
