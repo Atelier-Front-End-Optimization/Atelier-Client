@@ -3,6 +3,8 @@ import { Box, Modal, IconButton } from '@mui/material';
 import CropFreeIcon from '@mui/icons-material/CropFree';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import ArrowCircleLeftOutlinedIcon from '@mui/icons-material/ArrowCircleLeftOutlined';
+import ArrowCircleRightOutlinedIcon from '@mui/icons-material/ArrowCircleRightOutlined';
 
 const ProductModal = ({ stylePhoto, productStylePhotos, activeIndex, setActiveIndex }) => {
   const [open, setOpen] = useState(false);
@@ -26,10 +28,10 @@ const ProductModal = ({ stylePhoto, productStylePhotos, activeIndex, setActiveIn
   return (
     <div style={{ position: 'relative', display: 'inline-block' }}>
       <IconButton onClick={handlePrevious} style={{ position: 'absolute', top: '50%', left: '10px', zIndex: 1 }}>
-        <ArrowBackIcon />
+        <ArrowCircleLeftOutlinedIcon />
       </IconButton>
       <IconButton onClick={handleNext} style={{ position: 'absolute', top: '50%', right: '10px', zIndex: 1 }}>
-        <ArrowForwardIcon />
+        <ArrowCircleRightOutlinedIcon />
       </IconButton>
 
       <img
