@@ -8,7 +8,8 @@ const NewReview = ({ product_id, product_name}) => {
   const [hover, setHover] = useState(-1);
   const [rating, setRating] = useState(null);
   const [recommend, setRecommend] = useState(false);
-
+  const [summary, setSummary] = useState('');
+  const [body, setBody] = useState('');
 
   const labels = {
     1: 'Poor',
@@ -32,16 +33,28 @@ const NewReview = ({ product_id, product_name}) => {
 
   const handleRecommend = (e) => {
     setRecommend(e.target.value)
-  }
+  };
+
+  const handleSummary = (e) => {
+    setSummary(e.target.value);
+  };
+
+  const handleBody = (e) => {
+    setBody(e.target.value);
+  };
 
   const handleReview = () => {
     console.log(rating);
     console.log(recommend);
+    console.log(summary);
+    console.log(body);
     handleClose();
-  }
+  };
 ////////////////////////////////////////////////////////
   return (
-    <div>
+    <Box
+      components='form'
+    >
       <Button
         style={{
           marginLeft: '30px',
@@ -58,6 +71,7 @@ const NewReview = ({ product_id, product_name}) => {
       <Dialog
         open={open}
         onClose={handleClose}
+        PaperProps={{ sx: { width: "100%", height: "100%" } }}
       >
         <DialogTitle>Write Your Review...</DialogTitle>
         <DialogContent>
@@ -112,8 +126,37 @@ const NewReview = ({ product_id, product_name}) => {
             </Box>
           <DialogTitle>Characteristics *</DialogTitle>
           <DialogTitle>Review summary</DialogTitle>
-
+            <TextField
+              margin="dense"
+              type="text"
+              fullWidth
+              variant="filled"
+              placeholder='Example: Best purchase ever!'
+              inputProps={{ maxLength: 60 }}
+              value={summary}
+              onChange={handleSummary}
+            />
           <DialogTitle>Review body *</DialogTitle>
+            <TextField
+              required={true}
+              margin="dense"
+              type="text"
+              fullWidth
+              variant="filled"
+              placeholder='Why did you like the product or not?'
+              inputProps={{ minLength: 50, maxLength: 1000 }}
+              multiline
+              rows={10}
+              value={body}
+              onChange={handleBody}
+            />
+            <span>
+               {
+                50 - body.length <= 0 ?
+                  'Minimum reached'
+                : `Minimum required characters left: [${50 - body.length}]`
+              }
+            </span>
           <DialogTitle>Upload your photos</DialogTitle>
           <DialogTitle>What is your nickname? *</DialogTitle>
           <DialogTitle>Your email *</DialogTitle>
@@ -123,7 +166,7 @@ const NewReview = ({ product_id, product_name}) => {
           <Button onClick={handleReview}>Submit Review</Button>
         </DialogActions>
       </Dialog>
-    </div>
+    </Box>
   );
 };
 
