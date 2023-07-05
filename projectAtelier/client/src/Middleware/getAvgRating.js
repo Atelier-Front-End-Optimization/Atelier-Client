@@ -3,7 +3,6 @@ import axios from 'axios';
 import averageRating from './averageRating.js';
 
 function getAvgRating(id) {
-  console.log(id)
   let options = axiosConfig;
   options.params = {};
   options.params.product_id = id;

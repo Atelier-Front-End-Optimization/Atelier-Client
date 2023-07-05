@@ -90,6 +90,10 @@
 
 .images-carousel-box {
   height: 120px;
+  position: relative;
+  bottom: 40%;
+  left: 10%;
+  width: 90%;
 }
 .images-carousel {
   height: 100%;

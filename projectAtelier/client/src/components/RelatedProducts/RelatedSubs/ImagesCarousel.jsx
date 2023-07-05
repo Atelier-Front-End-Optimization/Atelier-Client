@@ -25,16 +25,19 @@ const responsive = {
 };
 
 function ImagesCarousel({photos, imagesClick}) {
-  function handleClick() {
-    imagesClick()
+  function handleClick(event) {
+    imagesClick(event.target.src);
   }
 
   return (
-    <Box className='images-carousel-box'>
-      <div>I was hovered</div>
-      <Carousel className='images-carousel' responsive={responsive}>
-        {photos.map((photo) => {
-          <img src={photo}></img>
+    <Box
+    className='images-carousel-box'>
+      <Carousel
+      className='images-carousel' responsive={responsive}>
+        {photos.map((photo, index) => {
+          return (
+          <img className='tiny-image' onClick={handleClick} key={index} height="50px" width='50px' src={photo}></img>
+          )
         })}
       </Carousel>
     </Box>
