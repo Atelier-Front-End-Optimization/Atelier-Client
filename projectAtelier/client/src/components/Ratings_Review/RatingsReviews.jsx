@@ -52,15 +52,12 @@ const RatingsReviews = ({ product_id }) => {
         config
       );
       const {data} = reviewRes;
-      ///////////////////////////////////////
       const filteredReviews = filterReviews(data.results, filters);
-      console.log('RETURNED FILTER:', filteredReviews)
-      ///////////////////////////////////////
-      setNumOfReviews(data.results.length);
-      setAllReviews(data.results)
+      setNumOfReviews(filteredReviews.length);
+      setAllReviews(filteredReviews)
       return (reRender ?
-        data.results
-      : setReviews(data.results.slice(0, numOfRenders))
+        filteredReviews
+      : setReviews(filteredReviews.slice(0, numOfRenders))
       )
     } catch (err) {
       console.error(err);

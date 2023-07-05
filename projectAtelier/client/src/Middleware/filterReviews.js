@@ -27,7 +27,7 @@ function filterReviews(reviews, filters) {
     }
   });
 
-  return filteredReviews
+  return filteredReviews;
 }
 
 export default filterReviews;
