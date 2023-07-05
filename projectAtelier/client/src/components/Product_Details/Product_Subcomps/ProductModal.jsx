@@ -5,6 +5,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowCircleLeftOutlinedIcon from '@mui/icons-material/ArrowCircleLeftOutlined';
 import ArrowCircleRightOutlinedIcon from '@mui/icons-material/ArrowCircleRightOutlined';
+import StyleScroller from './StyleScroller.jsx'
 
 const ProductModal = ({ stylePhoto, productStylePhotos, activeIndex, setActiveIndex }) => {
   const [open, setOpen] = useState(false);
@@ -27,10 +28,10 @@ const ProductModal = ({ stylePhoto, productStylePhotos, activeIndex, setActiveIn
 
   return (
     <div style={{ position: 'relative', display: 'inline-block' }}>
-      <IconButton onClick={handlePrevious} style={{ position: 'absolute', top: '50%', left: '10px', zIndex: 1 }}>
+      <IconButton onClick={handlePrevious} style={{ position: 'absolute', top: '50%', left: '110px', zIndex: 1 }}>
         <ArrowCircleLeftOutlinedIcon />
       </IconButton>
-      <IconButton onClick={handleNext} style={{ position: 'absolute', top: '50%', right: '10px', zIndex: 1 }}>
+      <IconButton onClick={handleNext} style={{ position: 'absolute', top: '50%', right: '70px', zIndex: 1 }}>
         <ArrowCircleRightOutlinedIcon />
       </IconButton>
 
@@ -69,6 +70,18 @@ const ProductModal = ({ stylePhoto, productStylePhotos, activeIndex, setActiveIn
           />
         </Box>
       </Modal>
+      <Box style={{
+            position: 'absolute',
+            top: '30%',
+            left: '51%',
+            transform: 'translate(-50%, -50%)',
+            zIndex: 2,
+            backgroundColor: 'transparent',
+            height: '400px',
+            width: '100%',
+      }}>
+      <StyleScroller productStylePhotos={productStylePhotos} />
+      </Box>
     </div>
   );
 };
