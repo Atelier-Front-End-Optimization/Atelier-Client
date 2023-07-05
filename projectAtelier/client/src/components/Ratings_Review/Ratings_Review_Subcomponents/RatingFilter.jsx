@@ -14,10 +14,9 @@ const RatingFilter = ({ ratingsData, ratings, filters, setFilters }) => {
   const [hover4Star, setHover4Star] = useState(false);
   const [hover5Star, setHover5Star] = useState(false);
 
-
   const handleLinkClick = (e) => {
-    console.log(e.target.getAttribute('filter'))
-    // console.log(setFilters)
+    let filter = e.target.getAttribute('filter')
+    setFilters(vals => ({...vals, [filter]: !filters[filter]}))
   }
 
   ////////////////////////////////////////////////////////

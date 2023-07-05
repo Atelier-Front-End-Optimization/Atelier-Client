@@ -25,9 +25,15 @@ const RatingsReviews = ({ product_id }) => {
     twoStars: false,
     oneStars: false
   });
-  ///////////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////
 
-  const getReviews = async (product_id, numOfRenders = reviewRenders, reRender = false, count = 1000, page = null) => {
+  const getReviews = async (
+        product_id,
+        numOfRenders = reviewRenders,
+        reRender = false,
+        count = 1000,
+        page = null
+      ) => {
     const config ={
       headers: {
         Authorization: import.meta.env.VITE_API_TOKEN
@@ -45,6 +51,11 @@ const RatingsReviews = ({ product_id }) => {
         config
       );
       const {data} = reviewRes;
+      console.log('DATA:', data)
+      ///////////////////////////////////////
+      // const filteredResults = /*filtering func*/
+
+      ///////////////////////////////////////
       setNumOfReviews(data.results.length);
       setAllReviews(data.results)
       return (reRender ?
@@ -59,6 +70,13 @@ const RatingsReviews = ({ product_id }) => {
   useEffect(() => {
     if (!product_id) return;
     setSorting('relevant');
+    setFilters({
+      fiveStars: false,
+      fourStars: false,
+      threeStars: false,
+      twoStars: false,
+      oneStars: false
+    })
     getReviews(product_id, 2)
     getMetaData(product_id)
     setReviewRenders(4);
