@@ -4,12 +4,14 @@ import ProductBreakdown from './Ratings_Review_Subcomponents/ProductBreakdown.js
 import ReviewBreakdown from './Ratings_Review_Subcomponents/ReviewBreakdown.jsx';
 import SortOptions from './Ratings_Review_Subcomponents/SortOptions.jsx';
 import ReviewList from './Ratings_Review_Subcomponents/ReviewList.jsx';
+import filterReviews from '../../Middleware/filterReviews.js';
+import { Button, Stack } from '@mui/material';
 import {useEffect, useState} from 'react';
 import axiosConfig from '../../Middleware/axiosConfig.js';
 import axios from 'axios';
 
 
-const RatingsReviews = ({ product_id }) => {
+const RatingsReviews = ({ product_id, product_name }) => {
 
   const [reviews, setReviews] = useState([]);
   const [allReviews, setAllReviews] = useState([]);
@@ -18,9 +20,22 @@ const RatingsReviews = ({ product_id }) => {
   const [metaData, setMetaData] = useState({});
   const [sorting, setSorting] = useState('relevant');
   const [numOfReviews, setNumOfReviews] = useState(0);
-  ///////////////////////////////////////////////////////////////////////////////////////
+  const [filters, setFilters] = useState({
+    fiveStars: false,
+    fourStars: false,
+    threeStars: false,
+    twoStars: false,
+    oneStars: false
+  });
+  //////////////////////////////////////////////////////////////////////
 
-  const getReviews = async (product_id, numOfRenders = reviewRenders, reRender = false, count = 1000, page = null) => {
+  const getReviews = async (
+        product_id,
+        numOfRenders = reviewRenders,
+        reRender = false,
+        count = 1000,
+        page = null
+      ) => {
     const config ={
       headers: {
         Authorization: import.meta.env.VITE_API_TOKEN
@@ -38,11 +53,12 @@ const RatingsReviews = ({ product_id }) => {
         config
       );
       const {data} = reviewRes;
-      setNumOfReviews(data.results.length);
-      setAllReviews(data.results)
+      const filteredReviews = filterReviews(data.results, filters);
+      setNumOfReviews(filteredReviews.length);
+      setAllReviews(filteredReviews)
       return (reRender ?
-        data.results
-      : setReviews(data.results.slice(0, numOfRenders))
+        filteredReviews
+      : setReviews(filteredReviews.slice(0, numOfRenders))
       )
     } catch (err) {
       console.error(err);
@@ -52,6 +68,13 @@ const RatingsReviews = ({ product_id }) => {
   useEffect(() => {
     if (!product_id) return;
     setSorting('relevant');
+    setFilters({
+      fiveStars: false,
+      fourStars: false,
+      threeStars: false,
+      twoStars: false,
+      oneStars: false
+    })
     getReviews(product_id, 2)
     getMetaData(product_id)
     setReviewRenders(4);
@@ -63,6 +86,12 @@ const RatingsReviews = ({ product_id }) => {
     getReviews(product_id, 2);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sorting]);
+
+  useEffect(() => {
+    if (!product_id) return;
+    getReviews(product_id, 2);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filters]);
 
   const getMetaData = async (product_id) => {
     const config ={
@@ -148,9 +177,70 @@ const RatingsReviews = ({ product_id }) => {
   return (
     <section>
       <h4>RATINGS & REVIEWS</h4>
+      {
+        Object.values(filters).includes(true) ?
+          <div>
+            <h4
+              style={{
+                marginLeft: '10px',
+                marginBottom: '10px'
+              }}
+            >
+              Applied filters: {
+              filters.fiveStars ?
+                '5 star '
+              : ''
+              }
+              {
+              filters.fourStars ?
+                '4 star '
+              : ''
+              }
+              {
+              filters.threeStars ?
+                '3 star '
+              : ''
+              }
+              {
+              filters.twoStars ?
+                '2 star '
+              : ''
+              }
+              {
+              filters.oneStars ?
+                '1 star '
+              : ''
+              } reviews
+            </h4>
+            <Button
+              style={{
+                marginLeft: '20px',
+                marginBottom: '25px'
+              }}
+              size='small'
+              variant='text'
+              onClick={
+                () => {
+                setFilters({
+                fiveStars: false,
+                fourStars: false,
+                threeStars: false,
+                twoStars: false,
+                oneStars: false
+                })
+              }
+            }
+            >
+              Remove all filters
+            </Button>
+          </div>
+        : ''
+      }
       <ReviewBreakdown
         allReviews={allReviews}
         metaData={metaData}
+        filters={filters}
+        setFilters={setFilters}
       />
       <ProductBreakdown/>
       <SortOptions
@@ -166,7 +256,32 @@ const RatingsReviews = ({ product_id }) => {
         upvoteHelpful={upvoteHelpful}
         reportReview={reportReview}
       />
-      <NewReview/>
+      <Stack
+        direction='row'
+      >
+        { canRenderMoreRevues ?
+          <div>
+            <Button
+              style={{
+                marginLeft: '30px',
+                marginRight: '30px',
+                marginBottom: '50px'
+              }}
+              variant='outlined'
+              size='large'
+              onClick={getMoreReviews}
+            >
+              More Reviews
+            </Button>
+          </div>
+        : ''}
+        <NewReview
+          product_id={product_id}
+          product_name={product_name}
+        />
+      </Stack>
+
+
     </section>
   );
 };
