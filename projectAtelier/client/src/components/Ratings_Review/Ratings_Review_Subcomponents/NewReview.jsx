@@ -6,6 +6,19 @@ const NewReview = ({ product_id, product_name}) => {
 
   const [open, setOpen] = useState(false);
   const [rating, setRating] = useState(null);
+  const [hover, setHover] = useState(-1);
+
+  const labels = {
+    1: 'Poor',
+    2: 'Fair',
+    3: 'Average',
+    4: 'Good',
+    5: 'Great!',
+  };
+
+  const getLabelText = (rating) => {
+    return `${rating} Star${rating !== 1 ? 's' : ''}, ${labels[rating]}`;
+  }
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -50,12 +63,19 @@ const NewReview = ({ product_id, product_name}) => {
               justifyContent="center"
             >
               <Rating
-                name="no-value"
+                name="hover-feedback"
                 value={rating}
+                getLabelText={getLabelText}
                 onChange={(event, newRating) => {
                   setRating(newRating);
                 }}
+                onChangeActive={(event, newHover) => {
+                  setHover(newHover);
+                }}
               />
+              {rating !== null && (
+                <Box sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : rating]}</Box>
+              )}
             </Box>
           <DialogTitle>Do you recommend this product? *</DialogTitle>
           <DialogTitle>Characteristics *</DialogTitle>
