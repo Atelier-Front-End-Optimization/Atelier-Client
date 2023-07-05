@@ -4,10 +4,13 @@ import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import ComparisonModal from './ComparisonModal';
 import { useState } from 'react';
 
-function ActionButton({ product, currentProduct, list, products, setProduct }) {
+function ActionButton({ product, currentProduct, list, products, setProduct, setIsHovering }) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+    setIsHovering(false);
+    setOpen(false);
+  }
 
   function deleteOutfit(product) {
     setProduct(products.filter((p) => p.id !== product.id));

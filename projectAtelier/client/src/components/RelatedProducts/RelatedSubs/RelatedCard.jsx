@@ -56,7 +56,7 @@ function RelatedCard({
 
   //change current product on click
   function relatedClick(event) {
-    if (event.target.ariaHidden || event.target.tagName === 'path') {
+    if (event.target.ariaHidden || event.target.tagName === 'path' || event.target.type === 'button' || event.target.className === 'tiny-image') {
       event.stopPropagation();
       return null;
     }
@@ -68,7 +68,10 @@ function RelatedCard({
 
   //open close carousel on hover
   function handleHover() {
-      setIsHovering(!isHovering);
+      setIsHovering(true);
+  }
+  function handleLeave() {
+      setIsHovering(false);
   }
 
   //change thumbnail on click
@@ -87,16 +90,17 @@ function RelatedCard({
         flexShrink: 0,
       }}
     >
-      <Box onMouseEnter={handleHover} onMouseLeave={handleHover} height="300px" width="100%" position="relative">
+      <Box onMouseEnter={handleHover} onMouseLeave={handleLeave} height="300px" width="100%" position="relative">
         <ActionButton
           product={product}
           currentProduct={currentProduct}
           list={list}
           products={products}
           setProduct={setProduct}
+          setIsHovering={setIsHovering}
         />
         <img height="100%" width="100%" src={photo}></img>
-        {isHovering && <ImagesCarousel nMouseDown={(e) => {
+        {isHovering && <ImagesCarousel onMouseDown={(e) => {
       e.stopPropagation();
       e.preventDefault();
     }}
