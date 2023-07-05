@@ -1,12 +1,14 @@
-import { Button, Box, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField, Rating } from '@mui/material';
+import { Button, Box, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField, Rating, Radio, RadioGroup, FormControlLabel, FormControl, FormLabel } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import {useEffect, useState} from 'react';
 
 const NewReview = ({ product_id, product_name}) => {
 
   const [open, setOpen] = useState(false);
-  const [rating, setRating] = useState(null);
   const [hover, setHover] = useState(-1);
+  const [rating, setRating] = useState(null);
+  const [recommend, setRecommend] = useState(false);
+
 
   const labels = {
     1: 'Poor',
@@ -28,8 +30,13 @@ const NewReview = ({ product_id, product_name}) => {
     setOpen(false);
   };
 
+  const handleRecommend = (e) => {
+    setRecommend(e.target.value)
+  }
+
   const handleReview = () => {
     console.log(rating);
+    console.log(recommend);
     handleClose();
   }
 ////////////////////////////////////////////////////////
@@ -78,8 +85,34 @@ const NewReview = ({ product_id, product_name}) => {
               )}
             </Box>
           <DialogTitle>Do you recommend this product? *</DialogTitle>
+          <Box
+              display="flex"
+              alignItems="center"
+              justify="center"
+              justifyContent="center"
+            >
+              <FormControl>
+                <RadioGroup
+                  row
+                >
+                  <FormControlLabel
+                    value={true}
+                    control={<Radio />}
+                    label="Yes"
+                    onChange={handleRecommend}
+                  />
+                  <FormControlLabel
+                    value={false}
+                    control={<Radio />}
+                    label="No"
+                    onChange={handleRecommend}
+                  />
+                </RadioGroup>
+              </FormControl>
+            </Box>
           <DialogTitle>Characteristics *</DialogTitle>
           <DialogTitle>Review summary</DialogTitle>
+
           <DialogTitle>Review body *</DialogTitle>
           <DialogTitle>Upload your photos</DialogTitle>
           <DialogTitle>What is your nickname? *</DialogTitle>
