@@ -89,12 +89,23 @@
 }
 
 .images-carousel-box {
-  height: 120px;
+  height: 100px;
   position: relative;
   bottom: 40%;
-  left: 10%;
-  width: 90%;
+  left: 0%;
+  width: 100%;
+  background-color: hsla(0, 5%, 85%, 0.699);
+
 }
 .images-carousel {
   height: 100%;
+  margin-left: 10px;
+
+}
+
+.tiny-image {
+  border-radius: 3px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgb(59, 59, 59);
 }
