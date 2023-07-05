@@ -3,13 +3,16 @@ import AddIcon from '@mui/icons-material/Add';
 import {useEffect, useState} from 'react';
 
 const NewReview = ({ product_id, product_name}) => {
-
+  const [error, setError] = useState(false);
   const [open, setOpen] = useState(false);
   const [hover, setHover] = useState(-1);
   const [rating, setRating] = useState(null);
-  const [recommend, setRecommend] = useState(false);
+  const [recommend, setRecommend] = useState(undefined);
   const [summary, setSummary] = useState('');
   const [body, setBody] = useState('');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+
 
   const labels = {
     1: 'Poor',
@@ -43,11 +46,23 @@ const NewReview = ({ product_id, product_name}) => {
     setBody(e.target.value);
   };
 
-  const handleReview = () => {
+  const handleName = (e) => {
+    setName(e.target.value);
+  };
+
+  const handleEmail = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handleReview = (e) => {
+    e.preventDefault()
+    if (body.length < 50) {setError(true); return}
+    setError(false);
     console.log(rating);
     console.log(recommend);
     console.log(summary);
     console.log(body);
+    console.log(name);
     handleClose();
   };
 ////////////////////////////////////////////////////////
@@ -105,7 +120,7 @@ const NewReview = ({ product_id, product_name}) => {
               justify="center"
               justifyContent="center"
             >
-              <FormControl>
+              <FormControl error={error}>
                 <RadioGroup
                   row
                 >
@@ -138,7 +153,9 @@ const NewReview = ({ product_id, product_name}) => {
             />
           <DialogTitle>Review body *</DialogTitle>
             <TextField
-              required={true}
+              label='Required'
+              required
+              error={error}
               margin="dense"
               type="text"
               fullWidth
@@ -159,11 +176,37 @@ const NewReview = ({ product_id, product_name}) => {
             </span>
           <DialogTitle>Upload your photos</DialogTitle>
           <DialogTitle>What is your nickname? *</DialogTitle>
+            <TextField
+                label='Required'
+                required
+                margin="dense"
+                type="text"
+                fullWidth
+                variant="filled"
+                placeholder='Example: jackson11!'
+                inputProps={{ maxLength: 60 }}
+                value={name}
+                onChange={handleName}
+              />
+            <span>For privacy reasons, do not use your full name or email address</span>
           <DialogTitle>Your email *</DialogTitle>
+          <TextField
+                label='Required'
+                required
+                margin="dense"
+                type="text"
+                fullWidth
+                variant="filled"
+                placeholder='Example: jackson11@email.com'
+                inputProps={{ maxLength: 60 }}
+                value={email}
+                onChange={handleEmail}
+              />
+            <span>For authentication reasons, you will not be emailed</span>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleReview}>Submit Review</Button>
+          <Button  onClick={handleReview}>Submit Review</Button>
         </DialogActions>
       </Dialog>
     </Box>
