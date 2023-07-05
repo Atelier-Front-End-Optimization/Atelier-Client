@@ -1,10 +1,11 @@
-import { Button, Stack, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField } from '@mui/material';
+import { Button, Box, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField, Rating } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import {useEffect, useState} from 'react';
 
 const NewReview = ({ product_id, product_name}) => {
 
   const [open, setOpen] = useState(false);
+  const [rating, setRating] = useState(null);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -13,6 +14,11 @@ const NewReview = ({ product_id, product_name}) => {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const handleReview = () => {
+    console.log(rating);
+    handleClose();
+  }
 ////////////////////////////////////////////////////////
   return (
     <div>
@@ -35,15 +41,33 @@ const NewReview = ({ product_id, product_name}) => {
       >
         <DialogTitle>Write Your Review...</DialogTitle>
         <DialogContent>
-          <DialogTitle>...about {product_name}</DialogTitle>
-          <DialogContentText>
-            To subscribe to this website, please enter your email address here. We
-            will send updates occasionally.
-          </DialogContentText>
+          <DialogContentText>...about {product_name}</DialogContentText>
+          <DialogTitle>Overall rating *</DialogTitle>
+            <Box
+              display="flex"
+              alignItems="center"
+              justify="center"
+              justifyContent="center"
+            >
+              <Rating
+                name="no-value"
+                value={rating}
+                onChange={(event, newRating) => {
+                  setRating(newRating);
+                }}
+              />
+            </Box>
+          <DialogTitle>Do you recommend this product? *</DialogTitle>
+          <DialogTitle>Characteristics *</DialogTitle>
+          <DialogTitle>Review summary</DialogTitle>
+          <DialogTitle>Review body *</DialogTitle>
+          <DialogTitle>Upload your photos</DialogTitle>
+          <DialogTitle>What is your nickname? *</DialogTitle>
+          <DialogTitle>Your email *</DialogTitle>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Subscribe</Button>
+          <Button onClick={handleReview}>Submit Review</Button>
         </DialogActions>
       </Dialog>
     </div>
