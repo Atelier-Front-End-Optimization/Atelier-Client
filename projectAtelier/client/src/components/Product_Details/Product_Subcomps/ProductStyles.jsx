@@ -6,20 +6,20 @@ import Avatar from '@mui/material/Avatar';
 import ProductDetails from '../ProductDetails.jsx';
 import ProductModal from './ProductModal';
 
-const ProductStyles = ({ styles, photos, setStylePhoto, setStyleName }) => {
+const ProductStyles = ({ styles, photos, setStylePhoto, setStyleName, setActiveIndex }) => {
   let mid = Math.floor(photos.results.length / 2);
 
   let firstHalf = photos.results.slice(0, mid);
   let secondHalf = photos.results.slice(mid);
 
   const photoIconClickHandler = (event) => {
-    setStylePhoto(event.target.src);
+    // setStylePhoto(event.target.src);
   };
 
   return (
     <Box>
       <div>
-        {firstHalf.map((photo) => {
+        {firstHalf.map((photo, index) => {
           return (
             <Button
               key={Math.random()}
@@ -27,6 +27,7 @@ const ProductStyles = ({ styles, photos, setStylePhoto, setStyleName }) => {
               onClick={(event) => {
                 photoIconClickHandler(event);
                 setStyleName(photo.name);
+                setActiveIndex(index)
               }}
             >
               <Avatar
@@ -40,13 +41,14 @@ const ProductStyles = ({ styles, photos, setStylePhoto, setStyleName }) => {
         })}
       </div>
       <div>
-        {secondHalf.map((photo) => (
+        {secondHalf.map((photo, index) => (
           <Button
             key={Math.random()}
             className="circle-button"
             onClick={(event) => {
               photoIconClickHandler(event);
               setStyleName(photo.name);
+              setActiveIndex(index + mid)
             }}
           >
             <Avatar

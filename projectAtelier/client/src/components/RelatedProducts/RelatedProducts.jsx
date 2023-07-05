@@ -4,12 +4,10 @@ import RelatedList from './RelatedSubs/RelatedList.jsx';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import axiosConfig from '../../Middleware/axiosConfig.js';
-import averageRating from '../../Middleware/averageRating.js';
 
 function RelatedProducts({
   currentProduct,
   setProduct,
-  setRating,
   setStylePhoto,
 }) {
   const [relatedIDs, setRelatedIDs] = useState([]);
@@ -37,21 +35,9 @@ function RelatedProducts({
   //get all relevant info about each related id
   useEffect(() => {
     relatedIDs.forEach((product) => {
-      let options = axiosConfig;
-      options.params = {};
-      options.params.product_id = product;
-      axios
-        .get(options.url + '/reviews/meta', options)
-        .then((response) => {
-          let average = averageRating(response.data.ratings);
-          setRating(Number(average));
-          return Number(average);
-        })
-        .then((average) => {
           axios
             .get(axiosConfig.url + '/products/' + product, axiosConfig)
             .then((res) => {
-              res.data.average = average;
               setRelatedProducts((relatedProducts) => [
                 ...relatedProducts,
                 res.data,
@@ -61,7 +47,6 @@ function RelatedProducts({
               console.log('GET RELATED PRODUCTS ERROR ', err);
             });
         });
-    });
   }, [relatedIDs]);
 
   function relatedClick(id) {

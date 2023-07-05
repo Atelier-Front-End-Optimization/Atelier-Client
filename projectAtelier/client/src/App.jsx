@@ -14,12 +14,16 @@ function App() {
   const [stylePhoto, setStylePhoto] = useState(
     'https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80'
   );
-  const [rating, setRating] = useState(0);
+
+  // const [rating, setRating] = useState(0);
+
   useEffect(() => {
     axios
       .get(axiosConfig.url + '/products/37311', axiosConfig)
       .then((response) => {
         setProduct(response.data);
+      }).catch((err) => {
+        console.log('ERROR IN APP INIT AXIOS GET ', err);
       });
   }, []);
 
@@ -38,7 +42,9 @@ function App() {
           setProduct={setProduct}
           stylePhoto={stylePhoto}
           setStylePhoto={setStylePhoto}
-          rating={rating}
+          // rating={rating}
+          product={product}
+
         />
       </div>
       <div>
@@ -46,7 +52,6 @@ function App() {
         <RelatedProducts
           currentProduct={product}
           setProduct={setProduct}
-          setRating={setRating}
           setStylePhoto={setStylePhoto}
         />
       </div>

@@ -1,7 +1,5 @@
 //import Card from './Card.jsx';
 import { Box } from '@mui/material/';
-import StarBorderIcon from '@mui/icons-material/StarBorder';
-import ComparisonModal from './ComparisonModal';
 import Card from '@mui/material/Card';
 import Rating from '@mui/material/Rating';
 import { useEffect, useState } from 'react';
@@ -9,7 +7,8 @@ import axiosConfig from '../../../Middleware/axiosConfig.js';
 import axios from 'axios';
 import convertPrice from '../../../Middleware/convertPrice.js';
 import ActionButton from './ActionButton.jsx';
-import averageRating from '../../../Middleware/averageRating.js';
+import getAvgRating from '../../../Middleware/getAvgRating.js';
+import ImagesCarousel from './ImagesCarousel.jsx';
 
 function RelatedCard({
   product,
@@ -20,7 +19,9 @@ function RelatedCard({
   products,
 }) {
   const [photo, setPhoto] = useState('');
+  const [photos, setPhotos] = useState([]);
   const [rating, setRating] = useState(0);
+  const [isHovering, setIsHovering] = useState(false);
 
   //gets and sets default photo for each card
   useEffect(() => {
@@ -28,22 +29,30 @@ function RelatedCard({
       .get(axiosConfig.url + '/products/' + product.id + '/styles', axiosConfig)
       .then((response) => {
         setPhoto(response.data.results[0].photos[0].thumbnail_url);
+        for (let photo of response.data.results[0].photos) {
+          setPhotos((photos) => [...photos, photo.thumbnail_url]);
+        }
         for (let style of response.data.results) {
           if (style['default?']) {
             setPhoto(style.photos[0].thumbnail_url);
+            setPhotos([]);
+            for (let photo of style.photos) {
+              setPhotos((photos) => [...photos, photo.thumbnail_url]);
+            }
           }
         }
       })
       .catch((err) => {
         console.log('AXIOS GET ERROR GETTING PHOTOS ', err);
       });
-    let options = axiosConfig;
-    options.params = {};
-    options.params.product_id = product.id;
-    axios.get(options.url + '/reviews/meta', options).then((response) => {
-      let average = averageRating(response.data.ratings);
-      setRating(Number(average));
-    });
+
+      //gets and sets average rating
+    console.log(product.id)
+      getAvgRating(product.id).then((average) => {
+      setRating(average);
+    }).catch((err) => {
+      console.log('ERROR IN SETTING AVERAGE RATING ', err);
+    })
   }, []);
 
   //change current product on click
@@ -54,10 +63,19 @@ function RelatedCard({
     }
     handleClick(product.id);
   }
-  //open comparison modal
 
   //format as currency
   let price = convertPrice(product.default_price);
+
+  //open close carousel on hover
+  function handleHover() {
+      setIsHovering(!isHovering);
+  }
+
+  //change thumbnail on click
+  function imagesClick(photo) {
+    setPhoto(photo);
+  }
 
   return (
     <Card
@@ -70,7 +88,7 @@ function RelatedCard({
         flexShrink: 0,
       }}
     >
-      <Box height="300px" width="100%" position="relative">
+      <Box onMouseEnter={handleHover} onMouseLeave={handleHover} height="300px" width="100%" position="relative">
         <ActionButton
           product={product}
           currentProduct={currentProduct}
@@ -79,6 +97,7 @@ function RelatedCard({
           setProduct={setProduct}
         />
         <img height="100%" width="100%" src={photo}></img>
+        {isHovering && <ImagesCarousel photos={photos} imagesClick={imagesClick}/>}
       </Box>
       <Box p={1}>
         <div>{product.category}</div>

@@ -1,5 +1,4 @@
 import Modal from '@mui/material/Modal';
-import React from 'react';
 import Comparison from './Comparison.jsx';
 import '../../../index.css';
 
