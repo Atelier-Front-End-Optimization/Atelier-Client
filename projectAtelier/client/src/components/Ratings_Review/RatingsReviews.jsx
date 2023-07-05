@@ -11,7 +11,7 @@ import axiosConfig from '../../Middleware/axiosConfig.js';
 import axios from 'axios';
 
 
-const RatingsReviews = ({ product_id }) => {
+const RatingsReviews = ({ product_id, product_name }) => {
 
   const [reviews, setReviews] = useState([]);
   const [allReviews, setAllReviews] = useState([]);
@@ -267,15 +267,18 @@ const RatingsReviews = ({ product_id }) => {
                 marginRight: '30px',
                 marginBottom: '50px'
               }}
-              variant='contained'
-              size='small'
+              variant='outlined'
+              size='large'
               onClick={getMoreReviews}
             >
               More Reviews
             </Button>
           </div>
         : ''}
-        <NewReview/>
+        <NewReview
+          product_id={product_id}
+          product_name={product_name}
+        />
       </Stack>
 
 
