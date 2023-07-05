@@ -9,7 +9,6 @@ const ReviewList = ({ reviews, getMoreReviews, canRenderMoreRevues, upvoteHelpfu
     <div>
         <Box
           sx={{
-            borderBottom: 'solid',
             marginTop: 2,
             marginBottom: 2,
             width: 'auto',
@@ -28,17 +27,6 @@ const ReviewList = ({ reviews, getMoreReviews, canRenderMoreRevues, upvoteHelpfu
               />
             )
           })}
-      { canRenderMoreRevues ?
-        <div>
-          <Button
-            variant='contained'
-            size='small'
-            onClick={getMoreReviews}
-          >
-            More Reviews
-          </Button>
-        </div>
-      : ''}
       </Box>
     </div>
   );

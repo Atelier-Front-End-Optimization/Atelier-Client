@@ -5,7 +5,7 @@ import ReviewBreakdown from './Ratings_Review_Subcomponents/ReviewBreakdown.jsx'
 import SortOptions from './Ratings_Review_Subcomponents/SortOptions.jsx';
 import ReviewList from './Ratings_Review_Subcomponents/ReviewList.jsx';
 import filterReviews from '../../Middleware/filterReviews.js';
-import { Button } from '@mui/material';
+import { Button, Stack } from '@mui/material';
 import {useEffect, useState} from 'react';
 import axiosConfig from '../../Middleware/axiosConfig.js';
 import axios from 'axios';
@@ -256,7 +256,29 @@ const RatingsReviews = ({ product_id }) => {
         upvoteHelpful={upvoteHelpful}
         reportReview={reportReview}
       />
-      <NewReview/>
+      <Stack
+        direction='row'
+      >
+        { canRenderMoreRevues ?
+          <div>
+            <Button
+              style={{
+                marginLeft: '30px',
+                marginRight: '30px',
+                marginBottom: '50px'
+              }}
+              variant='contained'
+              size='small'
+              onClick={getMoreReviews}
+            >
+              More Reviews
+            </Button>
+          </div>
+        : ''}
+        <NewReview/>
+      </Stack>
+
+
     </section>
   );
 };
