@@ -70,6 +70,7 @@ const ProductModal = ({ stylePhoto, productStylePhotos, activeIndex, setActiveIn
           />
         </Box>
       </Modal>
+      <div>
       <Box style={{
             position: 'absolute',
             top: '30%',
@@ -82,6 +83,7 @@ const ProductModal = ({ stylePhoto, productStylePhotos, activeIndex, setActiveIn
       }}>
       <StyleScroller productStylePhotos={productStylePhotos} />
       </Box>
+      </div>
     </div>
   );
 };

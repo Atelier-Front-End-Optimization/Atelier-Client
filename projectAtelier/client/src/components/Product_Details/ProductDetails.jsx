@@ -9,6 +9,7 @@ import ProductModal from './Product_Subcomps/ProductModal.jsx';
 import QuantitySelect from './Product_Subcomps/QuantitySelect';
 import SizeSelect from './Product_Subcomps/SizeSelect.jsx';
 import StyleScroller from './Product_Subcomps/StyleScroller.jsx';
+import getAvgRating from '../../Middleware/getAvgRating.js'
 import Favorite from './Product_Subcomps/Favorite';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
@@ -23,7 +24,6 @@ const ProductDetails = ({
   name,
   stylePhoto,
   setStylePhoto,
-  rating,
   product
 }) => {
   const [productFeatures, setProductFeatures] = useState({});
@@ -31,6 +31,7 @@ const ProductDetails = ({
   const [productStylePhotos, setProductStylePhotos] = useState([]);
   const [styleName, setStyleName] = useState('');
   const [activeIndex, setActiveIndex] = useState(0);
+  const [rating, setRating] = useState(0);
 
   useEffect(() => {
     // const fetchProductFeatures = (productId) => {
@@ -75,7 +76,11 @@ const ProductDetails = ({
     if (productId) {
       // fetchProductFeatures(productId);
       fetchProductStyles(productId);
-      setProductFeatures(product.features)
+      setProductFeatures(product.features);
+      getAvgRating(productId)
+      .then((result) => {
+        setRating(result)
+      });
     }
   }, [product]);
 
@@ -83,7 +88,7 @@ const ProductDetails = ({
     // setStyleName(productStyles[0].name);
     // console.log(productStyles, 'STYLES');
     // console.log(productFeatures, 'FEATURES');
-    console.log(productStylePhotos, 'PHOTOS');
+    // console.log(productStylePhotos, 'PHOTOS');
     return (
       <Box
         sx={{

@@ -25,7 +25,7 @@ const StyleScroller = ({ productStylePhotos }) => {
     </Button>
     <ImageList
       id="imageListContainer"
-      sx={{ width: 100, height: 500, overflow: 'auto', scrollBehavior: 'smooth'
+      sx={{ width: 100, height: 500, overflow: 'auto', scrollBehavior: 'smooth', scrollbarWidth: 'none',
     }}
       cols={1}
       rowHeight={164}
