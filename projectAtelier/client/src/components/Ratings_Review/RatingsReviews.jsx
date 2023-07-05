@@ -5,6 +5,7 @@ import ReviewBreakdown from './Ratings_Review_Subcomponents/ReviewBreakdown.jsx'
 import SortOptions from './Ratings_Review_Subcomponents/SortOptions.jsx';
 import ReviewList from './Ratings_Review_Subcomponents/ReviewList.jsx';
 import filterReviews from '../../Middleware/filterReviews.js';
+import { Button } from '@mui/material';
 import {useEffect, useState} from 'react';
 import axiosConfig from '../../Middleware/axiosConfig.js';
 import axios from 'axios';
@@ -176,6 +177,65 @@ const RatingsReviews = ({ product_id }) => {
   return (
     <section>
       <h4>RATINGS & REVIEWS</h4>
+      {
+        Object.values(filters).includes(true) ?
+          <div>
+            <h4
+              style={{
+                marginLeft: '10px',
+                marginBottom: '10px'
+              }}
+            >
+              Applied filters: {
+              filters.fiveStars ?
+                '5 star '
+              : ''
+              }
+              {
+              filters.fourStars ?
+                '4 star '
+              : ''
+              }
+              {
+              filters.threeStars ?
+                '3 star '
+              : ''
+              }
+              {
+              filters.twoStars ?
+                '2 star '
+              : ''
+              }
+              {
+              filters.oneStars ?
+                '1 star '
+              : ''
+              } reviews
+            </h4>
+            <Button
+              style={{
+                marginLeft: '20px',
+                marginBottom: '25px'
+              }}
+              size='small'
+              variant='text'
+              onClick={
+                () => {
+                setFilters({
+                fiveStars: false,
+                fourStars: false,
+                threeStars: false,
+                twoStars: false,
+                oneStars: false
+                })
+              }
+            }
+            >
+              Remove all filters
+            </Button>
+          </div>
+        : ''
+      }
       <ReviewBreakdown
         allReviews={allReviews}
         metaData={metaData}
