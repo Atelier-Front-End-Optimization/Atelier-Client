@@ -4,6 +4,7 @@ import ProductBreakdown from './Ratings_Review_Subcomponents/ProductBreakdown.js
 import ReviewBreakdown from './Ratings_Review_Subcomponents/ReviewBreakdown.jsx';
 import SortOptions from './Ratings_Review_Subcomponents/SortOptions.jsx';
 import ReviewList from './Ratings_Review_Subcomponents/ReviewList.jsx';
+import filterReviews from '../../Middleware/filterReviews.js';
 import {useEffect, useState} from 'react';
 import axiosConfig from '../../Middleware/axiosConfig.js';
 import axios from 'axios';
@@ -51,10 +52,9 @@ const RatingsReviews = ({ product_id }) => {
         config
       );
       const {data} = reviewRes;
-      console.log('DATA:', data)
       ///////////////////////////////////////
-      // const filteredResults = /*filtering func*/
-
+      const filteredReviews = filterReviews(data.results, filters);
+      console.log('RETURNED FILTER:', filteredReviews)
       ///////////////////////////////////////
       setNumOfReviews(data.results.length);
       setAllReviews(data.results)
@@ -88,6 +88,12 @@ const RatingsReviews = ({ product_id }) => {
     getReviews(product_id, 2);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sorting]);
+
+  useEffect(() => {
+    if (!product_id) return;
+    getReviews(product_id, 2);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filters]);
 
   const getMetaData = async (product_id) => {
     const config ={
