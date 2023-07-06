@@ -76,12 +76,15 @@ const NewReview = ({ product_id, product_name, relavantCharacteristics}) => {
     e.preventDefault()
     if (body.length < 50) {setError(true); return}
     setError(false);
-    // console.log(rating);
-    // console.log(recommend);
-    // console.log(summary);
-    // console.log(body);
-    // console.log(name);
-    //console.log(characteristics);
+    console.log(rating);
+    console.log(recommend);
+    console.log(characteristics);
+    console.log(summary);
+    console.log(body);
+    console.log(photos)
+    console.log(name);
+    console.log(email)
+
     handleClose();
   };
 ////////////////////////////////////////////////////////
