@@ -8,7 +8,6 @@ import axiosConfig from '../../Middleware/axiosConfig.js';
 function RelatedProducts({
   currentProduct,
   setProduct,
-  setStylePhoto,
 }) {
   const [relatedIDs, setRelatedIDs] = useState([]);
   const [relatedProducts, setRelatedProducts] = useState([]);
@@ -80,7 +79,6 @@ function RelatedProducts({
         products={uniqueProds}
         list={'related'}
         relatedClick={relatedClick}
-        setStylePhoto={setStylePhoto}
       />
       <br></br>
       <RelatedList

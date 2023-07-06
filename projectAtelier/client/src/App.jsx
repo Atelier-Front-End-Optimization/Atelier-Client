@@ -47,7 +47,6 @@ function App() {
         <RelatedProducts
           currentProduct={product}
           setProduct={setProduct}
-          setStylePhoto={setStylePhoto}
         />
       </div>
       <div>
