@@ -15,7 +15,6 @@ const NewReview = ({ product_id, product_name}) => {
   const [email, setEmail] = useState('');
   const [photos, setPhotos] = useState([]);
 
-// console.log(photos)
   const labels = {
     1: 'Poor',
     2: 'Fair',
@@ -57,9 +56,7 @@ const NewReview = ({ product_id, product_name}) => {
   };
 
   const handleFiles = (file) => {
-    console.log(file)
     photos.forEach(photo => file.base64.push(photo))
-    console.log(file.base64)
     setPhotos(file.base64)
   }
 
@@ -67,11 +64,11 @@ const NewReview = ({ product_id, product_name}) => {
     e.preventDefault()
     if (body.length < 50) {setError(true); return}
     setError(false);
-    console.log(rating);
-    console.log(recommend);
-    console.log(summary);
-    console.log(body);
-    console.log(name);
+    // console.log(rating);
+    // console.log(recommend);
+    // console.log(summary);
+    // console.log(body);
+    // console.log(name);
     handleClose();
   };
 ////////////////////////////////////////////////////////
