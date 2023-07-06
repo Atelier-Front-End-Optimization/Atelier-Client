@@ -13,4 +13,8 @@ export default defineConfig({
     },
     environment: 'jsdom',
   },
+  server: {
+    host: true,
+    port: 80,
+  }
 })
