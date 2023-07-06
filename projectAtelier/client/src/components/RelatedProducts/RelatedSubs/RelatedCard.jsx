@@ -9,6 +9,7 @@ import convertPrice from '../../../Middleware/convertPrice.js';
 import ActionButton from './ActionButton.jsx';
 import getAvgRating from '../../../Middleware/getAvgRating.js';
 import ImagesCarousel from './ImagesCarousel.jsx';
+import defaultImage from '../../../Assets/default.jpg';
 
 function RelatedCard({
   product,
@@ -34,10 +35,16 @@ function RelatedCard({
         }
         for (let style of response.data.results) {
           if (style['default?']) {
-            setPhoto(style.photos[0].thumbnail_url);
+            if (style.photos[0].thumbnail_url) {
+              setPhoto(style.photos[0].thumbnail_url);
+            } else {
+              setPhoto(defaultImage);
+            }
             setPhotos([]);
             for (let photo of style.photos) {
-              setPhotos((photos) => [...photos, photo.thumbnail_url]);
+              if (photo.thumbnail_url) {
+                setPhotos((photos) => [...photos, photo.thumbnail_url]);
+              }
             }
           }
         }
@@ -100,7 +107,7 @@ function RelatedCard({
           setIsHovering={setIsHovering}
         />
         <img height="100%" width="100%" src={photo}></img>
-        {isHovering && <ImagesCarousel onMouseDown={(e) => {
+        {isHovering && photos.length > 0 && <ImagesCarousel onMouseDown={(e) => {
       e.stopPropagation();
       e.preventDefault();
     }}
