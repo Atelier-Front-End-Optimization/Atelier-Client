@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
@@ -7,13 +8,10 @@ import MenuItem from '@mui/material/MenuItem';
 const QuantitySelect = () => {
   return (
     <FormControl sx={{ m: 1, minWidth: 150, minHeight: 250 }}>
-      <InputLabel id="demo-simple-select-helper-label">1</InputLabel>
+      <InputLabel id="quantitySelect">1</InputLabel>
       <Select
         labelId="demo-simple-select-helper-label"
-        id="demo-simple-select-helper"
-        // value={'SELECT SIZE'}
-        // label="SELECT SIZE"
-        // onChange={handleChange}
+        id="quantitySelect"
       >
         <MenuItem></MenuItem>
         <MenuItem value={1}>1</MenuItem>

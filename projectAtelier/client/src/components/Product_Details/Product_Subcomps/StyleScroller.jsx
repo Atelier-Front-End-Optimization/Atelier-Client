@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import {useState} from 'react';
 import { ImageList, ImageListItem } from '@mui/material';
@@ -25,7 +27,7 @@ const StyleScroller = ({ productStylePhotos, setActiveIndex }) => {
 
   return (
     <div>
-    <Button onClick={() => handleScroll('up')} style={{ position: 'absolute', top: '0%', left: '50%', transform: 'translate(-50%, -50%)' }}>
+    <Button onClick={() => handleScroll('up')} style={{ position: 'absolute', top: '0%', left: '50%', transform: 'translate(-50%, -50%)' }} id='scrollUp'>
       <ExpandLessIcon />
     </Button>
     <ImageList
@@ -51,7 +53,7 @@ const StyleScroller = ({ productStylePhotos, setActiveIndex }) => {
     </ImageList>
     <Button
       onClick={() => handleScroll('down')}
-      style={{ position: 'absolute', top: '100%', left: '50%', transform: 'translate(-50%, -50%)' }}
+      style={{ position: 'absolute', top: '100%', left: '50%', transform: 'translate(-50%, -50%)' }} id='scrollDown'
     >
       <ExpandMoreIcon />
     </Button>

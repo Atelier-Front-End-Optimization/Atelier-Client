@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
 import { useState } from 'react';
 import { Box, Modal, IconButton } from '@mui/material';
 import CropFreeIcon from '@mui/icons-material/CropFree';
@@ -53,7 +55,7 @@ const ProductModal = ({ stylePhoto, productStylePhotos, activeIndex, setActiveIn
     <CropFreeIcon />
   </IconButton>
 
-  <Modal open={open} onClose={handleClose}>
+  <Modal open={open} onClose={handleClose} id="mainModal">
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
       <img
         src={productStylePhotos.results[activeIndex].photos[0].url}
