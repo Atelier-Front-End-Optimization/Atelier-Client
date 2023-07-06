@@ -8,6 +8,7 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowCircleLeftOutlinedIcon from '@mui/icons-material/ArrowCircleLeftOutlined';
 import ArrowCircleRightOutlinedIcon from '@mui/icons-material/ArrowCircleRightOutlined';
 import StyleScroller from './StyleScroller.jsx'
+import defaultImage from '../../../Assets/default.jpg'
 
 const ProductModal = ({ stylePhoto, productStylePhotos, activeIndex, setActiveIndex }) => {
   const [open, setOpen] = useState(false);
@@ -37,11 +38,17 @@ const ProductModal = ({ stylePhoto, productStylePhotos, activeIndex, setActiveIn
     <ArrowCircleRightOutlinedIcon />
   </IconButton>
 
+  {productStylePhotos.results[activeIndex].photos[0].url !== null ? (
   <img
     src={productStylePhotos.results[activeIndex].photos[0].url}
     alt={`Slide ${activeIndex + 1}`}
     style={{ height: '600px', width: '800px' }}
-  />
+  />)
+   : (<img
+   src={defaultImage}
+    alt={`Slide ${activeIndex + 1}`}
+    style={{ height: '600px', width: '800px' }}
+    />)}
 
   <IconButton
     onClick={handleOpen}

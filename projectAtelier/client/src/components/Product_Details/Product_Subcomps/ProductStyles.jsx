@@ -14,6 +14,18 @@ const ProductStyles = ({ styles, photos, setStylePhoto, setStyleName, setActiveI
   let firstHalf = photos.results.slice(0, mid);
   let secondHalf = photos.results.slice(mid);
 
+  for (let i = 0; i < firstHalf.length; i++) {
+    if(firstHalf[i].photos[0].url === null) {
+      firstHalf[i].photos[0].url = 'https://static.vecteezy.com/system/resources/previews/005/337/799/original/icon-image-not-found-free-vector.jpg'
+    }
+  }
+
+  for (let j = 0; j < firstHalf.length; j++) {
+    if(secondHalf[j].photos[0].url === null) {
+      secondHalf[j].photos[0].url = 'https://static.vecteezy.com/system/resources/previews/005/337/799/original/icon-image-not-found-free-vector.jpg'
+    }
+  }
+
   return (
     <Box id="styles">
       <div>
@@ -23,7 +35,6 @@ const ProductStyles = ({ styles, photos, setStylePhoto, setStyleName, setActiveI
               key={Math.random()}
               className="circle-button"
               onClick={(event) => {
-                photoIconClickHandler(event);
                 setStyleName(photo.name);
                 setActiveIndex(index)
               }}
@@ -44,7 +55,6 @@ const ProductStyles = ({ styles, photos, setStylePhoto, setStyleName, setActiveI
             key={Math.random()}
             className="circle-button"
             onClick={(event) => {
-              photoIconClickHandler(event);
               setStyleName(photo.name);
               setActiveIndex(index + mid)
             }}

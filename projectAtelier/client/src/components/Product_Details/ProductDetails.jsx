@@ -71,7 +71,7 @@ const ProductDetails = ({
     // setStyleName(productStyles[0].name);
     // console.log(productStyles, 'STYLES');
     // console.log(productFeatures, 'FEATURES');
-    // console.log(productStylePhotos, 'PHOTOS');
+    console.log(productStylePhotos, 'PHOTOS');
     return (
       <Box
         sx={{
