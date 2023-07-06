@@ -1,5 +1,6 @@
-import { Button, Box, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField, Rating, Radio, RadioGroup, FormControlLabel, FormControl, FormLabel } from '@mui/material';
+import { Button, Box, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField, Rating, Radio, RadioGroup, FormControlLabel, FormControl, FormLabel, Avatar, Stack } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
+import ReactFileReader from "react-file-reader";
 import {useEffect, useState} from 'react';
 
 const NewReview = ({ product_id, product_name}) => {
@@ -12,8 +13,9 @@ const NewReview = ({ product_id, product_name}) => {
   const [body, setBody] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [photos, setPhotos] = useState([]);
 
-
+// console.log(photos)
   const labels = {
     1: 'Poor',
     2: 'Fair',
@@ -53,6 +55,13 @@ const NewReview = ({ product_id, product_name}) => {
   const handleEmail = (e) => {
     setEmail(e.target.value);
   };
+
+  const handleFiles = (file) => {
+    console.log(file)
+    photos.forEach(photo => file.base64.push(photo))
+    console.log(file.base64)
+    setPhotos(file.base64)
+  }
 
   const handleReview = (e) => {
     e.preventDefault()
@@ -175,6 +184,62 @@ const NewReview = ({ product_id, product_name}) => {
               }
             </span>
           <DialogTitle>Upload your photos</DialogTitle>
+              <Box
+                style={{marginBottom: '20px',}}
+                display="flex"
+                alignItems="center"
+                justify="center"
+                justifyContent="center"
+              >
+                {
+                  photos.length > 0 ?
+                  <Stack direction='row' spacing={1}>
+                    {photos.map((photo, index) => {
+
+                      return (
+                        index < 5 ?
+                          <Avatar
+                            key={index}
+                            alt='i'
+                            src={photo}
+                            variant='square'
+                          />
+                        : ''
+                      )
+                      })}
+                  </Stack>
+                  : ''
+                }
+              </Box>
+
+              <Box
+                display="flex"
+                alignItems="center"
+                justify="center"
+                justifyContent="center"
+               >
+                {
+                  photos.length < 5 ?
+                    <ReactFileReader
+                      fileTypes={[".png", ".jpg"]}
+                      base64={true}
+                      multipleFiles={true}
+                      handleFiles={handleFiles}
+                    >
+                      {
+                        <Button
+                        size='small'
+                        variant='outlined'
+                        >
+                          Add photos
+                        </Button>
+                      }
+                    </ReactFileReader>
+                  : ''
+                }
+              </Box>
+
+
           <DialogTitle>What is your nickname? *</DialogTitle>
             <TextField
                 label='Required'
