@@ -3,10 +3,12 @@ import { render, screen, cleanup } from '@testing-library/react';
 import RelatedCard from './client/src/components/RelatedProducts/RelatedSubs/RelatedCard.jsx';
 import RelatedList from './client/src/components/RelatedProducts/RelatedSubs/RelatedList.jsx';
 import Comparison from './client/src/components/RelatedProducts/RelatedSubs/Comparison.jsx';
+import ImagesCarousel from './client/src/components/RelatedProducts/RelatedSubs/ImagesCarousel.jsx';
 import RelatedProducts from './client/src/components/RelatedProducts/RelatedProducts.jsx';
 import { describe, expect, it, afterEach, vi } from 'vitest';
 import dummyProducts from './dummyProductList.json';
 import dummyFeatures from './dummyFeatures.json';
+import dummyPhotos from './dummyPhotos.json';
 import userEvent from '@testing-library/user-event';
 
 
@@ -56,6 +58,15 @@ describe('Related Products', () => {
 
     render(<Comparison product={dummyFeatures[1]} currentProduct={dummyFeatures[0]}/>);
     expect(screen.getByText('Brass')).not.toBe(null);
+    screen.debug();
+  });
+  it('Images Carousel should display list of related images', async () => {
+    let photos = [];
+    for (let photo of dummyPhotos.results[0].photos) {
+      photos.push(photo.thumbail_url);
+    }
+    render(<ImagesCarousel photos={photos}/>);
+    expect(document.querySelector('.images-carousel')).to.exist;
     screen.debug();
   });
 });
