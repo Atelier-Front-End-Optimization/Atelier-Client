@@ -295,6 +295,7 @@ const RatingsReviews = ({ product_id, product_name }) => {
             <NewReview
               product_id={product_id}
               product_name={product_name}
+              relavantCharacteristics={metaData.characteristics}
             />
           </Stack>
         </Box>

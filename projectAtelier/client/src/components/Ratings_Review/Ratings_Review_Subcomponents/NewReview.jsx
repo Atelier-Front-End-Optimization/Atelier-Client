@@ -1,9 +1,11 @@
+/* eslint-disable react/prop-types */
 import { Button, Box, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField, Rating, Radio, RadioGroup, FormControlLabel, FormControl, FormLabel, Avatar, Stack } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import ReactFileReader from "react-file-reader";
 import {useEffect, useState} from 'react';
 
-const NewReview = ({ product_id, product_name}) => {
+const NewReview = ({ product_id, product_name, relavantCharacteristics}) => {
+
   const [error, setError] = useState(false);
   const [open, setOpen] = useState(false);
   const [hover, setHover] = useState(-1);
@@ -14,6 +16,10 @@ const NewReview = ({ product_id, product_name}) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [photos, setPhotos] = useState([]);
+  const [characteristics, setCharacteristics] = useState({});
+
+  if (relavantCharacteristics) relavantCharacteristics = Object.keys(relavantCharacteristics)
+  .map(el => el.toLowerCase())
 
   const labels = {
     1: 'Poor',
@@ -60,6 +66,12 @@ const NewReview = ({ product_id, product_name}) => {
     setPhotos(file.base64)
   }
 
+  const handleCharacteristics = (e) => {
+    const name = e.target.name
+    const value = e.target.value
+    setCharacteristics(values => ({...values, [name]: value}))
+  }
+
   const handleReview = (e) => {
     e.preventDefault()
     if (body.length < 50) {setError(true); return}
@@ -69,6 +81,7 @@ const NewReview = ({ product_id, product_name}) => {
     // console.log(summary);
     // console.log(body);
     // console.log(name);
+    //console.log(characteristics);
     handleClose();
   };
 ////////////////////////////////////////////////////////
@@ -145,311 +158,362 @@ const NewReview = ({ product_id, product_name}) => {
                 </RadioGroup>
               </FormControl>
             </Box>
+          { relavantCharacteristics ?
+          <div>
           <DialogTitle>Characteristics *</DialogTitle>
             <Box
                 display="flex"
                 alignItems="center"
                 justify="center"
                 justifyContent="center"
-
               >
                   <FormControl error={error}>
                     {/* //////////////........//////// */}
-                    <Stack direction='row'>
-                      <Box marginTop='25px' marginRight='25px'>
-                        <h3>Size</h3>
-                      </Box>
-                      <RadioGroup
-                        row
-                        sx={{
-                          display: "flex",
-                          justifyContent: "center",
-                        }}
-                      >
-                        <FormControlLabel
-                          value={1}
-                          control={<Radio />}
-                          label="A size too small"
-                          labelPlacement="top"
-                          // onChange={handleRecommend}
-                        />
-                        <FormControlLabel
-                          value={2}
-                          control={<Radio />}
-                          label="½ a size too small"
-                          labelPlacement="top"
-                          // onChange={handleRecommend}
-                        />
-                        <FormControlLabel
-                          value={3}
-                          control={<Radio />}
-                          label="A size too small"
-                          labelPlacement="top"
-                          // onChange={handleRecommend}
-                        />
-                        <FormControlLabel
-                          value={4}
-                          control={<Radio />}
-                          label="½ a size too big"
-                          labelPlacement="top"
-                          // onChange={handleRecommend}
-                        />
-                        <FormControlLabel
-                          value={5}
-                          control={<Radio />}
-                          label="A size too big"
-                          labelPlacement="top"
-                          // onChange={handleRecommend}
-                        />
-                      </RadioGroup>
-                    </Stack>
+                    {relavantCharacteristics.includes('size') ?
+                      <Stack direction='row'>
+                        <Box marginTop='25px' marginRight='25px'>
+                          <h3>Size</h3>
+                        </Box>
+                        <RadioGroup
+                          row
+                          sx={{
+                            display: "flex",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <FormControlLabel
+                            name='size'
+                            value={1}
+                            control={<Radio />}
+                            label="A size too small"
+                            labelPlacement="top"
+                            onChange={handleCharacteristics}
+                          />
+                          <FormControlLabel
+                            name='size'
+                            value={2}
+                            control={<Radio />}
+                            label="½ a size too small"
+                            labelPlacement="top"
+                            onChange={handleCharacteristics}
+                          />
+                          <FormControlLabel
+                            name='size'
+                            value={3}
+                            control={<Radio />}
+                            label="A size too small"
+                            labelPlacement="top"
+                            onChange={handleCharacteristics}
+                          />
+                          <FormControlLabel
+                            name='size'
+                            value={4}
+                            control={<Radio />}
+                            label="½ a size too big"
+                            labelPlacement="top"
+                            onChange={handleCharacteristics}
+                          />
+                          <FormControlLabel
+                            name='size'
+                            value={5}
+                            control={<Radio />}
+                            label="A size too big"
+                            labelPlacement="top"
+                            onChange={handleCharacteristics}
+                          />
+                        </RadioGroup>
+                      </Stack>
+                    : ''
+                    }
                     {/* //////////////........//////// */}
-                    <Stack direction='row' marginTop='50px'>
-                      <Box marginTop='25px' marginRight='25px'>
-                        <h3>Width</h3>
-                      </Box>
-                      <RadioGroup
-                        row
-                        sx={{
-                          display: "flex",
-                          justifyContent: "center",
-                        }}
-                      >
-                        <FormControlLabel
-                          value={1}
-                          control={<Radio />}
-                          label="Too Narrow"
-                          labelPlacement="top"
-                          // onChange={handleRecommend}
-                        />
-                        <FormControlLabel
-                          value={2}
-                          control={<Radio />}
-                          label="Slightly Narrow"
-                          labelPlacement="top"
-                          // onChange={handleRecommend}
-                        />
-                        <FormControlLabel
-                          value={3}
-                          control={<Radio />}
-                          label="Perfect"
-                          labelPlacement="top"
-                          // onChange={handleRecommend}
-                        />
-                        <FormControlLabel
-                          value={4}
-                          control={<Radio />}
-                          label="Slightly Wide"
-                          labelPlacement="top"
-                          // onChange={handleRecommend}
-                        />
-                        <FormControlLabel
-                          value={5}
-                          control={<Radio />}
-                          label="Too Wide"
-                          labelPlacement="top"
-                          // onChange={handleRecommend}
-                        />
-                      </RadioGroup>
-                    </Stack>
+                    {relavantCharacteristics.includes('width') ?
+                      <Stack direction='row' marginTop='50px'>
+                        <Box marginTop='25px' marginRight='25px'>
+                          <h3>Width</h3>
+                        </Box>
+                        <RadioGroup
+                          row
+                          sx={{
+                            display: "flex",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <FormControlLabel
+                            name='width'
+                            value={1}
+                            control={<Radio />}
+                            label="Too Narrow"
+                            labelPlacement="top"
+                            onChange={handleCharacteristics}
+                          />
+                          <FormControlLabel
+                            name='width'
+                            value={2}
+                            control={<Radio />}
+                            label="Slightly Narrow"
+                            labelPlacement="top"
+                            onChange={handleCharacteristics}
+                          />
+                          <FormControlLabel
+                            name='width'
+                            value={3}
+                            control={<Radio />}
+                            label="Perfect"
+                            labelPlacement="top"
+                            onChange={handleCharacteristics}
+                          />
+                          <FormControlLabel
+                            name='width'
+                            value={4}
+                            control={<Radio />}
+                            label="Slightly Wide"
+                            labelPlacement="top"
+                            onChange={handleCharacteristics}
+                          />
+                          <FormControlLabel
+                            name='width'
+                            value={5}
+                            control={<Radio />}
+                            label="Too Wide"
+                            labelPlacement="top"
+                            onChange={handleCharacteristics}
+                          />
+                        </RadioGroup>
+                      </Stack>
+                    : ''
+                    }
                     {/* //////////////........//////// */}
-                    <Stack direction='row' marginTop='50px'>
-                      <Box marginTop='25px' marginRight='25px'>
-                        <h3>Comfort</h3>
-                      </Box>
-                      <RadioGroup
-                        row
-                        sx={{
-                          display: "flex",
-                          justifyContent: "center",
-                        }}
-                      >
-                        <FormControlLabel
-                          value={1}
-                          control={<Radio />}
-                          label="Uncomfortable"
-                          labelPlacement="top"
-                          // onChange={handleRecommend}
-                        />
-                        <FormControlLabel
-                          value={2}
-                          control={<Radio />}
-                          label="Slightly uncomfortable"
-                          labelPlacement="top"
-                          // onChange={handleRecommend}
-                        />
-                        <FormControlLabel
-                          value={3}
-                          control={<Radio />}
-                          label="OK"
-                          labelPlacement="top"
-                          // onChange={handleRecommend}
-                        />
-                        <FormControlLabel
-                          value={4}
-                          control={<Radio />}
-                          label="Comfortable"
-                          labelPlacement="top"
-                          // onChange={handleRecommend}
-                        />
-                        <FormControlLabel
-                          value={5}
-                          control={<Radio />}
-                          label="Perfect"
-                          labelPlacement="top"
-                          // onChange={handleRecommend}
-                        />
-                      </RadioGroup>
-                    </Stack>
+                    {relavantCharacteristics.includes('comfort') ?
+                      <Stack direction='row' marginTop='50px'>
+                        <Box marginTop='25px' marginRight='25px'>
+                          <h3>Comfort</h3>
+                        </Box>
+                        <RadioGroup
+                          row
+                          sx={{
+                            display: "flex",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <FormControlLabel
+                            name='comfort'
+                            value={1}
+                            control={<Radio />}
+                            label="Uncomfortable"
+                            labelPlacement="top"
+                            onChange={handleCharacteristics}
+                          />
+                          <FormControlLabel
+                            name='comfort'
+                            value={2}
+                            control={<Radio />}
+                            label="Slightly uncomfortable"
+                            labelPlacement="top"
+                            onChange={handleCharacteristics}
+                          />
+                          <FormControlLabel
+                            name='comfort'
+                            value={3}
+                            control={<Radio />}
+                            label="OK"
+                            labelPlacement="top"
+                            onChange={handleCharacteristics}
+                          />
+                          <FormControlLabel
+                            name='comfort'
+                            value={4}
+                            control={<Radio />}
+                            label="Comfortable"
+                            labelPlacement="top"
+                            onChange={handleCharacteristics}
+                          />
+                          <FormControlLabel
+                            name='comfort'
+                            value={5}
+                            control={<Radio />}
+                            label="Perfect"
+                            labelPlacement="top"
+                            onChange={handleCharacteristics}
+                          />
+                        </RadioGroup>
+                      </Stack>
+                    : ''
+                    }
                     {/* //////////////........//////// */}
-                    <Stack direction='row' marginTop='50px'>
-                      <Box marginTop='25px' marginRight='25px'>
-                        <h3>Quality</h3>
-                      </Box>
-                      <RadioGroup
-                        row
-                        sx={{
-                          display: "flex",
-                          justifyContent: "center",
-                        }}
-                      >
-                        <FormControlLabel
-                          value={1}
-                          control={<Radio />}
-                          label="Poor"
-                          labelPlacement="top"
-                          // onChange={handleRecommend}
-                        />
-                        <FormControlLabel
-                          value={2}
-                          control={<Radio />}
-                          label="Below Average"
-                          labelPlacement="top"
-                          // onChange={handleRecommend}
-                        />
-                        <FormControlLabel
-                          value={3}
-                          control={<Radio />}
-                          label="What I expected"
-                          labelPlacement="top"
-                          // onChange={handleRecommend}
-                        />
-                        <FormControlLabel
-                          value={4}
-                          control={<Radio />}
-                          label="Pretty great"
-                          labelPlacement="top"
-                          // onChange={handleRecommend}
-                        />
-                        <FormControlLabel
-                          value={5}
-                          control={<Radio />}
-                          label="Perfect"
-                          labelPlacement="top"
-                          // onChange={handleRecommend}
-                        />
-                      </RadioGroup>
-                    </Stack>
+                    {relavantCharacteristics.includes('quality') ?
+                      <Stack direction='row' marginTop='50px'>
+                        <Box marginTop='25px' marginRight='25px'>
+                          <h3>Quality</h3>
+                        </Box>
+                        <RadioGroup
+                          row
+                          sx={{
+                            display: "flex",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <FormControlLabel
+                            name='quality'
+                            value={1}
+                            control={<Radio />}
+                            label="Poor"
+                            labelPlacement="top"
+                            onChange={handleCharacteristics}
+                          />
+                          <FormControlLabel
+                            name='quality'
+                            value={2}
+                            control={<Radio />}
+                            label="Below Average"
+                            labelPlacement="top"
+                            onChange={handleCharacteristics}
+                          />
+                          <FormControlLabel
+                            name='quality'
+                            value={3}
+                            control={<Radio />}
+                            label="What I expected"
+                            labelPlacement="top"
+                            onChange={handleCharacteristics}
+                          />
+                          <FormControlLabel
+                            name='quality'
+                            value={4}
+                            control={<Radio />}
+                            label="Pretty great"
+                            labelPlacement="top"
+                            onChange={handleCharacteristics}
+                          />
+                          <FormControlLabel
+                            name='quality'
+                            value={5}
+                            control={<Radio />}
+                            label="Perfect"
+                            labelPlacement="top"
+                            onChange={handleCharacteristics}
+                          />
+                        </RadioGroup>
+                      </Stack>
+                    : ''
+                    }
                     {/* //////////////........//////// */}
-                    <Stack direction='row' marginTop='50px'>
-                      <Box marginTop='25px' marginRight='25px'>
-                        <h3>Length</h3>
-                      </Box>
-                      <RadioGroup
-                        row
-                        sx={{
-                          display: "flex",
-                          justifyContent: "center",
-                        }}
-                      >
-                        <FormControlLabel
-                          value={1}
-                          control={<Radio />}
-                          label="Runs short"
-                          labelPlacement="top"
-                          // onChange={handleRecommend}
-                        />
-                        <FormControlLabel
-                          value={2}
-                          control={<Radio />}
-                          label="Runs slightly short"
-                          labelPlacement="top"
-                          // onChange={handleRecommend}
-                        />
-                        <FormControlLabel
-                          value={3}
-                          control={<Radio />}
-                          label="Perfect"
-                          labelPlacement="top"
-                          // onChange={handleRecommend}
-                        />
-                        <FormControlLabel
-                          value={4}
-                          control={<Radio />}
-                          label="Runs slightly long"
-                          labelPlacement="top"
-                          // onChange={handleRecommend}
-                        />
-                        <FormControlLabel
-                          value={5}
-                          control={<Radio />}
-                          label="Runs long"
-                          labelPlacement="top"
-                          // onChange={handleRecommend}
-                        />
-                      </RadioGroup>
-                    </Stack>
+                    {relavantCharacteristics.includes('length') ?
+                      <Stack direction='row' marginTop='50px'>
+                        <Box marginTop='25px' marginRight='25px'>
+                          <h3>Length</h3>
+                        </Box>
+                        <RadioGroup
+                          row
+                          sx={{
+                            display: "flex",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <FormControlLabel
+                            name='length'
+                            value={1}
+                            control={<Radio />}
+                            label="Runs short"
+                            labelPlacement="top"
+                            onChange={handleCharacteristics}
+                          />
+                          <FormControlLabel
+                            name='length'
+                            value={2}
+                            control={<Radio />}
+                            label="Runs slightly short"
+                            labelPlacement="top"
+                            onChange={handleCharacteristics}
+                          />
+                          <FormControlLabel
+                            name='length'
+                            value={3}
+                            control={<Radio />}
+                            label="Perfect"
+                            labelPlacement="top"
+                            onChange={handleCharacteristics}
+                          />
+                          <FormControlLabel
+                            name='length'
+                            value={4}
+                            control={<Radio />}
+                            label="Runs slightly long"
+                            labelPlacement="top"
+                            onChange={handleCharacteristics}
+                          />
+                          <FormControlLabel
+                            name='length'
+                            value={5}
+                            control={<Radio />}
+                            label="Runs long"
+                            labelPlacement="top"
+                            onChange={handleCharacteristics}
+                          />
+                        </RadioGroup>
+                      </Stack>
+                    : ''
+                    }
                     {/* //////////////........//////// */}
-                    <Stack direction='row' marginTop='50px'>
-                      <Box marginTop='25px' marginRight='25px'>
-                        <h3>Fit</h3>
-                      </Box>
-                      <RadioGroup
-                        row
-                        sx={{
-                          display: "flex",
-                          justifyContent: "center",
-                        }}
-                      >
-                        <FormControlLabel
-                          value={1}
-                          control={<Radio />}
-                          label="Runs tight"
-                          labelPlacement="top"
-                          // onChange={handleRecommend}
-                        />
-                        <FormControlLabel
-                          value={2}
-                          control={<Radio />}
-                          label="Runs slightly tight"
-                          labelPlacement="top"
-                          // onChange={handleRecommend}
-                        />
-                        <FormControlLabel
-                          value={3}
-                          control={<Radio />}
-                          label="Perfect"
-                          labelPlacement="top"
-                          // onChange={handleRecommend}
-                        />
-                        <FormControlLabel
-                          value={4}
-                          control={<Radio />}
-                          label="Runs slightly long"
-                          labelPlacement="top"
-                          // onChange={handleRecommend}
-                        />
-                        <FormControlLabel
-                          value={5}
-                          control={<Radio />}
-                          label="Runs long"
-                          labelPlacement="top"
-                          // onChange={handleRecommend}
-                        />
-                      </RadioGroup>
-                    </Stack>
+                    {relavantCharacteristics.includes('fit') ?
+                      <Stack direction='row' marginTop='50px'>
+                        <Box marginTop='25px' marginRight='25px'>
+                          <h3>Fit</h3>
+                        </Box>
+                        <RadioGroup
+                          row
+                          sx={{
+                            display: "flex",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <FormControlLabel
+                            name='fit'
+                            value={1}
+                            control={<Radio />}
+                            label="Runs tight"
+                            labelPlacement="top"
+                            onChange={handleCharacteristics}
+                          />
+                          <FormControlLabel
+                            name='fit'
+                            value={2}
+                            control={<Radio />}
+                            label="Runs slightly tight"
+                            labelPlacement="top"
+                            onChange={handleCharacteristics}
+                          />
+                          <FormControlLabel
+                            name='fit'
+                            value={3}
+                            control={<Radio />}
+                            label="Perfect"
+                            labelPlacement="top"
+                            onChange={handleCharacteristics}
+                          />
+                          <FormControlLabel
+                            name='fit'
+                            value={4}
+                            control={<Radio />}
+                            label="Runs slightly long"
+                            labelPlacement="top"
+                            onChange={handleCharacteristics}
+                          />
+                          <FormControlLabel
+                            name='fit'
+                            value={5}
+                            control={<Radio />}
+                            label="Runs long"
+                            labelPlacement="top"
+                            onChange={handleCharacteristics}
+                          />
+                        </RadioGroup>
+                      </Stack>
+                    : ''
+                    }
                   </FormControl>
               </Box>
+              </div>
+              : ''}
           <DialogTitle>Review summary</DialogTitle>
             <TextField
               margin="dense"
