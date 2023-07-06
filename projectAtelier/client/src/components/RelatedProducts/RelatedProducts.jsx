@@ -72,7 +72,6 @@ function RelatedProducts({
 
   return (
     <div>
-      <div>Current Product ID: {currentProduct.id}</div>
       <RelatedList
         currentProduct={currentProduct}
         setProduct={setProduct}

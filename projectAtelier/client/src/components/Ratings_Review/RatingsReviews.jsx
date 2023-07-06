@@ -5,7 +5,7 @@ import ReviewBreakdown from './Ratings_Review_Subcomponents/ReviewBreakdown.jsx'
 import SortOptions from './Ratings_Review_Subcomponents/SortOptions.jsx';
 import ReviewList from './Ratings_Review_Subcomponents/ReviewList.jsx';
 import filterReviews from '../../Middleware/filterReviews.js';
-import { Button, Stack } from '@mui/material';
+import { Button, Stack, Box } from '@mui/material';
 import {useEffect, useState} from 'react';
 import axiosConfig from '../../Middleware/axiosConfig.js';
 import axios from 'axios';
@@ -176,112 +176,126 @@ const RatingsReviews = ({ product_id, product_name }) => {
 ////////////////////////////////////////////////////////
   return (
     <section>
-      <h4>RATINGS & REVIEWS</h4>
-      {
-        Object.values(filters).includes(true) ?
-          <div>
-            <h4
-              style={{
-                marginLeft: '10px',
-                marginBottom: '10px'
-              }}
-            >
-              Applied filters: {
-              filters.fiveStars ?
-                '5 star '
-              : ''
-              }
-              {
-              filters.fourStars ?
-                '4 star '
-              : ''
-              }
-              {
-              filters.threeStars ?
-                '3 star '
-              : ''
-              }
-              {
-              filters.twoStars ?
-                '2 star '
-              : ''
-              }
-              {
-              filters.oneStars ?
-                '1 star '
-              : ''
-              } reviews
-            </h4>
-            <Button
-              style={{
-                marginLeft: '20px',
-                marginBottom: '25px'
-              }}
-              size='small'
-              variant='text'
-              onClick={
-                () => {
-                setFilters({
-                fiveStars: false,
-                fourStars: false,
-                threeStars: false,
-                twoStars: false,
-                oneStars: false
-                })
-              }
-            }
-            >
-              Remove all filters
-            </Button>
-          </div>
-        : ''
-      }
-      <ReviewBreakdown
-        allReviews={allReviews}
-        metaData={metaData}
-        filters={filters}
-        setFilters={setFilters}
-      />
-      <ProductBreakdown/>
-      <SortOptions
-        numOfReviews={numOfReviews}
-        setReviewRenders={setReviewRenders}
-        sorting={sorting}
-        setSorting={setSorting}
-      />
-      <ReviewList
-        reviews={reviews}
-        getMoreReviews={getMoreReviews}
-        canRenderMoreRevues={canRenderMoreRevues}
-        upvoteHelpful={upvoteHelpful}
-        reportReview={reportReview}
-      />
-      <Stack
-        direction='row'
-      >
-        { canRenderMoreRevues ?
-          <div>
-            <Button
-              style={{
-                marginLeft: '30px',
-                marginRight: '30px',
-                marginBottom: '50px'
-              }}
-              variant='outlined'
-              size='large'
-              onClick={getMoreReviews}
-            >
-              More Reviews
-            </Button>
-          </div>
-        : ''}
-        <NewReview
-          product_id={product_id}
-          product_name={product_name}
-        />
+      <Stack direction='row'>
+        <Box
+          style={{
+            marginLeft: '20px',
+            marginBottom: '10px'
+          }}
+        >
+          <h4>RATINGS & REVIEWS</h4>
+          {
+            Object.values(filters).includes(true) ?
+              <div>
+                <h4
+                  style={{
+                    marginLeft: '10px',
+                    marginBottom: '10px'
+                  }}
+                >
+                  Applied filters: {
+                  filters.fiveStars ?
+                    '5 star '
+                  : ''
+                  }
+                  {
+                  filters.fourStars ?
+                    '4 star '
+                  : ''
+                  }
+                  {
+                  filters.threeStars ?
+                    '3 star '
+                  : ''
+                  }
+                  {
+                  filters.twoStars ?
+                    '2 star '
+                  : ''
+                  }
+                  {
+                  filters.oneStars ?
+                    '1 star '
+                  : ''
+                  } reviews
+                </h4>
+                <Button
+                  style={{
+                    marginLeft: '20px',
+                    marginBottom: '25px'
+                  }}
+                  size='small'
+                  variant='text'
+                  onClick={
+                    () => {
+                    setFilters({
+                    fiveStars: false,
+                    fourStars: false,
+                    threeStars: false,
+                    twoStars: false,
+                    oneStars: false
+                    })
+                  }
+                }
+                >
+                  Remove all filters
+                </Button>
+              </div>
+            : ''
+          }
+          <ReviewBreakdown
+            allReviews={allReviews}
+            metaData={metaData}
+            filters={filters}
+            setFilters={setFilters}
+          />
+          {/* <ProductBreakdown/> */}
+        </Box>
+        <Box
+          style={{
+              marginLeft: '20px',
+              marginBottom: '10px'
+          }}
+        >
+          <SortOptions
+            numOfReviews={numOfReviews}
+            setReviewRenders={setReviewRenders}
+            sorting={sorting}
+            setSorting={setSorting}
+          />
+          <ReviewList
+            reviews={reviews}
+            getMoreReviews={getMoreReviews}
+            canRenderMoreRevues={canRenderMoreRevues}
+            upvoteHelpful={upvoteHelpful}
+            reportReview={reportReview}
+          />
+          <Stack
+            direction='row'
+          >
+            { canRenderMoreRevues ?
+              <div>
+                <Button
+                  style={{
+                    marginLeft: '30px',
+                    marginRight: '30px',
+                    marginBottom: '50px'
+                  }}
+                  variant='outlined'
+                  size='large'
+                  onClick={getMoreReviews}
+                >
+                  More Reviews
+                </Button>
+              </div>
+            : ''}
+            <NewReview
+              product_id={product_id}
+              product_name={product_name}
+            />
+          </Stack>
+        </Box>
       </Stack>
-
-
     </section>
   );
 };
