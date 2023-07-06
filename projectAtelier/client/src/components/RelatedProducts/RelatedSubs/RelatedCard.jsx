@@ -19,7 +19,7 @@ function RelatedCard({
   setProduct,
   products,
 }) {
-  const [photo, setPhoto] = useState('');
+  const [photo, setPhoto] = useState(defaultImage);
   const [photos, setPhotos] = useState([]);
   const [rating, setRating] = useState(0);
   const [isHovering, setIsHovering] = useState(false);
