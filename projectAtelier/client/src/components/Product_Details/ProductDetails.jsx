@@ -73,14 +73,17 @@ const ProductDetails = ({
     // console.log(productFeatures, 'FEATURES');
     // console.log(productStylePhotos, 'PHOTOS');
     return (
-      <Box
-        sx={{
-          width: '100%',
-          paddingLeft: '50px',
-          paddingRight: '50px',
-          display: 'flex',
-          justifyContent: 'center',
-          marginBottom: '0px',
+      <Stack direction ="row"
+        // sx={{
+        //   width: '100%',
+        //   paddingLeft: '50px',
+        //   paddingRight: '50px',
+        //   display: 'flex',
+        //   justifyContent: 'center',
+        //   marginBottom: '0px',
+        // }}
+         sx={{
+          justifyContent: 'center'
         }}
       >
         <Stack
@@ -137,7 +140,7 @@ const ProductDetails = ({
             </div>
           </div>
         </Stack>
-      </Box>
+      </Stack>
     );
   }
 };

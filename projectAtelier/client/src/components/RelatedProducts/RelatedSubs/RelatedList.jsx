@@ -60,8 +60,13 @@ function RelatedList({
 
   if (list === 'related') {
     return (
-      <div>
-        <div className="related-outfit-header">Related Products</div>
+      <Box
+
+        sx={{
+          flex: 'none',
+        }}
+      >
+      <div className="related-outfit-header">Related Products</div>
         <Box className="carousel-box">
           <Carousel
             itemClass="carousel-item"
@@ -83,7 +88,7 @@ function RelatedList({
             })}
           </Carousel>
         </Box>
-      </div>
+      </Box>
     );
   } else {
     return (

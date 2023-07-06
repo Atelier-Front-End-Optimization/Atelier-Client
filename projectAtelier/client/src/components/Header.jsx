@@ -56,7 +56,7 @@ const Header = () => {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar
         position="static"
-        sx={{ backgroundColor: 'white', maxWidth: '1255px', margin: '0 auto' }}
+        sx={{ backgroundColor: 'white', maxWidth: '1360px', margin: '0 auto' }}
       >
         <Toolbar>
           <Typography
