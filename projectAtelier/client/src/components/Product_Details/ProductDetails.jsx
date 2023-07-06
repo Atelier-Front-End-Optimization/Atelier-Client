@@ -74,16 +74,12 @@ const ProductDetails = ({
     // console.log(productStylePhotos, 'PHOTOS');
     return (
       <Stack direction ="row"
-        // sx={{
-        //   width: '100%',
-        //   paddingLeft: '50px',
-        //   paddingRight: '50px',
-        //   display: 'flex',
-        //   justifyContent: 'center',
-        //   marginBottom: '0px',
-        // }}
-         sx={{
-          justifyContent: 'center'
+        sx={{
+          // width: '100%',
+          // paddingLeft: '50px',
+          // paddingRight: '50px',
+          justifyContent: 'center',
+          marginBottom: '0px',
         }}
       >
         <Stack

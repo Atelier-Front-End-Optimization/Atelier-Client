@@ -176,7 +176,10 @@ const RatingsReviews = ({ product_id, product_name }) => {
 ////////////////////////////////////////////////////////
   return (
     <section>
-      <Stack direction='row'>
+      <Stack
+        direction='row'
+        style={{justifyContent: 'center'}}
+      >
         <Box
           style={{
             marginLeft: '20px',

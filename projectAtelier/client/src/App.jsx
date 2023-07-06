@@ -34,7 +34,7 @@ function App() {
         top:'50%',
         left:'50%',
         justifyContent: "center",
-        margin: '1%'
+        // margin: '1%'
       }}
     >
     <div>
