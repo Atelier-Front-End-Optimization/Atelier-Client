@@ -41,6 +41,7 @@ const StyleScroller = ({ productStylePhotos, setActiveIndex }) => {
         <ImageListItem key={Math.random()} sx={{ marginBottom: '10px' }} onClick={(() => {
           handleImageListClick(index)
         })} style={{cursor:'pointer'}}>
+          {photo.photos[0].url !== null? (
           <img
             src={`${photo.photos[0].url}`}
             srcSet={`${photo.photos[0].url}`}
@@ -48,6 +49,13 @@ const StyleScroller = ({ productStylePhotos, setActiveIndex }) => {
             loading="lazy"
             style={{ height: '10px', width: '100%', }}
           />
+          ) : ( <img
+            src={`$https://static.vecteezy.com/system/resources/previews/005/337/799/original/icon-image-not-found-free-vector.jpg`}
+            srcSet={`https://static.vecteezy.com/system/resources/previews/005/337/799/original/icon-image-not-found-free-vector.jpg`}
+            alt={photo.name}
+            loading="lazy"
+            style={{ height: '10px', width: '100%', }}
+            />)}
         </ImageListItem>
       ))}
     </ImageList>

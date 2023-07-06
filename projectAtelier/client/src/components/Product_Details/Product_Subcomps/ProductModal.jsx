@@ -1,13 +1,14 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import { useState } from 'react';
-import { Box, Modal, IconButton } from '@mui/material';
+import { Box, Modal, IconButton, Backdrop } from '@mui/material';
 import CropFreeIcon from '@mui/icons-material/CropFree';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowCircleLeftOutlinedIcon from '@mui/icons-material/ArrowCircleLeftOutlined';
 import ArrowCircleRightOutlinedIcon from '@mui/icons-material/ArrowCircleRightOutlined';
 import StyleScroller from './StyleScroller.jsx'
+import defaultImage from '../../../Assets/default.jpg'
 
 const ProductModal = ({ stylePhoto, productStylePhotos, activeIndex, setActiveIndex }) => {
   const [open, setOpen] = useState(false);
@@ -37,11 +38,17 @@ const ProductModal = ({ stylePhoto, productStylePhotos, activeIndex, setActiveIn
     <ArrowCircleRightOutlinedIcon />
   </IconButton>
 
+  {productStylePhotos.results[activeIndex].photos[0].url !== null ? (
   <img
     src={productStylePhotos.results[activeIndex].photos[0].url}
     alt={`Slide ${activeIndex + 1}`}
     style={{ height: '600px', width: '800px' }}
-  />
+  />)
+   : (<img
+   src={defaultImage}
+    alt={`Slide ${activeIndex + 1}`}
+    style={{ height: '600px', width: '800px' }}
+    />)}
 
   <IconButton
     onClick={handleOpen}
@@ -55,7 +62,10 @@ const ProductModal = ({ stylePhoto, productStylePhotos, activeIndex, setActiveIn
     <CropFreeIcon />
   </IconButton>
 
-  <Modal open={open} onClose={handleClose} id="mainModal">
+  {open && (
+  <Modal open={open} onBackdropClick={handleClose} id="mainModal" BackdropComponent={Backdrop} BackdropProps={{ style: { backgroundColor: 'rgba(0, 0, 0, 0)', backdropFilter: 'none' },
+     onClick: handleClose }}>
+
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
       <img
         src={productStylePhotos.results[activeIndex].photos[0].url}
@@ -64,6 +74,7 @@ const ProductModal = ({ stylePhoto, productStylePhotos, activeIndex, setActiveIn
       />
     </div>
   </Modal>
+      )}
 
   <div style={{ position: 'absolute', top: '40%', left: '7%', transform: 'translate(-50%, -50%)', zIndex: 2 }}>
     <StyleScroller productStylePhotos={productStylePhotos} setActiveIndex={setActiveIndex}/>
