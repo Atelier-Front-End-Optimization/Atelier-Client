@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -34,23 +36,6 @@ const ProductDetails = ({
   const [rating, setRating] = useState(0);
 
   useEffect(() => {
-    // const fetchProductFeatures = (productId) => {
-    //   axios
-    //     .get(
-    //       `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/${productId}`,
-    //       {
-    //         headers: {
-    //           Authorization: import.meta.env.VITE_API_TOKEN,
-    //         },
-    //       }
-    //     )
-    //     .then((response) => {
-    //       setProductFeatures(response.data.features);
-    //     })
-    //     .catch((error) => {
-    //       console.log('ERROR IN GET PRODUCT FEATURES');
-    //     });
-    // };
 
     const fetchProductStyles = (productId) => {
       axios
@@ -74,9 +59,7 @@ const ProductDetails = ({
     };
 
     if (productId) {
-      // fetchProductFeatures(productId);
       fetchProductStyles(productId);
-      setProductFeatures(product.features);
       getAvgRating(productId)
       .then((result) => {
         setRating(result)

@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import { Box } from '@mui/material/';
 import IconButton from '@mui/material/IconButton';
@@ -12,12 +14,8 @@ const ProductStyles = ({ styles, photos, setStylePhoto, setStyleName, setActiveI
   let firstHalf = photos.results.slice(0, mid);
   let secondHalf = photos.results.slice(mid);
 
-  const photoIconClickHandler = (event) => {
-    // setStylePhoto(event.target.src);
-  };
-
   return (
-    <Box>
+    <Box id="styles">
       <div>
         {firstHalf.map((photo, index) => {
           return (
