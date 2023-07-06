@@ -4,6 +4,7 @@ import RelatedList from './RelatedSubs/RelatedList.jsx';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import axiosConfig from '../../Middleware/axiosConfig.js';
+import { Box } from '@mui/material/';
 
 function RelatedProducts({
   currentProduct,
@@ -71,7 +72,7 @@ function RelatedProducts({
   });
 
   return (
-    <div>
+    <Box>
       <RelatedList
         currentProduct={currentProduct}
         setProduct={setProduct}
@@ -88,7 +89,7 @@ function RelatedProducts({
         relatedClick={relatedClick}
       />
       <br></br>
-    </div>
+    </Box>
   );
 }
 

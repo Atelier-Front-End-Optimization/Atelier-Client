@@ -97,7 +97,9 @@ function RelatedCard({
         flexShrink: 0,
       }}
     >
-      <Box onMouseEnter={handleHover} onMouseLeave={handleLeave} height="300px" width="100%" position="relative">
+      <Box onMouseEnter={handleHover} onMouseLeave={handleLeave}
+      height="300px" width="100%"
+       position="relative">
         <ActionButton
           product={product}
           currentProduct={currentProduct}

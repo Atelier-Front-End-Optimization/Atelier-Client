@@ -6,12 +6,16 @@ import ProductDetails from './components/Product_Details/ProductDetails.jsx';
 import RatingsReviews from './components/Ratings_Review/RatingsReviews.jsx';
 import Header from './components/Header.jsx';
 import axios from 'axios';
+import { Box, Stack } from '@mui/material/';
+
 
 function App() {
   const [product, setProduct] = useState({});
   const [stylePhoto, setStylePhoto] = useState(
     'https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80'
   );
+
+
 
   useEffect(() => {
     axios
@@ -24,6 +28,15 @@ function App() {
   }, []);
 
   return (
+    <Box
+      sx={{
+        // display: 'flex',
+        top:'50%',
+        left:'50%',
+        justifyContent: "center",
+        // margin: '1%'
+      }}
+    >
     <div>
       <header>
         <Header />
@@ -44,10 +57,12 @@ function App() {
       </div>
       <div>
         <br></br>
+        <Stack direction='column'>
         <RelatedProducts
           currentProduct={product}
           setProduct={setProduct}
         />
+        </Stack>
       </div>
       <div>
         <br></br>
@@ -57,6 +72,7 @@ function App() {
         />
       </div>
     </div>
+    </Box>
   );
 }
 

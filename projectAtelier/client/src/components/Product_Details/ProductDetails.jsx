@@ -73,12 +73,11 @@ const ProductDetails = ({
     // console.log(productFeatures, 'FEATURES');
     // console.log(productStylePhotos, 'PHOTOS');
     return (
-      <Box
+      <Stack direction ="row"
         sx={{
-          width: '100%',
-          paddingLeft: '50px',
-          paddingRight: '50px',
-          display: 'flex',
+          // width: '100%',
+          // paddingLeft: '50px',
+          // paddingRight: '50px',
           justifyContent: 'center',
           marginBottom: '0px',
         }}
@@ -137,7 +136,7 @@ const ProductDetails = ({
             </div>
           </div>
         </Stack>
-      </Box>
+      </Stack>
     );
   }
 };
