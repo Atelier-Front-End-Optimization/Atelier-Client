@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import { useState } from 'react';
-import { Box, Modal, IconButton } from '@mui/material';
+import { Box, Modal, IconButton, Backdrop } from '@mui/material';
 import CropFreeIcon from '@mui/icons-material/CropFree';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
@@ -62,7 +62,10 @@ const ProductModal = ({ stylePhoto, productStylePhotos, activeIndex, setActiveIn
     <CropFreeIcon />
   </IconButton>
 
-  <Modal open={open} onClose={handleClose} id="mainModal">
+  {open && (
+  <Modal open={open} onBackdropClick={handleClose} id="mainModal" BackdropComponent={Backdrop} BackdropProps={{ style: { backgroundColor: 'rgba(0, 0, 0, 0)', backdropFilter: 'none' },
+     onClick: handleClose }}>
+
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
       <img
         src={productStylePhotos.results[activeIndex].photos[0].url}
@@ -71,6 +74,7 @@ const ProductModal = ({ stylePhoto, productStylePhotos, activeIndex, setActiveIn
       />
     </div>
   </Modal>
+      )}
 
   <div style={{ position: 'absolute', top: '40%', left: '7%', transform: 'translate(-50%, -50%)', zIndex: 2 }}>
     <StyleScroller productStylePhotos={productStylePhotos} setActiveIndex={setActiveIndex}/>
