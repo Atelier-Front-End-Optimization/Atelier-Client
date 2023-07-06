@@ -65,22 +65,27 @@ const ReviewTile = ( {review: { review_id, body, date, helpfulness, photos, rati
         padding: 1
       }}
     >
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-between'
+        }}
+      >
+
+          <Rating
+            name="Item Review"
+            value={rating}
+            precision={0.25}
+            size='small'
+            readOnly
+          />
+          <span>
+            {reviewer_name}, {formattedDate}
+          </span>
+
+      </Box>
       <div>
-        <Rating
-          name="Item Review"
-          value={rating}
-          precision={0.25}
-          size='small'
-          readOnly
-        />
-      </div>
-      <div>
-        <p>
-          {reviewer_name}, {formattedDate}
-        </p>
-      </div>
-      <div>
-        <h2 style={{
+        <h3 style={{
             fontWeight: 'bold',
             whiteSpace: 'nowrap',
             overflow: 'hidden',
@@ -88,7 +93,7 @@ const ReviewTile = ( {review: { review_id, body, date, helpfulness, photos, rati
           }}
         >
           {summary}
-        </h2>
+        </h3>
       </div>
       <div>
         { body.length > 250 ?
