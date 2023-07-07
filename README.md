@@ -39,7 +39,7 @@ git merge main
 
 
 This project uses React with Vite, and heavily utilizes Material UI's component library. Unit testing is done through Vitest.
-Install these dependances and more when you clone the repo by running 
+Install these dependances and more after cloning the repo by running: 
 ```
 npm install
 ```
