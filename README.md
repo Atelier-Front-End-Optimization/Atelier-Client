@@ -36,3 +36,10 @@ git checkout "feature"
 git merge main
 ```
 <3
+
+
+This project uses React with Vite, and heavily utilizes Material UI's component library. Unit testing is done through Vitest.
+Install these dependances and more when you clone the repo by running 
+```
+npm install
+```
