@@ -42,11 +42,13 @@ useEffect(() => {
 
 ////////////////////////////////////////////////////////
   return (
-    <Stack direction='row' spacing={2}>
-      <h3>{numOfReviews} reviews, sorted by</h3>
+    <Stack direction='row' spacing={2} style={{marginTop: '50px', paddingBottom: '-20'}}>
+      <h3 style={{marginLeft: '30px'}}>{numOfReviews} reviews, sorted by</h3>
 
       <Stack direction="row" spacing={2}>
-        <div>
+        <div
+          style={{marginLeft: '-16px', marginTop: '12px', textDecoration: "underline"}}
+        >
           <Button
             variant='text'
             ref={anchorRef}
@@ -56,6 +58,7 @@ useEffect(() => {
             aria-haspopup="true"
             onClick={handleToggle}
             endIcon={<KeyboardArrowDownIcon/>}
+            style={{color:'black', fontWeight: "bold", textDecoration: "underline"}}
           >
 
             {
@@ -74,7 +77,7 @@ useEffect(() => {
           placement="bottom-start"
           transition
           disablePortal
-        >
+          >
           {({ TransitionProps, placement }) => (
             <Grow
               {...TransitionProps}
@@ -114,7 +117,7 @@ useEffect(() => {
               </Paper>
             </Grow>
           )}
-        </Popper>
+          </Popper>
         </div>
       </Stack>
     </Stack>

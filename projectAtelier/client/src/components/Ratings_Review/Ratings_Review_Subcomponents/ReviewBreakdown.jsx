@@ -3,6 +3,7 @@ import RatingSummary from './RatingSummary.jsx'
 import RatingPercentage from './RatingPercentage.jsx'
 import RatingFilter from './RatingFilter.jsx'
 import {useEffect, useState} from 'react';
+import { Box } from '@mui/material/';
 
 const ReviewBreakdown = ({ metaData, metaData:{ recommended, ratings }, filters, setFilters }) => {
 
@@ -25,12 +26,16 @@ const ReviewBreakdown = ({ metaData, metaData:{ recommended, ratings }, filters,
 ////////////////////////////////////////////////////////
   return (
     <div>
-      <RatingSummary
-        ratings={ratings}
-      />
-      <RatingPercentage
-        recommended={recommended}
-      />
+      <Box
+        style={{marginLeft: '25px'}}
+      >
+        <RatingSummary
+          ratings={ratings}
+        />
+        <RatingPercentage
+          recommended={recommended}
+        />
+      </Box>
       <RatingFilter
         ratingsData={ratingsData}
         ratings={ratings}

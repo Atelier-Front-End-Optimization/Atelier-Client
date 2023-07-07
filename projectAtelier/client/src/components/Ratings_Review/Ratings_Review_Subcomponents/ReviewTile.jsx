@@ -62,25 +62,31 @@ const ReviewTile = ( {review: { review_id, body, date, helpfulness, photos, rati
         '& > legend': { mt: 2 },
         borderBottomStyle: 'solid',
         margin: 3,
+        marginTop: -1,
         padding: 1
       }}
     >
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-between'
+        }}
+      >
+
+          <Rating
+            name="Item Review"
+            value={rating}
+            precision={0.25}
+            size='medium'
+            readOnly
+          />
+          <span>
+            {reviewer_name}, {formattedDate}
+          </span>
+
+      </Box>
       <div>
-        <Rating
-          name="Item Review"
-          value={rating}
-          precision={0.25}
-          size='small'
-          readOnly
-        />
-      </div>
-      <div>
-        <p>
-          {reviewer_name}, {formattedDate}
-        </p>
-      </div>
-      <div>
-        <h2 style={{
+        <h3 style={{
             fontWeight: 'bold',
             whiteSpace: 'nowrap',
             overflow: 'hidden',
@@ -88,7 +94,7 @@ const ReviewTile = ( {review: { review_id, body, date, helpfulness, photos, rati
           }}
         >
           {summary}
-        </h2>
+        </h3>
       </div>
       <div>
         { body.length > 250 ?
@@ -107,7 +113,12 @@ const ReviewTile = ( {review: { review_id, body, date, helpfulness, photos, rati
         : body}
       </div>
       {photos.length > 0 ?
-          <Stack direction='row' spacing={1}>
+          <Stack
+            direction='row'
+            spacing={1}
+            marginTop='20px'
+            marginBottom='20px'
+          >
             {photos.map((photo) => {
               const [open, setOpen] = useState(false);
               const handleOpenClose = () => {
@@ -152,7 +163,9 @@ const ReviewTile = ( {review: { review_id, body, date, helpfulness, photos, rati
           {response}
         </p>
       </Box>
-      <div>
+      <div
+        style={{marginBottom: '20px', marginTop:'20px'}}
+      >
         {recommend ?
             <Box><CheckIcon/> {'I recommend this product'} </Box>
         : ''}
@@ -163,7 +176,6 @@ const ReviewTile = ( {review: { review_id, body, date, helpfulness, photos, rati
         <Button
           variant='text'
           size='small'
-          // color='black'
           onClick={handleHelpful}
           disabled={wasClicked}
         >
