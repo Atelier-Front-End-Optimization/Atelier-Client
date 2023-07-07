@@ -116,7 +116,7 @@ const ProductDetails = ({
 
             {salePrice === null ?
             <p>{`$${productStyles[0].original_price}`}</p> : (
-              <p><del>{`$${productStyles[0].original_price}`}</del> {`$${salePrice}`}</p>
+              <p><del>{`$${productStyles[0].original_price}`}</del> <span style={{ color: 'red' }}>{`$${salePrice}`}</span></p>
             )}
 
             <span>{`STYLE > ${styleName}`}</span>
