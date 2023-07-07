@@ -73,7 +73,7 @@ function RelatedList({
   if (list === 'related') {
     return (
       <Box sx={{maxWidth: '1360px', margin: '0 auto' }}>
-      <div className="related-outfit-header" style={{fontSize:'20px'}}>Related Products</div><br></br>
+      <div className="related-outfit-header" style={{fontSize:'20px', position: 'relative', left:'1.2%'}}>RELATED PRODUCTS</div><br></br>
         <Box className="carousel-box">
           <Carousel
             itemClass="carousel-item"
@@ -100,7 +100,7 @@ function RelatedList({
   } else {
     return (
       <Box sx={{maxWidth: '1360px', margin: '0 auto' }}>
-        <br></br><div style={{fontSize:'20px'}}className="related-outfit-header">Your Outfit</div> <br></br>
+        <br></br><div style={{fontSize:'20px', position: 'relative', left:'1.2%'}}className="related-outfit-header">YOUR OUTFIT</div> <br></br>
         <Stack className="outfit-stack" direction="row" spacing={8}>
           <AddOutfit handleClick={addOutfit} currentProduct={currentProduct} />
           <Box className="carousel-outfit">
