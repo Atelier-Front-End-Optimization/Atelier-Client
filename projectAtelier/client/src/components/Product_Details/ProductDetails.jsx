@@ -16,7 +16,7 @@ import Favorite from './Product_Subcomps/Favorite';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
-import { Box } from '@mui/material/';
+import { Box, Button } from '@mui/material/';
 import Rating from '@mui/material/Rating';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import PinterestIcon from '@mui/icons-material/Pinterest';
@@ -154,9 +154,15 @@ const ProductDetails = ({
               alignItems="flex-start"
               spacing={10}
               >
+                <Button>
                 <FacebookIcon style={{color: 'rgba(56, 37, 122, 0.48)'}} />
+                </Button>
+                <Button>
                 <PinterestIcon style={{color: 'rgba(56, 37, 122, 0.48)'}} />
+                </Button>
+                <Button>
                 <TwitterIcon style={{color: 'rgba(56, 37, 122, 0.48)'}} />
+                </Button>
               </Stack>
             </div>
           </div>
