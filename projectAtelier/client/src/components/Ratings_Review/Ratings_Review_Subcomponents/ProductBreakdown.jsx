@@ -1,7 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useEffect, useState } from 'react';
 import { Slider, Box } from '@mui/material';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 const ProductBreakdown = ({ characteristics }) => {
 
