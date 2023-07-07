@@ -59,7 +59,7 @@ const ProductStyles = ({ styles, photos, setStylePhoto, setStyleName, setActiveI
               setStyleName(photo.name);
               setActiveIndex(index + mid)
               setProductSku(photo.skus)
-              console.log(photo)
+              setSalePrice(photo.sale_price)
             }}
           >
             <Avatar
