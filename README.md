@@ -55,3 +55,4 @@ To get a production version of this project for deployment, use:
 ```
 npm run preview
 ```
+Our project was deployed to an AWS EC2 instance. To learn more go to: https://docs.aws.amazon.com/codedeploy/latest/userguide/deployment-steps-server.html
