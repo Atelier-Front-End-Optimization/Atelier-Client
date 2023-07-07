@@ -43,3 +43,15 @@ Install these dependances and more after cloning the repo by running:
 ```
 npm install
 ```
+To compile JSX files with Vite, use: 
+```
+npm run build
+```
+To create a server on your local machine using Vite, use: 
+```
+npm run dev
+```
+To get a production version of this project for deployment, use: 
+```
+npm run preview
+```
