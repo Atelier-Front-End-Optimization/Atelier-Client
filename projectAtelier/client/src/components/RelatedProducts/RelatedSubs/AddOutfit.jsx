@@ -28,7 +28,7 @@ function AddOutfit({ handleClick, currentProduct }) {
         margin="auto"
       >
         <AddCircleOutlineIcon className="add-icon"></AddCircleOutlineIcon>
-        <div className="add-text">Add to Outfit</div>
+        <div style={{fontSize:'20px', fontWeight:'bold'}}className="add-text">Add to Outfit</div>
       </Box>
     </Card>
   );

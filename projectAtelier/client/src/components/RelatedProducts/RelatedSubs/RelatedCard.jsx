@@ -116,9 +116,9 @@ function RelatedCard({
     photos={photos} imagesClick={imagesClick}/>}
       </Box>
       <Box p={1}>
-        <div>{product.category}</div>
-        <div>{product.name}</div>
-        <div>{price}</div>
+        <div style={{fontSize:'14px'}}>{product.category.toUpperCase()}</div>
+        <div style={{fontSize:'20px'}}>{product.name}</div>
+        <div style={{ fontSize:'18px'}}>{price}</div>
         <Rating readOnly value={rating} precision={0.25}></Rating>
       </Box>
     </Card>
