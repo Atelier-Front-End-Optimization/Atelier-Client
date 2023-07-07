@@ -18,6 +18,9 @@ import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
 import { Box } from '@mui/material/';
 import Rating from '@mui/material/Rating';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import PinterestIcon from '@mui/icons-material/Pinterest';
+import TwitterIcon from '@mui/icons-material/Twitter';
 
 const ProductDetails = ({
   productId,
@@ -144,6 +147,16 @@ const ProductDetails = ({
                     <Favorite />
                   </Stack>
                 </div>
+              </Stack>
+              <Stack
+              direction="row"
+              justifyContent="center"
+              alignItems="flex-start"
+              spacing={10}
+              >
+                <FacebookIcon style={{color: 'rgba(56, 37, 122, 0.48)'}} />
+                <PinterestIcon style={{color: 'rgba(56, 37, 122, 0.48)'}} />
+                <TwitterIcon style={{color: 'rgba(56, 37, 122, 0.48)'}} />
               </Stack>
             </div>
           </div>
