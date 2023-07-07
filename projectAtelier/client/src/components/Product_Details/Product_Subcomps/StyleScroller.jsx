@@ -8,7 +8,7 @@ import Button from '@mui/material/Button'
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-const StyleScroller = ({ productStylePhotos, setActiveIndex }) => {
+const StyleScroller = ({ productStylePhotos, setActiveIndex, setSalePrice }) => {
   const [scrollPosition, setScrollPosition] = useState(0);
 
   const handleScroll = (direction) => {
