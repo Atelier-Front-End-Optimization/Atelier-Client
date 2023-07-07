@@ -72,7 +72,7 @@ const ProductDetails = ({
 
   if (productStyles && productStyles.length > 0) {
     // setStyleName(productStyles[0].name);
-    console.log(productStyles, 'STYLES');
+    // console.log(productStyles, 'STYLES');
     // console.log(productFeatures, 'FEATURES');
     // console.log(productStylePhotos, 'PHOTOS');
     // console.log('PRODUCT SKU', productSku)
