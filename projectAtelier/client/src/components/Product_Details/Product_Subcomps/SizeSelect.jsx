@@ -4,7 +4,14 @@ import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 
-const SizeSelect = () => {
+const SizeSelect = ({productSku}) => {
+
+  let producSkuSet = new Set();
+
+  for (const key in productSku) {
+    producSkuSet.add(productSku[key].size);
+  }
+
   return (
     <FormControl sx={{ m: 1, minWidth: 250, minHeight: 250 }}>
       <InputLabel id="demo-simple-select-helper-label">SELECT SIZE</InputLabel>
@@ -15,10 +22,12 @@ const SizeSelect = () => {
         // label="SELECT SIZE"
         // onChange={handleChange}
       >
-        <MenuItem></MenuItem>
-        <MenuItem value={'small'}>Small</MenuItem>
-        <MenuItem value={'medium'}>Medium</MenuItem>
-        <MenuItem value={'large'}>Large</MenuItem>
+         <MenuItem></MenuItem>
+         {Array.from(producSkuSet).map((size, index) => (
+  <MenuItem key={index} value={size}>
+    {size}
+  </MenuItem>
+  ))}
       </Select>
     </FormControl>
   );

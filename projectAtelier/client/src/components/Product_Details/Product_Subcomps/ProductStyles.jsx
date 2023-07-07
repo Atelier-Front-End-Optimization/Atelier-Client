@@ -8,7 +8,7 @@ import Avatar from '@mui/material/Avatar';
 import ProductDetails from '../ProductDetails.jsx';
 import ProductModal from './ProductModal';
 
-const ProductStyles = ({ styles, photos, setStylePhoto, setStyleName, setActiveIndex }) => {
+const ProductStyles = ({ styles, photos, setStylePhoto, setStyleName, setActiveIndex, setProductSku }) => {
   let mid = Math.floor(photos.results.length / 2);
 
   let firstHalf = photos.results.slice(0, mid);
@@ -57,6 +57,8 @@ const ProductStyles = ({ styles, photos, setStylePhoto, setStyleName, setActiveI
             onClick={(event) => {
               setStyleName(photo.name);
               setActiveIndex(index + mid)
+              setProductSku(photo.skus)
+              console.log(photo)
             }}
           >
             <Avatar
