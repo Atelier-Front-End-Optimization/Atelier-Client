@@ -62,6 +62,7 @@ const ReviewTile = ( {review: { review_id, body, date, helpfulness, photos, rati
         '& > legend': { mt: 2 },
         borderBottomStyle: 'solid',
         margin: 3,
+        marginTop: -1,
         padding: 1
       }}
     >

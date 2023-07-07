@@ -186,7 +186,7 @@ const RatingsReviews = ({ product_id, product_name }) => {
             marginBottom: '10px'
           }}
         >
-          <h4>RATINGS & REVIEWS</h4>
+          <h4 style={{marginLeft: '20px'}}>RATINGS & REVIEWS</h4>
           {
             Object.values(filters).includes(true) ?
               <div>
@@ -252,7 +252,9 @@ const RatingsReviews = ({ product_id, product_name }) => {
             filters={filters}
             setFilters={setFilters}
           />
-          {/* <ProductBreakdown/> */}
+          <ProductBreakdown
+
+          />
         </Box>
         <Box
           style={{
