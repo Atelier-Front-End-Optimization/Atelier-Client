@@ -580,7 +580,7 @@ const NewReview = ({ product_id, product_name, relavantCharacteristics}) => {
                 }
               </Box>
 
-              <Box
+              {/* <Box
                 display="flex"
                 alignItems="center"
                 justify="center"
@@ -605,7 +605,7 @@ const NewReview = ({ product_id, product_name, relavantCharacteristics}) => {
                     </ReactFileReader>
                   : ''
                 }
-              </Box>
+              </Box> */}
 
 
           <DialogTitle>What is your nickname? *</DialogTitle>

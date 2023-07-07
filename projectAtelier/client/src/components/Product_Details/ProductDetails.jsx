@@ -35,6 +35,7 @@ const ProductDetails = ({
   const [activeIndex, setActiveIndex] = useState(0);
   const [rating, setRating] = useState(0);
   const [productSku, setProductSku] = useState({})
+  const [salePrice, setSalePrice] = useState(null)
 
   useEffect(() => {
 
@@ -71,7 +72,7 @@ const ProductDetails = ({
 
   if (productStyles && productStyles.length > 0) {
     // setStyleName(productStyles[0].name);
-    // console.log(productStyles, 'STYLES');
+    console.log(productStyles, 'STYLES');
     // console.log(productFeatures, 'FEATURES');
     // console.log(productStylePhotos, 'PHOTOS');
     // console.log('PRODUCT SKU', productSku)
@@ -90,7 +91,7 @@ const ProductDetails = ({
           justifyContent="flex-start"
           alignItems="flex-start"
         >
-          <ProductModal stylePhoto={stylePhoto} productStylePhotos={productStylePhotos} activeIndex={activeIndex} setActiveIndex={setActiveIndex}/>
+          <ProductModal stylePhoto={stylePhoto} productStylePhotos={productStylePhotos} activeIndex={activeIndex} setActiveIndex={setActiveIndex} setSalePrice={setSalePrice}/>
 
           <div>
             <ItemDescription slogan={slogan} description={description} />
@@ -109,7 +110,12 @@ const ProductDetails = ({
             <span> Read all reviews</span>
             <h3>{product.category.toUpperCase()}</h3>
             <h1>{name}</h1>
-            <p>{`$${productStyles[0].original_price}`}</p>
+
+            {salePrice === null ?
+            <p>{`$${productStyles[0].original_price}`}</p> : (
+              <p><del>{`$${productStyles[0].original_price}`}</del> {`$${salePrice}`}</p>
+            )}
+
             <span>{`STYLE > ${styleName}`}</span>
             <ProductStyles
               styles={productStyles}
@@ -118,6 +124,7 @@ const ProductDetails = ({
               setStyleName={setStyleName}
               setActiveIndex={setActiveIndex}
               setProductSku={setProductSku}
+              setSalePrice={setSalePrice}
             />
             <div>
               <Stack
