@@ -76,7 +76,7 @@ const ReviewTile = ( {review: { review_id, body, date, helpfulness, photos, rati
             name="Item Review"
             value={rating}
             precision={0.25}
-            size='small'
+            size='medium'
             readOnly
           />
           <span>
@@ -112,7 +112,12 @@ const ReviewTile = ( {review: { review_id, body, date, helpfulness, photos, rati
         : body}
       </div>
       {photos.length > 0 ?
-          <Stack direction='row' spacing={1}>
+          <Stack
+            direction='row'
+            spacing={1}
+            marginTop='20px'
+            marginBottom='20px'
+          >
             {photos.map((photo) => {
               const [open, setOpen] = useState(false);
               const handleOpenClose = () => {
@@ -157,7 +162,9 @@ const ReviewTile = ( {review: { review_id, body, date, helpfulness, photos, rati
           {response}
         </p>
       </Box>
-      <div>
+      <div
+        style={{marginBottom: '20px', marginTop:'20px'}}
+      >
         {recommend ?
             <Box><CheckIcon/> {'I recommend this product'} </Box>
         : ''}
@@ -168,7 +175,6 @@ const ReviewTile = ( {review: { review_id, body, date, helpfulness, photos, rati
         <Button
           variant='text'
           size='small'
-          // color='black'
           onClick={handleHelpful}
           disabled={wasClicked}
         >
