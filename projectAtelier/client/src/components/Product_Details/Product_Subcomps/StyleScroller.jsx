@@ -40,6 +40,7 @@ const StyleScroller = ({ productStylePhotos, setActiveIndex }) => {
       {productStylePhotos.results.map((photo, index) => (
         <ImageListItem key={Math.random()} sx={{ marginBottom: '10px' }} onClick={(() => {
           handleImageListClick(index)
+          setSalePrice(photo.sale_price)
         })} style={{cursor:'pointer'}}>
           {photo.photos[0].url !== null? (
           <img
