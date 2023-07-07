@@ -10,7 +10,7 @@ import ArrowCircleRightOutlinedIcon from '@mui/icons-material/ArrowCircleRightOu
 import StyleScroller from './StyleScroller.jsx'
 import defaultImage from '../../../Assets/default.jpg'
 
-const ProductModal = ({ stylePhoto, productStylePhotos, activeIndex, setActiveIndex, setSalePrice }) => {
+const ProductModal = ({ stylePhoto, productStylePhotos, activeIndex, setActiveIndex, setSalePrice, setStyleName }) => {
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
@@ -77,7 +77,7 @@ const ProductModal = ({ stylePhoto, productStylePhotos, activeIndex, setActiveIn
       )}
 
   <div style={{ position: 'absolute', top: '40%', left: '7%', transform: 'translate(-50%, -50%)', zIndex: 2 }}>
-    <StyleScroller productStylePhotos={productStylePhotos} setActiveIndex={setActiveIndex} setSalePrice={setSalePrice}/>
+    <StyleScroller productStylePhotos={productStylePhotos} setActiveIndex={setActiveIndex} setSalePrice={setSalePrice} setStyleName={setStyleName}/>
   </div>
 </div>
   );
