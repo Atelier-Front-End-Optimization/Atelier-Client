@@ -8,7 +8,7 @@ import Button from '@mui/material/Button'
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-const StyleScroller = ({ productStylePhotos, setActiveIndex, setSalePrice }) => {
+const StyleScroller = ({ productStylePhotos, setActiveIndex, setSalePrice, setStyleName }) => {
   const [scrollPosition, setScrollPosition] = useState(0);
 
   const handleScroll = (direction) => {
@@ -41,6 +41,7 @@ const StyleScroller = ({ productStylePhotos, setActiveIndex, setSalePrice }) => 
         <ImageListItem key={Math.random()} sx={{ marginBottom: '10px' }} onClick={(() => {
           handleImageListClick(index)
           setSalePrice(photo.sale_price)
+          setStyleName(photo.name)
         })} style={{cursor:'pointer'}}>
           {photo.photos[0].url !== null? (
           <img

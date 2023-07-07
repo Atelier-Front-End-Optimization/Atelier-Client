@@ -94,7 +94,7 @@ const ProductDetails = ({
           justifyContent="flex-start"
           alignItems="flex-start"
         >
-          <ProductModal stylePhoto={stylePhoto} productStylePhotos={productStylePhotos} activeIndex={activeIndex} setActiveIndex={setActiveIndex} setSalePrice={setSalePrice}/>
+          <ProductModal stylePhoto={stylePhoto} productStylePhotos={productStylePhotos} activeIndex={activeIndex} setActiveIndex={setActiveIndex} setSalePrice={setSalePrice} setStyleName={setStyleName}/>
 
           <div>
             <ItemDescription slogan={slogan} description={description} />
