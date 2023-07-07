@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { Button, Box, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField, Rating, Radio, RadioGroup, FormControlLabel, FormControl, FormLabel, Avatar, Stack } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
-import ReactFileReader from "react-file-reader";
+// import ReactFileReader from "react-file-reader";
 import {useEffect, useState} from 'react';
 
 const NewReview = ({ product_id, product_name, relavantCharacteristics}) => {
@@ -580,7 +580,7 @@ const NewReview = ({ product_id, product_name, relavantCharacteristics}) => {
                 }
               </Box>
 
-              <Box
+              {/* <Box
                 display="flex"
                 alignItems="center"
                 justify="center"
@@ -605,7 +605,7 @@ const NewReview = ({ product_id, product_name, relavantCharacteristics}) => {
                     </ReactFileReader>
                   : ''
                 }
-              </Box>
+              </Box> */}
 
 
           <DialogTitle>What is your nickname? *</DialogTitle>

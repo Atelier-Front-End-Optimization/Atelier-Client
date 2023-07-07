@@ -34,6 +34,7 @@ const ProductDetails = ({
   const [styleName, setStyleName] = useState('');
   const [activeIndex, setActiveIndex] = useState(0);
   const [rating, setRating] = useState(0);
+  const [productSku, setProductSku] = useState({})
 
   useEffect(() => {
 
@@ -52,6 +53,7 @@ const ProductDetails = ({
           setStyleName(response.data.results[0].name);
           setProductStylePhotos(response.data);
           setStylePhoto(response.data.results[0].photos[0].url)
+          setProductSku(response.data.results[0].skus)
         })
         .catch((error) => {
           console.log('ERROR IN GET PRODUCT STYLES');
@@ -72,6 +74,7 @@ const ProductDetails = ({
     // console.log(productStyles, 'STYLES');
     // console.log(productFeatures, 'FEATURES');
     // console.log(productStylePhotos, 'PHOTOS');
+    // console.log('PRODUCT SKU', productSku)
     return (
       <Stack direction ="row"
         sx={{
@@ -101,9 +104,10 @@ const ProductDetails = ({
           paddingLeft="75px"
         >
           <div>
-            <Rating name="read-only" value={rating} precision={0.25} readOnly />
+
+             <Rating name="read-only" value={rating} precision={0.25} readOnly />
             <span> Read all reviews</span>
-            <h3>CATEGORY</h3>
+            <h3>{product.category.toUpperCase()}</h3>
             <h1>{name}</h1>
             <p>{`$${productStyles[0].original_price}`}</p>
             <span>{`STYLE > ${styleName}`}</span>
@@ -113,6 +117,7 @@ const ProductDetails = ({
               setStylePhoto={setStylePhoto}
               setStyleName={setStyleName}
               setActiveIndex={setActiveIndex}
+              setProductSku={setProductSku}
             />
             <div>
               <Stack
@@ -121,8 +126,8 @@ const ProductDetails = ({
                 alignItems="flex-start"
               >
                 <div style={{ flexShrink: 0 }}>
-                  <SizeSelect />
-                  <QuantitySelect />
+                  <SizeSelect productSku={productSku} />
+                  <QuantitySelect productSku={productSku} />
                   <Stack
                   direction="row"
                   alignItems="flex-end"
