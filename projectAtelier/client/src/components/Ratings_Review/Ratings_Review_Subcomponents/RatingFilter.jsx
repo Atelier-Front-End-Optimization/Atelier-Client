@@ -58,6 +58,7 @@ const RatingFilter = ({ ratingsData, ratings, filters, setFilters }) => {
                 sx={{textDecoration: 'underline'}}
                 filter='fiveStars'
                 onClick={handleLinkClick}
+                style={{color:'rgba(56, 37, 122, 0.48)', fontWeight: 'bold'}}
               >
                 5 stars
               </Link>
@@ -76,6 +77,7 @@ const RatingFilter = ({ ratingsData, ratings, filters, setFilters }) => {
                 sx={{textDecoration: 'underline'}}
                 filter='fourStars'
                 onClick={handleLinkClick}
+                style={{color:'rgba(56, 37, 122, 0.48)', fontWeight: 'bold'}}
               >
                 4 stars
               </Link >
@@ -94,6 +96,7 @@ const RatingFilter = ({ ratingsData, ratings, filters, setFilters }) => {
                 sx={{textDecoration: 'underline'}}
                 filter='threeStars'
                 onClick={handleLinkClick}
+                style={{color:'rgba(56, 37, 122, 0.48)', fontWeight: 'bold'}}
               >
                 3 stars
               </Link>
@@ -112,6 +115,7 @@ const RatingFilter = ({ ratingsData, ratings, filters, setFilters }) => {
                 sx={{textDecoration: 'underline'}}
                 filter='twoStars'
                 onClick={handleLinkClick}
+                style={{color:'rgba(56, 37, 122, 0.48)', fontWeight: 'bold'}}
               >
                 2 stars
               </Link>
@@ -130,6 +134,7 @@ const RatingFilter = ({ ratingsData, ratings, filters, setFilters }) => {
                 sx={{textDecoration: 'underline'}}
                 filter='oneStars'
                 onClick={handleLinkClick}
+                style={{color:'rgba(56, 37, 122, 0.48)', fontWeight: 'bold'}}
               >
                 1 stars
               </Link>
@@ -158,7 +163,7 @@ const RatingFilter = ({ ratingsData, ratings, filters, setFilters }) => {
               <BarSeries
                 valueField="votes"
                 argumentField="stars"
-                color='green'
+                color='rgba(56, 37, 122, 0.48)'
               />
               <Animation />
             </Chart>

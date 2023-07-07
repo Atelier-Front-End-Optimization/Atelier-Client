@@ -91,7 +91,7 @@ function RelatedCard({
       onClick={relatedClick}
       sx={{
         cursor: 'pointer',
-        width: 250,
+        width: 300,
         m: 2,
         flexBasis: 'auto',
         flexShrink: 0,

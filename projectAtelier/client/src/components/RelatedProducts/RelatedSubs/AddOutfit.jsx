@@ -9,10 +9,10 @@ function AddOutfit({ handleClick, currentProduct }) {
       className="outfit-card"
       sx={{
         cursor: 'pointer',
-        width: 250,
+        width: 300,
         m: 2,
         mr: '70px',
-        ml: '16px',
+        ml: '40px',
         flexBasis: 'auto',
         flexShrink: 0,
       }}

@@ -42,12 +42,12 @@ const ProductModal = ({ stylePhoto, productStylePhotos, activeIndex, setActiveIn
   <img
     src={productStylePhotos.results[activeIndex].photos[0].url}
     alt={`Slide ${activeIndex + 1}`}
-    style={{ height: '600px', width: '800px' }}
+    style={{ height: '550px', width: '750px' }}
   />)
    : (<img
    src={defaultImage}
     alt={`Slide ${activeIndex + 1}`}
-    style={{ height: '600px', width: '800px' }}
+    style={{ height: '550px', width: '750px' }}
     />)}
 
   <IconButton

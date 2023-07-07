@@ -6,7 +6,7 @@ import MenuItem from '@mui/material/MenuItem';
 
 const SizeSelect = () => {
   return (
-    <FormControl sx={{ m: 1, minWidth: 250, minHeight: 250 }}>
+      <FormControl sx={{ m: 1, minWidth: 250, minHeight: 250 }}>
       <InputLabel id="demo-simple-select-helper-label">SELECT SIZE</InputLabel>
       <Select
         labelId="demo-simple-select-helper-label"

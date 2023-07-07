@@ -96,7 +96,9 @@ const NewReview = ({ product_id, product_name, relavantCharacteristics}) => {
         style={{
           marginLeft: '30px',
           marginRight: '30px',
-          marginBottom: '50px'
+          marginBottom: '50px',
+          color: 'rgba(56, 37, 122, 0.48)',
+          borderColor: 'rgba(56, 37, 122, 0.48)'
         }}
         variant='outlined'
         size='large'
@@ -525,6 +527,7 @@ const NewReview = ({ product_id, product_name, relavantCharacteristics}) => {
               variant="filled"
               placeholder='Example: Best purchase ever!'
               inputProps={{ maxLength: 60 }}
+              style={{backgroundColor: 'rgba(56, 37, 122, 0.25)'}}
               value={summary}
               onChange={handleSummary}
             />
@@ -539,6 +542,7 @@ const NewReview = ({ product_id, product_name, relavantCharacteristics}) => {
               variant="filled"
               placeholder='Why did you like the product or not?'
               inputProps={{ minLength: 50, maxLength: 1000 }}
+              style={{backgroundColor: 'rgba(56, 37, 122, 0.25)'}}
               multiline
               rows={10}
               value={body}
@@ -598,6 +602,7 @@ const NewReview = ({ product_id, product_name, relavantCharacteristics}) => {
                         <Button
                         size='small'
                         variant='outlined'
+                        style={{color: 'rgba(56, 37, 122, 0.48)', borderColor: 'rgba(56, 37, 122, 0.48)', fontWeight: 550}}
                         >
                           Add photos
                         </Button>
@@ -618,6 +623,7 @@ const NewReview = ({ product_id, product_name, relavantCharacteristics}) => {
                 variant="filled"
                 placeholder='Example: jackson11!'
                 inputProps={{ maxLength: 60 }}
+                style={{backgroundColor: 'rgba(56, 37, 122, 0.25)'}}
                 value={name}
                 onChange={handleName}
               />
@@ -632,14 +638,26 @@ const NewReview = ({ product_id, product_name, relavantCharacteristics}) => {
                 variant="filled"
                 placeholder='Example: jackson11@email.com'
                 inputProps={{ maxLength: 60 }}
+                style={{backgroundColor: 'rgba(56, 37, 122, 0.25)'}}
                 value={email}
                 onChange={handleEmail}
               />
             <span>For authentication reasons, you will not be emailed</span>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button  onClick={handleReview}>Submit Review</Button>
+          <Button
+            onClick={handleClose}
+            style={{color: 'rgba(56, 37, 122, 0.48)'}}
+          >
+            Cancel
+          </Button>
+
+          <Button
+            onClick={handleReview}
+            style={{color: 'rgba(56, 37, 122, 0.48)'}}
+          >
+            Submit Review
+          </Button>
         </DialogActions>
       </Dialog>
     </Box>
