@@ -27,12 +27,12 @@ const StyleScroller = ({ productStylePhotos, setActiveIndex }) => {
 
   return (
     <div>
-    <Button onClick={() => handleScroll('up')} style={{ position: 'absolute', top: '0%', left: '50%', transform: 'translate(-50%, -50%)' }} id='scrollUp'>
+    <Button onClick={() => handleScroll('up')} style={{ position: 'absolute', top: '1%', left: '50%', transform: 'translate(-50%, -50%)' }} id='scrollUp'>
       <ExpandLessIcon />
     </Button>
     <ImageList
       id="imageListContainer"
-      sx={{ width: 67, height: 400, scrollBehavior: 'smooth', overflow:'hidden'
+      sx={{ width: 67, height: 375, scrollBehavior: 'smooth', overflow:'hidden'
     }}
       cols={1}
       rowHeight={67}
@@ -62,7 +62,7 @@ const StyleScroller = ({ productStylePhotos, setActiveIndex }) => {
     </ImageList>
     <Button
       onClick={() => handleScroll('down')}
-      style={{ position: 'absolute', top: '100%', left: '50%', transform: 'translate(-50%, -50%)' }} id='scrollDown'
+      style={{ position: 'absolute', top: '99%', left: '50%', transform: 'translate(-50%, -50%)' }} id='scrollDown'
     >
       <ExpandMoreIcon />
     </Button>

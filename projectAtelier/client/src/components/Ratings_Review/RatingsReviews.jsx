@@ -225,7 +225,9 @@ const RatingsReviews = ({ product_id, product_name }) => {
                 <Button
                   style={{
                     marginLeft: '20px',
-                    marginBottom: '25px'
+                    marginBottom: '25px',
+                    fontWeight: 'bold',
+                    color: 'rgba(56, 37, 122, 0.48)'
                   }}
                   size='small'
                   variant='text'
@@ -284,7 +286,10 @@ const RatingsReviews = ({ product_id, product_name }) => {
                   style={{
                     marginLeft: '30px',
                     marginRight: '30px',
-                    marginBottom: '50px'
+                    marginBottom: '50px',
+                    borderColor: 'rgba(56, 37, 122, 0.48)',
+                    color: 'rgba(56, 37, 122, 0.48)'
+                    // background: "rgba(56, 37, 122, 0.48)"
                   }}
                   variant='outlined'
                   size='large'

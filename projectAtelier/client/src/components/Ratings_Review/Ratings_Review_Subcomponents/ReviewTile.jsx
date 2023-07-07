@@ -103,9 +103,10 @@ const ReviewTile = ( {review: { review_id, body, date, helpfulness, photos, rati
               {showMore ? body : `${body.substring(0, 250)}...`}
             </p>
             <Button
-              variant='contained'
+              variant='outlined'
               size='small'
               onClick={handleShow}
+              style={{color: 'rgba(56, 37, 122, 0.48)', fontWeight: 550}}
             >
               {showMore ? 'Show Less' : 'Show More'}
             </Button>
@@ -178,6 +179,7 @@ const ReviewTile = ( {review: { review_id, body, date, helpfulness, photos, rati
           size='small'
           onClick={handleHelpful}
           disabled={wasClicked}
+          style={{color: 'rgba(56, 37, 122, 0.48)', fontWeight: 550}}
         >
           Yes ({helpful})
         </Button>
@@ -187,7 +189,7 @@ const ReviewTile = ( {review: { review_id, body, date, helpfulness, photos, rati
         <Button
           variant='text'
           size='small'
-          // color='black'
+          style={{color: 'rgba(56, 37, 122, 0.48)', fontWeight: 550}}
           onClick={handleReport}
           disabled={wasClicked}
         >

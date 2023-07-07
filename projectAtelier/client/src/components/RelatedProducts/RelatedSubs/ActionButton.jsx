@@ -25,7 +25,7 @@ function ActionButton({ product, currentProduct, list, products, setProduct, set
             e.preventDefault();
             handleOpen();
           }}
-          sx={{ '&:hover': { color: 'red' } }}
+          sx={{ '&:hover': { color: 'purple'} }}
         ></StarBorderIcon>
         <ComparisonModal
           open={open}

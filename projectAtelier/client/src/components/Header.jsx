@@ -60,6 +60,7 @@ const Header = () => {
       >
         <Toolbar>
           <Typography
+          id="headerText"
             variant="h6"
             noWrap
             component="div"
