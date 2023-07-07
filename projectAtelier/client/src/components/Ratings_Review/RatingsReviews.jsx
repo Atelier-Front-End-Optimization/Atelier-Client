@@ -253,7 +253,7 @@ const RatingsReviews = ({ product_id, product_name }) => {
             setFilters={setFilters}
           />
           <ProductBreakdown
-
+            characteristics={metaData.characteristics}
           />
         </Box>
         <Box
