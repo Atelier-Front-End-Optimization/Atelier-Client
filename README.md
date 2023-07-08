@@ -4,13 +4,13 @@ Project Atelier is a capstone project that builds a functional and delightfully 
 
 The Krusty Krab uses a Git Feature Branch Workflow.
 
-# Table of Contents
+## Table of Contents
 
 1. [Preview and Team Members](https://github.com/Krusty-Krab-Co/The-Krusty-Krab-FEC#team-member-previews)
 2. [Git Workflow](https://github.com/Krusty-Krab-Co/The-Krusty-Krab-FEC#git-workflow)
-3. [Installation Requirements](#requirements)
+3. [Installation Requirements](https://github.com/Krusty-Krab-Co/The-Krusty-Krab-FEC#instalation-requirements)
 
-# Team Member Previews
+## Team Member Previews
 
 **Akash Rajan - Overview module**
 <br>
@@ -68,24 +68,24 @@ git checkout "feature"
 git merge main
 ```
 
-# Instalation Requirements
+## Instalation Requirements
 
-# This project uses React with Vite, and heavily utilizes Material UI's component library. Unit testing is done through Vitest.
+### This project uses React with Vite, and heavily utilizes Material UI's component library. Unit testing is done through Vitest.
 Install these dependances and more after cloning the repo by running: 
 ```
 npm install
 ```
-# To compile JSX files with Vite, use: 
+### To compile JSX files with Vite, use: 
 ```
 npm run build
 ```
-# To create a server on your local machine using Vite, use: 
+### To create a server on your local machine using Vite, use: 
 ```
 npm run dev
 ```
-# To get a production version of this project for deployment, use: 
+### To get a production version of this project for deployment, use: 
 ```
 npm run preview
 ```
-# Our project was deployed to an AWS EC2 instance. To learn more go to: 
+### Our project was deployed to an AWS EC2 instance. To learn more go to: 
 https://docs.aws.amazon.com/codedeploy/latest/userguide/deployment-steps-server.html
