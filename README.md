@@ -1,6 +1,6 @@
 ## Project Atelier Front-End Capstone
 
-Project Atelier is a capstone project that builds a functional and delightfully designed front-end for a high end e-commerce site.
+Project Atelier is a capstone project that builds a functional and delightfully designed front-end for a high fashion e-commerce site.
 
 ## Table of Contents
 
