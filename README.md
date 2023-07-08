@@ -13,7 +13,7 @@ Project Atelier is a capstone project that builds a functional and delightfully 
 **Akash Rajan - Overview module**
 <br>
 <p>
-  <img width="950" alt="Product Overview" src="https://github.com/Krusty-Krab-Co/The-Krusty-Krab-FEC/assets/96401063/8e3a8f34-07e7-4811-9cf6-a6339aead612">
+  <img width="1215" alt="Screenshot 2023-07-08 at 6 59 44 PM" src="https://github.com/Krusty-Krab-Co/The-Krusty-Krab-FEC/assets/96401063/5c0f9545-7cf4-4337-9643-bca4d218032e">
 </p>
 <br>
 
