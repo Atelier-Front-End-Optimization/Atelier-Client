@@ -13,19 +13,24 @@ The Krusty Krab uses a Git Feature Branch Workflow.
 
 ## Team Member Previews
 
- **Akash Rajan - Overview module**
+<!-- Akash Rajan - Overview module -->
+<p align="center">
+  <img width="950" alt="Product Overview" src="https://github.com/Krusty-Krab-Co/The-Krusty-Krab-FEC/assets/96401063/8e3a8f34-07e7-4811-9cf6-a6339aead612">
+</p>
 
-<img width="950" alt="Product Overview" src="https://github.com/Krusty-Krab-Co/The-Krusty-Krab-FEC/assets/96401063/8e3a8f34-07e7-4811-9cf6-a6339aead612">  
+<br>
 
+<!-- Kiel Fuller - Related Products module -->
+<p align="center">
+  <img width="950" alt="Screenshot 2023-07-08 at 11 02 55 AM" src="https://github.com/Krusty-Krab-Co/The-Krusty-Krab-FEC/assets/96401063/46dd4a8b-dd4f-45c2-9a90-ce2221d2c092">
+</p>
 
- **Kiel Fuller - Related Products module**
+<br>
 
-<img width="950" alt="Screenshot 2023-07-08 at 11 02 55 AM" src="https://github.com/Krusty-Krab-Co/The-Krusty-Krab-FEC/assets/96401063/46dd4a8b-dd4f-45c2-9a90-ce2221d2c092">  
-
-
- **Jesse Werhnyak - Ratings and Reviews module** 
-
-<img width="950" alt="Screenshot 2023-07-08 at 11 07 39 AM" src="https://github.com/Krusty-Krab-Co/The-Krusty-Krab-FEC/assets/96401063/f3f70347-491e-4179-94cd-4a341ed2e3aa">  
+<!-- Jesse Werhnyak - Ratings and Reviews module -->
+<p align="center">
+  <img width="950" alt="Screenshot 2023-07-08 at 11 07 39 AM" src="https://github.com/Krusty-Krab-Co/The-Krusty-Krab-FEC/assets/96401063/f3f70347-491e-4179-94cd-4a341ed2e3aa">
+</p>
 
 
 
