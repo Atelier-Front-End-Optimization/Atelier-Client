@@ -32,7 +32,7 @@ The Krusty Krab uses a Git Feature Branch Workflow.
   <img width="950" alt="Screenshot 2023-07-08 at 11 07 39 AM" src="https://github.com/Krusty-Krab-Co/The-Krusty-Krab-FEC/assets/96401063/f3f70347-491e-4179-94cd-4a341ed2e3aa">
 </p>
 
-# Git Workflow 
+## Git Workflow 
 
 ### Collaborators should start with the main branch by using:
 ```
