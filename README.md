@@ -4,13 +4,13 @@ Project Atelier is a capstone project that builds a functional and delightfully 
 
 The Krusty Krab uses a Git Feature Branch Workflow.
 
-## Table of Contents
+# Table of Contents
 
 1. [Preview and Team Members](https://github.com/Krusty-Krab-Co/The-Krusty-Krab-FEC#team-member-previews)
 2. [Git Workflow](https://github.com/Krusty-Krab-Co/The-Krusty-Krab-FEC#git-workflow)
 3. [Installation Requirements](#requirements)
 
-## Team Member Previews
+# Team Member Previews
 
 **Akash Rajan - Overview module**
 <br>
@@ -32,33 +32,33 @@ The Krusty Krab uses a Git Feature Branch Workflow.
   <img width="950" alt="Screenshot 2023-07-08 at 11 07 39 AM" src="https://github.com/Krusty-Krab-Co/The-Krusty-Krab-FEC/assets/96401063/f3f70347-491e-4179-94cd-4a341ed2e3aa">
 </p>
 
-## Git Workflow 
+# Git Workflow 
 
-# Collaborators should start with the main branch by using:
+### Collaborators should start with the main branch by using:
 ```
 git checkout main
 git fetch origin
 git reset --hard origin/main
 ```
 
-# Once the commands above have been run, create a new branch per feature you're working on using:
+### Once the commands above have been run, create a new branch per feature you're working on using:
 ```
 git checkout -b "new-feature"
 ```
 
-# Update add, and commit as you normally would with git. To allow other collaborators to view your updates, use:
+### Update add, and commit as you normally would with git. To allow other collaborators to view your updates, use:
 ```
 git push -u origin "new-feature"
 ```
 
-# Forgot to create a new branch? Use:
+### Forgot to create a new branch? Use:
 ```
 git checkout "current_branch"
 git branch "new-branch"
 git switch "new-branch"
 ```
 
-# Want the latest main while still working on a branch? Use:
+### Want the latest main while still working on a branch? Use:
 ```
 git checkout main
 git fetch origin
