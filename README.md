@@ -2,8 +2,6 @@
 
 Project Atelier is a capstone project that builds a functional and delightfully designed front-end for a high end e-commerce site.
 
-The Krusty Krab uses a Git Feature Branch Workflow.
-
 ## Table of Contents
 
 1. [Preview and Team Members](https://github.com/Krusty-Krab-Co/The-Krusty-Krab-FEC#team-member-previews)
@@ -33,6 +31,8 @@ The Krusty Krab uses a Git Feature Branch Workflow.
 </p>
 
 ## Git Workflow 
+
+The Krusty Krab uses a Git Feature Branch Workflow.
 
 ### Collaborators should start with the main branch by using:
 ```
