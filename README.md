@@ -15,7 +15,7 @@ The Krusty Krab uses a Git Feature Branch Workflow.
 
 Akash Rajan - Overview module 
 
-![screenshot of Overview module] (https://imgur.com/a/cLqqwVO "Product Overview") 
+![screenshot of Overview module] (<img width="1357" alt="Product Overview" src="https://github.com/Krusty-Krab-Co/The-Krusty-Krab-FEC/assets/96401063/8e3a8f34-07e7-4811-9cf6-a6339aead612">) 
 
 
 
