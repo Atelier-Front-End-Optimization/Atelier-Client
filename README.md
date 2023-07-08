@@ -1,9 +1,23 @@
 ## Project Atelier Front-End Capstone
 
-Project Atelier is a capstone project that builds a functional and well designed front-end for a high end e-commerce site.
-
+Project Atelier is a capstone project that builds a functional and delightfully designed front-end for a high end e-commerce site.
 
 The Krusty Krab uses a Git Feature Branch Workflow.
+
+## Table of Contents
+
+1. [Preview and Team Members](#previewandteammembers)
+2. [Project Description](#projectdescription)
+3. [Git Workflow](#gitworkflow)
+4. [Installation Requirements](#requirements)
+
+## Team Member Previews
+
+Akash Rajan - Overview module 
+
+![screenshot of Overview module] (https://imgur.com/a/cLqqwVO "Product Overview") 
+
+
 
 ## Collaborators should start with the main branch by using:
 ```
