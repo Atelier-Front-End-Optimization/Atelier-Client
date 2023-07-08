@@ -6,7 +6,7 @@ The Krusty Krab uses a Git Feature Branch Workflow.
 
 ## Table of Contents
 
-1. [Preview and Team Members]([#previewandteammembers](https://github.com/Krusty-Krab-Co/The-Krusty-Krab-FEC#team-member-previews))
+1. [Preview and Team Members](https://github.com/Krusty-Krab-Co/The-Krusty-Krab-FEC#team-member-previews)
 2. [Project Description](#projectdescription)
 3. [Git Workflow](#gitworkflow)
 4. [Installation Requirements](#requirements)
