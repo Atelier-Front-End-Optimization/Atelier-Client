@@ -6,7 +6,7 @@ Project Atelier is a capstone project that builds a functional and delightfully 
 
 1. [Preview and Team Members](https://github.com/Krusty-Krab-Co/The-Krusty-Krab-FEC#team-member-previews)
 2. [Git Workflow](https://github.com/Krusty-Krab-Co/The-Krusty-Krab-FEC#git-workflow)
-3. [Installation Requirements](https://github.com/Krusty-Krab-Co/The-Krusty-Krab-FEC#instalation-requirements)
+3. [Installation Requirements](https://github.com/Krusty-Krab-Co/The-Krusty-Krab-FEC#installation-requirements)
 
 ## Team Member Previews
 
